@@ -1,0 +1,31 @@
+.allQ {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100vh;
+  top: 70px;
+  left: 410px;
+  transform: scale(1.4);
+}
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.asq {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 900px;
+  width: 500px;
+  height: 40px;
+  background-color: blueviolet;
+  color: white;
+}
+
+
+
