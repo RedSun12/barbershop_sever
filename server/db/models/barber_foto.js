@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
 
     }
-  }
+  } 
   Barber_foto.init({
     foto: DataTypes.STRING
   }, {
