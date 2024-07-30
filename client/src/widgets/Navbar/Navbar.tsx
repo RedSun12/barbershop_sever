@@ -17,10 +17,6 @@ export default function Navbar() {
     navigate('/')
   }
 
-  // const clickProduct = () => {
-  //   navigate('/product')
-  // }
-
   const clickGame = () => {
     navigate('/games')
   }
@@ -53,6 +49,7 @@ export default function Navbar() {
             </div>
           </div>
           <Link to="/" className={styles.name}>СВОЯ ИГРА</Link>
+          <Link to="/contact" className={styles.name}>Контакты</Link>
           <div className={styles.right}>
             <Menu>
               <MenuButton
@@ -74,7 +71,6 @@ export default function Navbar() {
         ) : (
           <div className={styles.wrapper}>
             <div className={styles.left}>
-              <Link to="/product">Товары</Link>
             </div>
             <Link to="/" className={styles.name}>СВОЯ ИГРА</Link>
             <div className={styles.right}>
