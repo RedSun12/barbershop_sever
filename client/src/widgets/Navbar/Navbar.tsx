@@ -49,6 +49,7 @@ export default function Navbar() {
             </div>
           </div>
           <Link to="/" className={styles.name}>СВОЯ ИГРА</Link>
+          <Link to="/contact" className={styles.name}>Контакты</Link>
           <div className={styles.right}>
             <Menu>
               <MenuButton
