@@ -18,8 +18,8 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      isAdmin: {
-        type: Sequelize.BOOLEAN
+      score: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
