@@ -18,11 +18,11 @@ import {
 } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { fetchThemes, fetchQuestions } from '../../redux/thunkActions';
+// import { fetchThemes, fetchQuestions } from '../../redux/thunkActions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
-import { setSelectedQuestion } from '../../redux/gamesSlice';
-import { Themes, Questions } from '../../types/statesTypes';
+// import { setSelectedQuestion } from '../../redux/gamesSlice';
+// import { Themes, Questions } from '../../types/statesTypes';
 import styles from './GamePage.module.css';
 import { useAppSelector } from '../../redux/hooks';
 import axiosInstance from '../../axiosInstance';

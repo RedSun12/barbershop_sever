@@ -1,7 +1,6 @@
 import { Card } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { ReactElement, useEffect, useState } from 'react';
-import TableLeaders from '../../components/TableLeaders/TableLeaders';
 import './ProfilePage.css';
 import { useAppSelector } from '../../redux/hooks';
 
@@ -43,7 +42,6 @@ export default function ProfilePage(): ReactElement {
           </>
       </Card>
       <div className="table-container">
-        <TableLeaders />
       </div>
     </div>
   );
