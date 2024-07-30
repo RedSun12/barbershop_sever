@@ -6,13 +6,12 @@ import { setAccessToken } from './axiosInstance';
 import SignupPage from './pages/SignupPage/SignupPage';
 import SigninPage from './pages/SigninPage/SigninPage';
 import HomePage from './pages/HomePage/HomePage';
-import GamePage from './pages/GamePage/GamePage';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { fetchRefresh } from './redux/thunkActions';
 import { unwrapResult } from '@reduxjs/toolkit';
 import TableLeaders from './components/TableLeaders/TableLeaders';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
-
+import Contacts from './pages/Contacts/Contacts'
 function App() {
   const user = useAppSelector((store) => store.userSlice.user);
   const dispatch = useAppDispatch();
@@ -42,10 +41,7 @@ function App() {
             </div>
           ),
         },
-        {
-          path: '/games',
-          element: <GamePage />,
-        },
+
         {
           path: '/signin',
           element: <SigninPage />,
@@ -57,6 +53,10 @@ function App() {
         {
           path: '/profile',
           element: <ProfilePage />,
+        },
+        {
+          path: '/contact',
+          element: <Contacts />,
         },
       ],
     },
