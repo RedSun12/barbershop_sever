@@ -73,6 +73,8 @@ export default function BarbershopAddress() {
           </button>
         </>
       )}
+
+    
       <div className={styles.ss}>
         <img src={insta} alt="Instagram" className={styles.image} />
         <img src={telega} alt="Telegram" className={styles.image} />
