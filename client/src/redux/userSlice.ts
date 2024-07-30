@@ -11,7 +11,7 @@ const initialState: InitialState = {
     id: 0,
     username: '',
     email: '',
-    score: 0,
+    isAdmin: false,
   },
 };
 
@@ -29,7 +29,7 @@ const rtkSlice = createSlice({
         id: 0,
         username: '',
         email: '',
-        score: 0,
+        isAdmin: false,
       };
     });
 
