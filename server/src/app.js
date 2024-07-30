@@ -3,8 +3,7 @@ const apiRouter = require('./routers/api.router');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const tableLeaders = require("./routers/tableLeaders.api.router.js");
-const getUser = require("./routers/getUser.api.router.js");
+// const getUser = require("./routers/getUser.api.router.js");
 
 const express = require('express');
 
@@ -25,8 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/api/v1', apiRouter);
-app.use('/', tableLeaders);
-app.use('/', getUser);
+// app.use('/', getUser);
 
 app.listen(PORT, () => {
   console.log(`Server started at ${PORT} port`);

@@ -2,14 +2,38 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Themes', {
+    await queryInterface.createTable('Products', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      topic: {
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: 'Users',
+          },
+          key: 'id',
+        },
+      },
+      title: {
+        type: Sequelize.STRING
+      },
+      image: {
+        type: Sequelize.STRING
+      },
+      manufacturer: {
+        type: Sequelize.STRING
+      },
+      composition: {
+        type: Sequelize.TEXT
+      },
+      hairType: {
+        type: Sequelize.TEXT
+      },
+      size: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -25,6 +49,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Themes');
+    await queryInterface.dropTable('Products');
   }
 };

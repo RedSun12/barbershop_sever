@@ -9,9 +9,12 @@ import HomePage from './pages/HomePage/HomePage';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { fetchRefresh } from './redux/thunkActions';
 import { unwrapResult } from '@reduxjs/toolkit';
-import TableLeaders from './components/TableLeaders/TableLeaders';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
-import Contacts from './pages/Contacts/Contacts'
+
+import Contacts from './pages/Contacts/Contacts';
+import ProductPage from './pages/ProductPage/ProductPage';
+
+
 function App() {
   const user = useAppSelector((store) => store.userSlice.user);
   const dispatch = useAppDispatch();
@@ -37,7 +40,6 @@ function App() {
             <div className='homP'>
             <p className='tableZOV'>Если хочешь попасть в таблицу лидеров, зарегистрируйся</p>
             <p className='imgZOV'><img src='/stal.jpg'></img></p>
-            <TableLeaders />
             </div>
           ),
         },
@@ -57,6 +59,10 @@ function App() {
         {
           path: '/contact',
           element: <Contacts />,
+        },
+        {
+          path: '/product',
+          element: <ProductPage />,
         },
       ],
     },
