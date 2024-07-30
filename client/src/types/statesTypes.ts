@@ -2,19 +2,31 @@ export type User = {
   id: number;
   username: string;
   email: string;
-  isAdmin: Boolean;
+  score: number;
 };
 
-export type Entry = {
+export type Themes = {
   id: number;
-  title: string;
-  image: string;
-  manufacturer: string;
-  composition: string;
-  hairType: string;
-  size: string;
+  topic: string,
   createdAt: Date;
   updatedAt: Date;
 };
 
-export type Entries = Entry[]
+export type Questions = {
+  id: number;
+  question: string,
+  answer: string,
+  themeId: number,
+  scoreQ: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type UsersQuestions = {
+  id: number,
+  userId: number,
+  questionId: number,
+  createdAt: Date;
+  updatedAt: Date;
+}
+
