@@ -4,18 +4,15 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate({ Question, UsersQuestion }) {
-      this.belongsToMany(Question, {
-        through: UsersQuestion,
-        foreignKey: 'userId',
-      });
+    static associate({ Product }) {
+      this.hasMany(Product, { foreignKey: 'userId' });
     }
   }
   User.init({
-     username: DataTypes.STRING,
+    username: DataTypes.STRING,
     password: DataTypes.STRING,
     email: DataTypes.STRING,
-    score: DataTypes.INTEGER,
+    isAdmin: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'User',

@@ -6,7 +6,12 @@ export type RefreshRes = {
 };
 
 export type Inputs = {
-   answer: string;
+    title: string;
+    image: string;
+    manufacturer: string;
+    composition: string;
+    hairType: string;
+    size: string;
 };
 
 export type InputsAuth = {
