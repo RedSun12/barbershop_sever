@@ -1,8 +1,10 @@
 import { configureStore, Store } from '@reduxjs/toolkit';
 import userSlice from './userSlice';
+import gamesSlice from './gamesSlice';
 
 const storeOptions = {
   reducer: {
+    gamesSlice,
     userSlice
   },
 };
