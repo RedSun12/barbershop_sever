@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { fetchRefresh } from './redux/thunkActions';
 import { unwrapResult } from '@reduxjs/toolkit';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import EditUser from './pages/EditUser/EditUser';
 
 import Contacts from './pages/Contacts/Contacts';
 import ProductPage from './pages/ProductPage/ProductPage';
@@ -64,10 +65,13 @@ function App() {
           path: '/product',
           element: <ProductPage />,
         },
+        {
+          path: '/edituser/:id',
+          element: <EditUser />,
+        },
       ],
     },
   ]);
-
   return <RouterProvider router={router} />;
 }
 

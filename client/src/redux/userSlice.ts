@@ -10,7 +10,9 @@ const initialState: InitialState = {
   user: {
     id: 0,
     username: '',
+    usersurname: '',
     email: '',
+    avatar: '',
     isAdmin: false,
   },
 };
@@ -28,6 +30,8 @@ const rtkSlice = createSlice({
       state.user = {
         id: 0,
         username: '',
+        usersurname: '',
+        avatar: '',
         email: '',
         isAdmin: false,
       };

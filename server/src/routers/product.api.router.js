@@ -5,7 +5,7 @@ const { verifyAccessToken } = require('../middlewares/verifyToken');
 router
   .get('/', async (req, res) => {
     try {
-      const entries = await Task.findAll();
+      const entries = await Product.findAll();
       res.json(entries);
     } catch (error) {
       console.error(error);
@@ -15,7 +15,7 @@ router
   .post('/', verifyAccessToken, async (req, res) => {
     const { title, image, manufacturer, composition, hairType, size } = req.body;
     try {
-      const entry = await Task.create({
+      const entry = await Product.create({
         title,
         image,
         manufacturer,
@@ -33,7 +33,7 @@ router
   .delete('/:id', verifyAccessToken, async (req, res) => {
     const { id } = req.params;
     try {
-      const task = await Task.findOne({ where: { id } });
+      const task = await Product.findOne({ where: { id } });
       if (task.userId === res.locals.user?.id) {
         task.destroy();
         res.sendStatus(200);
