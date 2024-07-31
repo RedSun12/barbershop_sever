@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Product } = require('../../db/models'); 
+const { Product } = require('../../db/models'); 
 const { verifyAccessToken } = require('../middlewares/verifyToken');
 
 router
@@ -13,6 +13,7 @@ router
     }
   })
   .post('/', verifyAccessToken, async (req, res) => {
+    console.log('ghbdtn')
     const { title, image, manufacturer, composition, hairType, size } = req.body;
     try {
       const entry = await Product.create({
@@ -22,10 +23,10 @@ router
         composition,
         hairType,
         size,
-        userId: res.locals.user.id,
       });
       res.json(entry);
     } catch (error) {
+      console.log('2222')
       console.error(error);
       res.sendStatus(400);
     }
@@ -34,12 +35,16 @@ router
     const { id } = req.params;
     try {
       const task = await Product.findOne({ where: { id } });
+<<<<<<< HEAD
       if (task.userId === res.locals.user?.id) {
+=======
+      // if (res.locals.user?.id === 1) {
+>>>>>>> dev
         task.destroy();
         res.sendStatus(200);
-      } else {
-        res.status(400).json({ message: 'У вас нет прав на удаление записи' });
-      }
+      // } else {
+      //   res.status(400).json({ message: 'У вас нет прав на удаление записи' });
+      // }
     } catch (error) {
       console.error(error);
       res.sendStatus(400);
