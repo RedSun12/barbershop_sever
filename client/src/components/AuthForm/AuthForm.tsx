@@ -60,11 +60,11 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
       // Здесь можно добавить логику для отображения ошибки пользователю
     }
 
-    dispatch(fetchAuthUser({ inputs, type }))
-      .then(unwrapResult)
-      .then((result) => {
-        setAccessToken(result.accessToken);
-      });
+    // dispatch(fetchAuthUser({ inputs, type }))
+    //   .then(unwrapResult)
+    //   .then((result) => {
+    //     setAccessToken(result.accessToken);
+    //   });
   };
 
   return (
