@@ -15,21 +15,6 @@ export default function Form() {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // userId: DataTypes.INTEGER,
-  // title: DataTypes.STRING,
-  // image: DataTypes.STRING,
-  // manufacturer: DataTypes.STRING,
-  // composition: DataTypes.TEXT,
-  // hairType: DataTypes.TEXT,
-  // size: DataTypes.STRING,
-
-  // title,
-  // image,
-  // manufacturer,
-  // composition,
-  // hairType,
-  // size,
-
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(fetchAddEntry(inputs));

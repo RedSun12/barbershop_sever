@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const generateTokens = require('../utils/generateToken');
 
 router.post('/signup', async (req, res) => {
-  const { score, username, email, password } = req.body;
+  const { isAdmin, username, email, password } = req.body;
   console.log('12312');
 
   if (!(username && email && password)) {
@@ -15,7 +15,7 @@ router.post('/signup', async (req, res) => {
   try {
     const [user, isCreated] = await User.findOrCreate({
       where: { email },
-      defaults: { score, username, email, password: await bcrypt.hash(password, 10) },
+      defaults: { isAdmin, username, email, password: await bcrypt.hash(password, 10) },
     });
 
     if (!isCreated) {

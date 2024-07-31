@@ -6,8 +6,7 @@ import { fetchEntries } from '../../redux/thunkActions';
 import { Spinner } from '@chakra-ui/react';
 
 export default function List() {
-  console.log('asdasdasdasd', useAppSelector);
-  const { isLoading, entries } = useAppSelector((store) => store.appSlice);
+  const {entries, isLoading} = useAppSelector((store) => store.productSlice);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -32,5 +31,5 @@ export default function List() {
         </div>
       )}
     </>
-  );
+  )
 }

@@ -70,15 +70,17 @@ export const fetchLogoutUser: AsyncThunk<boolean, void, AsyncThunkConfig> =
   export const fetchEntries: AsyncThunk<Entries, void, AsyncThunkConfig> =
   createAsyncThunk('entries/all', async () => {
     const response = await axiosInstance.get<Entries>(
-      `${import.meta.env.VITE_API}/tasks`
+      `${import.meta.env.VITE_API}/product`
     );
     return response.data;
   });
 
 export const fetchAddEntry: AsyncThunk<Entry, Inputs, AsyncThunkConfig> =
   createAsyncThunk('entries/add', async (inputs: Inputs) => {
+    // console.log('1111', inputs)
+    console.log(import.meta.env.VITE_API)
     const response = await axiosInstance.post(
-      `${import.meta.env.VITE_API}/tasks`,
+      `${import.meta.env.VITE_API}/product`,
       inputs
     );
     return response.data;
@@ -86,6 +88,6 @@ export const fetchAddEntry: AsyncThunk<Entry, Inputs, AsyncThunkConfig> =
 
 export const fetchDelEntry: AsyncThunk<number, number, AsyncThunkConfig> =
   createAsyncThunk('entries/del', async (id: number) => {
-    await axiosInstance.delete(`${import.meta.env.VITE_API}/tasks/${id}`);
+    await axiosInstance.delete(`${import.meta.env.VITE_API}/product/${id}`);
     return id;
   });
