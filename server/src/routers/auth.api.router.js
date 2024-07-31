@@ -5,19 +5,20 @@ const bcrypt = require('bcrypt');
 const generateTokens = require('../utils/generateToken');
 
 router.post('/signup', async (req, res) => {
-  const { score, username, email, password } = req.body;
-  console.log('12312');
-
+  // const { username, email, password } = req.body;
+  // console.log('12312*******', username, email, password);
   if (!(username && email && password)) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
   try {
+    // await User.create({username: 'asd', email:'111@123', password:'123'})
     const [user, isCreated] = await User.findOrCreate({
       where: { email },
-      defaults: { score, username, email, password: await bcrypt.hash(password, 10) },
+      defaults: { username, email, password: await bcrypt.hash(password, 10) },
     });
-
+    // console.log('********/////')
+    // res.end();
     if (!isCreated) {
       return res.status(400).json({ message: 'User already exists' });
     } else {
@@ -47,6 +48,10 @@ router.post('/signin', async (req, res) => {
 
   const user = await User.findOne({ where: { email } });
 
+  if (!user) {
+    return res.status(400).json({ message: 'No user found' });
+  }
+  
   const isCorrectPassword = await bcrypt.compare(password, user.password);
 
   if (!isCorrectPassword) {
