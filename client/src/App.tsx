@@ -13,6 +13,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import axiosInstance from './axiosInstance';
 import Services from './pages/Service/Services';
 import Contacts from './pages/Contacts/Contacts';
+import Admin from './pages/Admin/Admin';
 import ProductPage from './pages/ProductPage/ProductPage';
 const { VITE_API } = import.meta.env;
 
@@ -74,6 +75,10 @@ function App() {
         {
           path: '/services',
           element: <Services />,
+        },
+        {
+          path: '/admin',
+          element: <Admin />,
         },
       ],
     },
