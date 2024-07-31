@@ -4,6 +4,8 @@ import { useAppSelector } from '../../redux/hooks';
 import AddPicture from "./Component/AddPicture.js";
 import axios from "axios";
 import "./EditUser.css";
+import { accessToken } from "../../axiosInstance.js";
+import { getCookies } from "../../utils/utility.js"
 
 type TUser = {
   username: string;
@@ -11,8 +13,11 @@ type TUser = {
   avatar: string;
 };
 
-export default function EditUser({refreshToken}) {
+export default function EditUser() {
   const [userEdit, setUserEdit] = useState<TUser | null>(null);
+  const [getAccessToken, setGetAccessToken] = useState<string>('');
+  console.log(getCookies('accessToken'));
+  
   const navigate = useNavigate();
   const params = useParams();
   const [createUser, setCreateUser] = useState({});
@@ -157,14 +162,12 @@ export default function EditUser({refreshToken}) {
     }
   };
 
-  useEffect(() => {
-    if (refreshToken) {
-      getUserData(refreshToken);
-    }
-    if (params.id) {
-      getUserInfo(params.id);
-    }
-  }, [refreshToken, params.id]);
+
+  
+//   useEffect(() => {
+//     setGetAccessToken(accessToken)
+//   }, []);
+// console.log(getAccessToken);
 
   return (
     <div className="editBox">

@@ -54,7 +54,7 @@ export default function ProfilePage(): ReactElement {
     >Изменить</button>
       <img className="avatar"src={user.avatar} alt="avatar" />
       <h2 className="welcome-message">имя, {user.username}!</h2>
-      <h2 className="welcome-message">фамилия, {user.usersurname}!</h2>
+      <h2 className="welcome-message">фамилия1, {user.usersurname}!</h2>
       <div>
       <a href="w1168615.yclients.com/widgetJS" className="ms_booking" onClick={loadScript()}>Узнать свободные места</a>
       </div>
