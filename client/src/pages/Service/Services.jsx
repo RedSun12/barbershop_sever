@@ -44,49 +44,15 @@ export default function Services() {
 
   return (
     <div className={styles.container}>
-      {services.map((el) => (
-        <div key={el.id} className={styles.serviceCard}>
-          <img src={el.foto} alt="foto" className={styles.serviceImage} />
-          {editing === el.id ? (
-            <div className={styles.serviceText}>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                name="price"
-                value={formData.price}
-                onChange={handleChange}
-              />
-            </div>
-          ) : (
-            <div className={styles.serviceText}>
-              <p>{el.name}</p>
-              <p>{el.price}</p>
-            </div>
-          )}
-          <div className={styles.buttons}>
-            <button
-              className={styles.button}
-              onClick={() =>
-                editing === el.id ? handleSave(el.id) : handleEdit(el)
-              }
-            >
-              {editing === el.id ? 'Сохранить' : 'Редактировать'}
-            </button>
-            <button
-              className={`${styles.button} ${styles.deleteButton}`}
-              onClick={() => handleDelete(el.id)}
-            >
-              Удалить
-            </button>
-          </div>
+    {services.map((el) => (
+      <div key={el.id} className={styles.serviceCard}>
+        <img src={el.foto} alt="foto" className={styles.serviceImage} />
+        <div className={styles.serviceDetails}>
+          <p>{el.name}</p>
+          <p>{el.price}</p>
         </div>
-      ))}
-      <FormServiсes setServices={setServices} services={services} />
-    </div>
+      </div>
+    ))}
+  </div>
   );
 }
