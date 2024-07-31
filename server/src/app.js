@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 // const getUser = require("./routers/getUser.api.router.js");
 
+
 const express = require('express');
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(express.json());
 
 app.use('/api/v1', apiRouter);
 // app.use('/', getUser);
+
 
 app.listen(PORT, () => {
   console.log(`Server started at ${PORT} port`);

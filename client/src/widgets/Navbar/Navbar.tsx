@@ -67,6 +67,7 @@ export default function Navbar() {
           <Link to="/" className={styles.name}>СВОЯ ИГРА</Link>
           <a href="w1168615.yclients.com/widgetJS" className="ms_booking" onClick="loadScript()">Записаться онлайн</a>
           <Link to="/contact" className={styles.name}>Контакты</Link>
+          <Link to="/services" className={styles.name}>Услуги</Link>
           <div className={styles.right}>
             <Menu>
               <MenuButton
@@ -91,6 +92,7 @@ export default function Navbar() {
               <Link to="/product">Товары</Link>
             </div>
             <Link to="/" className={styles.name}>СВОЯ ИГРА</Link>
+           
             <div className={styles.right}>
               <Menu>
                 <MenuButton

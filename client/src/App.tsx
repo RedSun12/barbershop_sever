@@ -1,6 +1,6 @@
 import './App.css';
 import Root from './Root';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { setAccessToken } from './axiosInstance';
 import SignupPage from './pages/SignupPage/SignupPage';
@@ -10,14 +10,17 @@ import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { fetchRefresh } from './redux/thunkActions';
 import { unwrapResult } from '@reduxjs/toolkit';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
-
+import axiosInstance from './axiosInstance';
+import Services from './pages/Service/Services';
 import Contacts from './pages/Contacts/Contacts';
 import ProductPage from './pages/ProductPage/ProductPage';
-
+const { VITE_API } = import.meta.env;
 
 function App() {
   const user = useAppSelector((store) => store.userSlice.user);
   const dispatch = useAppDispatch();
+ 
+
 
   useEffect(() => {
     dispatch(fetchRefresh())
@@ -26,6 +29,10 @@ function App() {
         setAccessToken(result.accessToken);
       });
   }, []);
+
+ 
+
+
 
   const router = createBrowserRouter([
     {
@@ -63,6 +70,10 @@ function App() {
         {
           path: '/product',
           element: <ProductPage />,
+        },
+        {
+          path: '/services',
+          element: <Services />,
         },
       ],
     },
