@@ -17,6 +17,8 @@ router.post('/signup', async (req, res) => {
       where: { email },
       defaults: { username, email, password: await bcrypt.hash(password, 10) },
     });
+
+    
     // console.log('********/////')
     // res.end();
     if (!isCreated) {
@@ -51,7 +53,7 @@ router.post('/signin', async (req, res) => {
   if (!user) {
     return res.status(400).json({ message: 'No user found' });
   }
-  
+
   const isCorrectPassword = await bcrypt.compare(password, user.password);
 
   if (!isCorrectPassword) {
