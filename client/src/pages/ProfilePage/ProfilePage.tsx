@@ -35,14 +35,6 @@ export default function ProfilePage(): ReactElement {
 
   return (
     <div className="profile-container">
-      <Card className="card">       
-          <>
-            <h2 className="welcome-message">Привет, {user.username}!</h2>
-            <p className="user-score">Ваш счёт: {user.score || 'нет'} очков</p>
-          </>
-      </Card>
-      <div className="table-container">
-      </div>
     </div>
   );
 }

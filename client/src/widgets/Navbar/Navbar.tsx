@@ -7,6 +7,7 @@ import { fetchLogoutUser } from '../../redux/thunkActions';
 import { Avatar, Button, IconButton, Menu, MenuButton, MenuList, Text } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import AuthForm from '../../components/AuthForm/AuthForm';
+import { useEffect } from 'react';
 
 export default function Navbar() {
   const user = useAppSelector((store) => store.userSlice.user);
@@ -42,6 +43,17 @@ export default function Navbar() {
     setAccessToken('');
   };
 
+  function loadScript() {
+    var script = document.createElement('script');
+    script.src = 'https://w1168615.yclients.com/widgetJS';
+    script.charset = 'UTF-8';
+    document.body.appendChild(script);
+  }
+  
+  useEffect(() => {
+    loadScript();
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       {user?.username ? (
@@ -53,6 +65,7 @@ export default function Navbar() {
             </div>
           </div>
           <Link to="/" className={styles.name}>СВОЯ ИГРА</Link>
+          <a href="w1168615.yclients.com/widgetJS" className="ms_booking" onClick="loadScript()">Записаться онлайн</a>
           <Link to="/contact" className={styles.name}>Контакты</Link>
           <div className={styles.right}>
             <Menu>
@@ -101,28 +114,5 @@ export default function Navbar() {
         )}
         
     </div>
-    // <div className={styles.wrapper}>
-    //   <div className={styles.left}>
-    //     <Link to="/">На главную</Link>
-    //   </div>
-    //   <div className={styles.left}>
-    //     <Link to="/hooks">Хуки</Link>
-    //   </div>
-    //   <div className={styles.right}>
-    //     {user?.username ? (
-    //       <>
-    //         <Link to="/">{user.username}</Link>
-    //         <p className={styles.fake__link} onClick={logoutHandler}>
-    //           Выйти
-    //         </p>
-    //       </>
-    //     ) : (
-    //       <>
-    //         <Link to="/signin">Войти</Link>
-    //         <Link to="/signup">Регистрация</Link>
-    //       </>
-    //     )}
-    //   </div>
-    // </div>
   );
 }
