@@ -87,3 +87,16 @@ td:last-child {
   font-weight: bold;
   color: #FFCC00;
 }
+
+.ms_booking {
+  color: #2a2a2a;
+}
+
+.qq {
+  color: #2a2a2a;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+}

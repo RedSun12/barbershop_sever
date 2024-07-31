@@ -12,6 +12,9 @@ module.exports = {
       username: {
         type: Sequelize.STRING
       },
+      usersurname: {
+        type: Sequelize.STRING
+      },
       email: {
         type: Sequelize.STRING
       },
@@ -20,6 +23,9 @@ module.exports = {
       },
       isAdmin: {
         type: Sequelize.BOOLEAN
+      },
+      avatar: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

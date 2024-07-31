@@ -63,7 +63,6 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate('/');
-
     try {
       const result = await dispatch(fetchAuthUser({ inputs, type })).then(
         unwrapResult

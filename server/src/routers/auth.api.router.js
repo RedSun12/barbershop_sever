@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const generateTokens = require('../utils/generateToken');
 
 router.post('/signup', async (req, res) => {
+
   const { isAdmin, username, email, password } = req.body;
   
   if (!(username && email && password)) {
@@ -62,7 +63,6 @@ router.post('/signin', async (req, res) => {
     delete plainUser.updatedAt;
     
     const { accessToken, refreshToken } = generateTokens({ user: plainUser });
-
     res
       .cookie('refreshToken', refreshToken, cookieConfig.refresh)
       .json({ user: plainUser, accessToken });

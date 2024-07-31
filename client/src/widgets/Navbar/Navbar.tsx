@@ -23,7 +23,7 @@ export default function Navbar() {
   // }
 
   const clickGame = () => {
-    navigate('/games')
+    navigate('/profile')
   }
 
   const clickSingIn = () => {
@@ -64,8 +64,8 @@ export default function Navbar() {
               <div className={styles.nickName}>{user.username}</div>
             </div>
           </div>
-          <Link to="/" className={styles.name}>Главная</Link>
-          <a href="w1168615.yclients.com/widgetJS" className="ms_booking" onClick="loadScript()">Записаться онлайн</a>
+          <Link to="/" className={styles.name}>СВОЯ ИГРА</Link>
+          <a href="w1168615.yclients.com/widgetJS" className="ms_booking" onClick={loadScript()}>Записаться онлайн</a>
           <Link to="/contact" className={styles.name}>Контакты</Link>
           <Link to="/services" className={styles.name}>Услуги</Link>
           <Link to="/product" className={styles.name}>Товары</Link>

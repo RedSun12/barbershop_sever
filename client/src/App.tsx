@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { fetchRefresh } from './redux/thunkActions';
 import { unwrapResult } from '@reduxjs/toolkit';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import EditUser from './pages/EditUser/EditUser';
 import axiosInstance from './axiosInstance';
 import Services from './pages/Service/Services';
 import Contacts from './pages/Contacts/Contacts';
@@ -32,7 +33,6 @@ function App() {
   }, []);
 
  
-
 
 
   const router = createBrowserRouter([
@@ -73,8 +73,13 @@ function App() {
           element: <ProductPage />,
         },
         {
+          path: '/edituser/:id',
+          element: <EditUser />,
+        },
+        {
           path: '/services',
           element: <Services />,
+        
         },
         {
           path: '/admin',
@@ -83,7 +88,6 @@ function App() {
       ],
     },
   ]);
-
   return <RouterProvider router={router} />;
 }
 
