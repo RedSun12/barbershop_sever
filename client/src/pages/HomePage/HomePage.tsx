@@ -17,30 +17,30 @@ type TData = {
 }
 
 export default function HomePage(): ReactElement {
-  const [presentCard, setPresentCard] = useState<TState[]>([]);
+  // const [presentCard, setPresentCard] = useState<TState[]>([]);
 
-  const getAllCards = (): Promise<void> => {
-    return axios.get(`http://localhost:3100/api/all/cards`)
-      .then((data: TData) => {
-        const newData = data.data.cards.map((elem: Record<string, number | string>) => {
-          return {
-            id: elem.id,
-            img: elem.img,
-            name: elem.name,
-          }
-        });
-        setPresentCard(newData);
-      });
-  }
+  // const getAllCards = (): Promise<void> => {
+  //   return axios.get(`http://localhost:3100/api/all/cards`)
+  //     .then((data: TData) => {
+  //       const newData = data.data.cards.map((elem: Record<string, number | string>) => {
+  //         return {
+  //           id: elem.id,
+  //           img: elem.img,
+  //           name: elem.name,
+  //         }
+  //       });
+  //       setPresentCard(newData);
+  //     });
+  // }
 
-  useEffect(() => {
-    getAllCards();
-  }, []);
+  // useEffect(() => {
+  //   getAllCards();
+  // }, []);
 
   return (
     <div className='homeP'>
       <div className="homeCard">
-        <Card presentCard={presentCard} />
+        {/* <Card presentCard={presentCard} /> */}
       </div>
     </div>
   );
