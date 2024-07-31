@@ -2,69 +2,42 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
-    padding: 20px;
-    background-color: #f5f5f5;
-    color: black;
-}
-
-.serviceCard {
+  }
+  
+  .serviceCard {
     position: relative;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
     width: 300px;
     height: 400px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  
+
+  
+  .serviceImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .serviceDetails {
+    position: absolute;
+    bottom: 0;  
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-}
-
-.serviceImage {
-    width: 100%;
-    height: 70%;
-    object-fit: cover;
-}
-
-.serviceText {
-    position: absolute;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    background: rgba(0, 0, 0, 0.6);
-    color: rgb(32, 29, 29);
     text-align: center;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px 20px;
-}
-
-.button {
-    background-color: #008CBA;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.button:hover {
-    background-color: #005f86;
-}
-
-.deleteButton {
-    background-color: #ff5e57;
-}
-
-.deleteButton:hover {
-    background-color: #cc4c46;
-}
+  }
+  
+  .serviceDetails p {
+    margin: 5px 0;
+    font-size: 1.2em;
+  }
