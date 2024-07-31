@@ -4,7 +4,7 @@ const axiosInstance = axios.create({
   baseURL: 'http://localhost:3100/',
 });
 
-let accessToken = '';
+export let accessToken = '';
 
 function setAccessToken(newToken: string) {
   accessToken = newToken;

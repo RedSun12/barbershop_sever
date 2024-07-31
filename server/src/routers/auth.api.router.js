@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const generateTokens = require('../utils/generateToken');
 
 router.post('/signup', async (req, res) => {
-
   const { isAdmin, username, email, password } = req.body;
   
   if (!(username && email && password)) {

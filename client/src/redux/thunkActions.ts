@@ -50,6 +50,8 @@ export const fetchAuthUser: AsyncThunk<
     `${import.meta.env.VITE_API}/auth/${data.type}`,
     data.inputs
   );
+  document.cookie = `accessToken=${response.data.accessToken}`;
+  
   return response.data;
 });
 
