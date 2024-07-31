@@ -63,7 +63,6 @@ router.post('/signin', async (req, res) => {
     delete plainUser.updatedAt;
     
     const { accessToken, refreshToken } = generateTokens({ user: plainUser });
-
     res
       .cookie('refreshToken', refreshToken, cookieConfig.refresh)
       .json({ user: plainUser, accessToken });
