@@ -1,8 +1,10 @@
 export type User = {
   id: number;
   username: string;
+  usersurname: string;
   email: string;
   isAdmin: Boolean;
+  avatar: string;
 };
 
 export type Entry = {

@@ -10,8 +10,13 @@ import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { fetchRefresh } from './redux/thunkActions';
 import { unwrapResult } from '@reduxjs/toolkit';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+<<<<<<< HEAD
+import EditUser from './pages/EditUser/EditUser';
+
+=======
 import axiosInstance from './axiosInstance';
 import Services from './pages/Service/Services';
+>>>>>>> dev
 import Contacts from './pages/Contacts/Contacts';
 import Admin from './pages/Admin/Admin';
 import ProductPage from './pages/ProductPage/ProductPage';
@@ -73,17 +78,21 @@ function App() {
           element: <ProductPage />,
         },
         {
+<<<<<<< HEAD
+          path: '/edituser/:id',
+          element: <EditUser />,
+=======
           path: '/services',
           element: <Services />,
         },
         {
           path: '/admin',
           element: <Admin />,
+>>>>>>> dev
         },
       ],
     },
   ]);
-
   return <RouterProvider router={router} />;
 }
 
