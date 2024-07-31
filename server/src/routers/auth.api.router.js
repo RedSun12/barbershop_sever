@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 const generateTokens = require('../utils/generateToken');
 
 router.post('/signup', async (req, res) => {
-  const { username, email, password } = req.body;
+  const { isAdmin, username, email, password } = req.body;
+  
   if (!(username && email && password)) {
     return res.status(400).json({ message: 'All fields are required' });
   }
@@ -13,7 +14,7 @@ router.post('/signup', async (req, res) => {
     // await User.create({username: 'asd', email:'111@123', password:'123'})
     const [user, isCreated] = await User.findOrCreate({
       where: { email },
-      defaults: { username, email, password: await bcrypt.hash(password, 10) },
+      defaults: { isAdmin, username, email, password: await bcrypt.hash(password, 10) },
     });
     // console.log('********/////')
     // res.end();
