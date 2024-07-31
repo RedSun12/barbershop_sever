@@ -35,11 +35,7 @@ router
     const { id } = req.params;
     try {
       const task = await Product.findOne({ where: { id } });
-<<<<<<< HEAD
-      if (task.userId === res.locals.user?.id) {
-=======
       // if (res.locals.user?.id === 1) {
->>>>>>> dev
         task.destroy();
         res.sendStatus(200);
       // } else {
