@@ -11,6 +11,7 @@ const editUserAvatarRouter = require('./api.editUserAvatar.router')
 const oneUserByIdRouter = require('./api.oneUserById.router');
 const serviceRouter = require('./service.api.router');
 
+
 router.use('/tokens', tokenRouter); 
 router.use('/auth', authRouter);
 router.use('/', gamesRouter);
