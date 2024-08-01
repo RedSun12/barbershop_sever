@@ -22,6 +22,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 
 type Inputs = {
   username?: string;
+  usersurname?: string;
   email: string;
   password: string;
 };
@@ -36,6 +37,7 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState<Inputs>({
     username: '',
+    usersurname: '',
     email: '',
     password: '',
   });
@@ -184,7 +186,18 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
                     placeholder="Имя пользователя"
                   />
                 </FormControl>
-
+                <FormControl>
+                  <FormLabel color={'black'}>Фамилия пользователя:</FormLabel>
+                  <Input
+                    color={'black'}
+                    ref={initialRef}
+                    onChange={changeHandler}
+                    borderColor="#3f3e3e"
+                    name="usersurname"
+                    value={inputs?.name}
+                    placeholder="Фамилия пользователя"
+                  />
+                </FormControl>
                 <FormControl mt={4}>
                   <FormLabel color={'black'}>Email:</FormLabel>
                   <Input
