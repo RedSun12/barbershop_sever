@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { User } from '../types/statesTypes';
-import { editUserById, editUserNameById, editUserSurNameById, fetchAuthUser, fetchLogoutUser, fetchRefresh } from './thunkActions';
+import { editUserNameById, editUserSurNameById, editUserAvatarById, fetchAuthUser, fetchLogoutUser, fetchRefresh } from './thunkActions';
 
 type InitialState = {
   user: User;
@@ -45,6 +45,9 @@ const rtkSlice = createSlice({
     });
     builder.addCase(editUserSurNameById.fulfilled, (state, action) => {
       state.user.usersurname = action.payload.usersurname;
+    });
+    builder.addCase(editUserAvatarById.fulfilled, (state, action) => {
+      state.user.avatar = action.payload.avatar;
     });
   },
 });
