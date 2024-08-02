@@ -1,0 +1,67 @@
+
+.divburger {
+  padding: 0px;
+  margin: 0px;
+}
+
+.burger {
+  /* position: fixed; */
+  bottom: 3px;
+  padding: 0px;
+  margin-left: 6px;
+  text-align: center;
+  align-content: center;
+  background-color: #141414;
+  width: 80px;
+  height: 44px;
+  color: #FFFFFF;
+  border-radius: 25px;
+  border-color: #141414;
+  font-size: 30px;
+}
+
+.burger:hover {
+  background-color: #302f2f;
+  border-color: #302f2f;
+}
+
+.css-19vpu4l[data-active] {
+  background-color: #494949;
+  border-color: #494949;
+}
+
+.contLogo {
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.contLogoText {
+  display: flex; 
+  align-items: center; 
+  text-decoration: none; 
+  color: #141414;
+  letter-spacing: -1.5px; 
+  font-weight: bold; 
+  font-size: 30px; 
+  transition: text-shadow 0.3s ease;
+}
+
+.contLogoText:hover {
+  text-decoration: none;
+}
+
+.contLogo:hover .contLogoText {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.contLogoImg {
+  padding-left: 10px;
+  width: 55px;
+  height: 55px;
+  cursor: pointer; 
+}
+
+.contLogoImg {
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
+}
