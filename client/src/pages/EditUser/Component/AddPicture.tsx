@@ -7,10 +7,10 @@ import { useAppSelector } from '../../../redux/hooks';
 export default function AddPicture() {
   const user = useAppSelector((store) => store.userSlice.user);
   const [imageFile, setImageFile] = useState<string | null>(null);
-  const description = "Загрузите изображение";
   const dispatch = useDispatch();
 
-  const toBase64 = (file: any) =>
+  // Функция для конвертации файла в строку base64
+  const toBase64 = (file: File) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -18,71 +18,68 @@ export default function AddPicture() {
       reader.onerror = (error) => reject(error);
     });
 
-  const handleChange = async (e: any) => {
+  // Обработчик изменений при загрузке через input
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    console.log(e.target.files[0]);
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      try {
-        const base64String: string = await toBase64(file);
-        setImageFile(base64String);
-        // dispatch(editUserAvatarById({avatar:base64String}));
-      } catch (error) {
-        console.error(error);
-      }
+      await handleFile(file);
     }
   };
 
-  // const handleSave = async () => {
-
-  // }
-
-  const handleDrag = (e: any) => {
-    e.preventDefault();
+  // Обработчик сброса изображения
+  const handleReset = () => {
+    setImageFile(null);
   };
 
-  const handleLeave = (e: any) => {
-    e.preventDefault();
-  };
-
-  const handleDrop = async (e: any) => {
+  // Обработка события при перетаскивании файлов
+  const handleDrop = async (e: React.DragEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
-      try {
-        const base64String = await toBase64(file);
-        setImageFile(base64String);
-        // dispatch(editUserAvatarById({avatar:base64String}));
-      } catch (error) {
-        console.error(error);
-      }
+      await handleFile(file);
     }
   };
 
-  const handleReset = () => {
-    if (imageFile) {
-      setImageFile(null)
+  // Универсальный обработчик файлов
+  const handleFile = async (file: File) => {
+    try {
+      const base64String = await toBase64(file);
+      setImageFile(base64String);
+      
+      // Отправка на сервер (раскомментируйте, когда будете готовы)
+      // dispatch(editUserAvatarById({ avatar: base64String }));
+      
+    } catch (error) {
+      console.error(error);
     }
   };
 
   return (
     <>
       {user.avatar && (
-        <ul className="fileList">
-          <div className="fileWindow">
-            <img style={{ width: "130px", height: "140px" }} src={user.avatar} />
-            {/* {!validateFormFields.avatar && <p style={{ color: "red" }}>Неподходящий формат или размер</p>} */}
-            <img className='imgReset' src='./crest.png' onClick={handleReset} size={15} />
-          </div>
-          <button onClick={()=>dispatch(editUserAvatarById({avatar:imageFile}))}>save</button>
-        </ul>
+        <div className="fileWindow">
+          <img style={{ width: "130px", height: "140px" }} src={user.avatar} alt="User Avatar" />
+          <img className='imgReset' src='./crest.png' onClick={handleReset} style={{ cursor: 'pointer' }} alt="Reset Avatar" />
+          <button onClick={() => dispatch(editUserAvatarById({ avatar: imageFile }))}>
+            Save
+          </button>
+        </div>
       )}
       {!user.avatar && (
-        <form className="formed" onDragEnter={handleDrag} onDragOver={handleDrag} onDragLeave={handleLeave} onDrop={handleDrop}>
+        <form 
+          className="formed" 
+          onDragOver={(e) => e.preventDefault()} 
+          onDrop={handleDrop}
+        >
           <label className="labeled">
-            <img className="imgDownload" src='../../../img/upload102.png'/>
-            {/* {createUser.usersurname && <span>{createUser.usersurname}</span>} */}
-            <input className='inputed' type="file" accept="image/, .png, .jpg, .svg" onChange={handleChange} />
+            <img className="imgDownload" src='../../../img/upload102.png' alt="Upload" />
+            <input 
+              className='inputed' 
+              type="file" 
+              accept="image/*" 
+              onChange={handleChange} 
+            />
           </label>
         </form>
       )}

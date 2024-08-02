@@ -52,9 +52,9 @@ export default function ProfilePage(): ReactElement {
       visibilityUserAvatar?
       <AddPicture/>
       :
-      <img style={{width:'40px', height:'30px'}} src={user?.avatar} alt='avatar'/> 
-
-        : <Avatar  width={'55px'} height={'60px'} backgroundColor={'gray'} src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user?.username}`} alt="avatar" />
+      <img style={{width:'60px', height:'60px'}} src={user?.avatar} alt='avatar'/> 
+      : 
+      <Avatar  width={'55px'} height={'60px'} backgroundColor={'gray'} src={`https://api.dicebear.com/9.x/avataaars/svg?seed=${user?.username}`} alt="avatar" />
       }
 
       <button onClick={() => setVisibilityUserName((prev) => !prev)}>изменить имя</button>
