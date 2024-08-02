@@ -1,18 +1,16 @@
-
-
 const express = require('express');
 const router = express.Router();
 const { User } = require('../../db/models');
 
-router.patch('/edit/userAvatar/:id', async (req, res) => {
+router.patch('/edit/userName/:id', async (req, res) => {
     try {
-        const { avatar } = req.body;
+        const { username } = req.body;
         const editUser = await User.update({
-          avatar: avatar,
+          username: String(username),
         }, {
             where: { id: req.params.id },
         });
-        res.json({ avatar, message: 'OK', status: 200 });
+        res.json({ username, message: 'OK', status: 200 });
     } catch (error) {
         res.json({ message: error, status: 500 });
     }

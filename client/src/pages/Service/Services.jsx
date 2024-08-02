@@ -9,6 +9,15 @@ export default function Services() {
   const [services, setServices] = useState([]);
   const [editing, setEditing] = useState(null);
   const [formData, setFormData] = useState({ name: '', price: '' });
+  const [loadingVisible, setLoadingVisible] = useState(true); 
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadingVisible(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     (async function () {
@@ -44,6 +53,14 @@ export default function Services() {
 
   return (
     <div className={styles.container}>
+      {loadingVisible && (
+        <div className="loading-screen">
+          <div className="loader">
+            <img src='/load1.png' alt="Loading" className="loading-image" /> 
+            <img src='/load2.png' alt="Loading" className="loading-image spinning" /> 
+          </div>
+        </div>
+      )}
     {services.map((el) => (
       <div key={el.id} className={styles.serviceCard}>
         <img src={el.foto} alt="foto" className={styles.serviceImage} />

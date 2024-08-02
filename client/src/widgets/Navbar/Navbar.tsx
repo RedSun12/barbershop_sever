@@ -91,7 +91,7 @@ export default function Navbar() {
               <Link to="/product">Товары</Link>
             </div>
             <Link to="/" className={styles.name}>Главная</Link>
-            <a href="w1168615.yclients.com/widgetJS" className="ms_booking" onClick="loadScript()">Записаться онлайн</a>
+            <a href="w1168615.yclients.com/widgetJS" className="ms_booking" onClick={loadScript()}>Записаться онлайн</a>
             <Link to="/admin" className={styles.name}>Админка</Link>
             <Link to="/busket" className={styles.name}>Корзина</Link>
             <div className={styles.right}>
