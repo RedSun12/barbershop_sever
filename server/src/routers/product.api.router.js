@@ -47,6 +47,28 @@ router
     }
   });
 
+  router.put('/:id', verifyAccessToken, async (req, res) => {
+    try {
+        const { id } = req.params
+      const { title, image, manufacturer, composition, hairType, size } = req.body;
+    //   console.log(name, price, id, 'asdasdas')
+      if (Number(id)) {
+        const entrie = await Product.findOne({ where: { id } });
+        if (title && image && manufacturer && composition && hairType && size) {
+          await entrie.update({ title, image, manufacturer, composition, hairType, size });
+          res.json(entrie);
+        } else {
+          res.status(400).send('Нет необходимых данных для изменений');
+        }
+      } else {
+        res.status(400).send('Запись по такому id не найдена');
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error.message);
+    }
+  });
+
   //! СТАРЬЁ ДЛЯ ПРИМЕРА
   // .get('/themes', async (req, res) => {
   //   try {

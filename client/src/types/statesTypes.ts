@@ -19,4 +19,9 @@ export type Entry = {
   updatedAt: Date;
 };
 
+export type Busket = {
+  idUser: number;
+  idProduct: number;
+}
+
 export type Entries = Entry[]

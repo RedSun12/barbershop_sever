@@ -26,10 +26,6 @@ export default function Navbar() {
     navigate('/profile')
   }
 
-  const clickSingIn = () => {
-    navigate('/signin')
-  }
-
   const clickRegistr = () => {
     navigate('/signup')
   }
@@ -70,6 +66,7 @@ export default function Navbar() {
           <Link to="/services" className={styles.name}>Услуги</Link>
           <Link to="/product" className={styles.name}>Товары</Link>
           <Link to="/admin" className={styles.name}>Админка</Link>
+          <Link to="/busket" className={styles.name}>Корзина</Link>
           <div className={styles.right}>
             <Menu>
               <MenuButton
@@ -96,6 +93,7 @@ export default function Navbar() {
             <Link to="/" className={styles.name}>Главная</Link>
             <a href="w1168615.yclients.com/widgetJS" className="ms_booking" onClick="loadScript()">Записаться онлайн</a>
             <Link to="/admin" className={styles.name}>Админка</Link>
+            <Link to="/busket" className={styles.name}>Корзина</Link>
             <div className={styles.right}>
               <Menu>
                 <MenuButton
