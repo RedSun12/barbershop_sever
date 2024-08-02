@@ -47,14 +47,6 @@ const BarbershopPhoto = () => {
     prevArrow: <PrevArrow />
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await axiosInstance.delete(`${VITE_API}/foto/${id}`);
-      setFotos(fotos.filter(foto => foto.id !== id));
-    } catch (error) {
-      console.error("Ошибка при удалении фотографии", error);
-    }
-  };
 
   return (
     <div className={styles.container}>
@@ -62,9 +54,6 @@ const BarbershopPhoto = () => {
         {fotos.map((foto) => (
           <div key={foto.id} className={styles.slide}>
             <img src={foto.foto} alt="Barbershop" className={styles.foto} />
-            <button onClick={() => handleDelete(foto.id)} className={styles.deleteButton}>
-              Удалить
-            </button>
           </div>
         ))}
       </Slider>

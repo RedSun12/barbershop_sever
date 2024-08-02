@@ -62,25 +62,35 @@ export const fetchAuthUser: AsyncThunk<
   return response.data;
 });
 
-export const editUserNameById: AsyncThunk<any, {username: string}, AsyncThunkConfig> =
-  createAsyncThunk('user/editUserNameById', async(data)=> {
-    try {
-     const response = await axiosInstance.patch(`api/v1/edit/userName/${localStorage.getItem('userId')}`, {username: data.username});     
-     return response.data;
-    } catch (error) {
-      console.log(error, 'error');
-    }
-  })
+// export const editUserNameById: AsyncThunk<any, {username: string}, AsyncThunkConfig> =
+//   createAsyncThunk('user/editUserNameById', async(data)=> {
+//     try {
+//      const response = await axiosInstance.patch(`api/v1/edit/userName/${localStorage.getItem('userId')}`, {username: data.username});     
+//      return response.data;
+//     } catch (error) {
+//       console.log(error, 'error');
+//     }
+//   })
 
-  export const editUserSurNameById: AsyncThunk<any, {usersurname: string}, AsyncThunkConfig> =
-  createAsyncThunk('user/editUserSurNameById', async(data)=> {
-    try {
-     const response = await axiosInstance.patch(`api/v1/edit/userSurName/${localStorage.getItem('userId')}`, {usersurname: data.usersurname});     
-     return response.data;
-    } catch (error) {
-      console.log(error, 'error');
-    }
-  })
+//   export const editUserSurNameById: AsyncThunk<any, {usersurname: string}, AsyncThunkConfig> =
+//   createAsyncThunk('user/editUserSurNameById', async(data)=> {
+//     try {
+//      const response = await axiosInstance.patch(`api/v1/edit/userSurName/${localStorage.getItem('userId')}`, {usersurname: data.usersurname});     
+//      return response.data;
+//     } catch (error) {
+//       console.log(error, 'error');
+//     }
+//   })
+
+  // export const editUserAvatarById: AsyncThunk<any, {avatar: string}, AsyncThunkConfig> =
+  // createAsyncThunk('user/editUserAvatarById', async(data)=> {
+  //   try {
+  //    const response = await axiosInstance.patch(`api/v1/edit/userAvatar/${localStorage.getItem('userId')}`, {avatar: data.avatar});     
+  //    return response.data;
+  //   } catch (error) {
+  //     console.log(error, 'error');
+  //   }
+  // })
 
 export const fetchLogoutUser: AsyncThunk<boolean, void, AsyncThunkConfig> =
   createAsyncThunk('users/logout', async () => {

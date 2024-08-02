@@ -5,6 +5,7 @@ const axiosInstance = axios.create({
 });
 
 export let accessToken = '';
+// console.log(getCookies('accessToken'));
 
 function setAccessToken(newToken: string) {
   accessToken = newToken;
