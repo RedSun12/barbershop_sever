@@ -1,11 +1,13 @@
 import { configureStore, Store } from '@reduxjs/toolkit';
 import userSlice from './userSlice';
 import productSlice from './productSlice';
+import busketSlice from './busketSlice';
 
 const storeOptions = {
   reducer: {
     userSlice,
-    productSlice
+    productSlice,
+    busketSlice
   },
 };
 

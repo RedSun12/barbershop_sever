@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate({ User }) {
       this.belongsTo(User, { foreignKey: 'userId' });
+      this.belongsToMany(User, {
+        through: 'Baskets',
+        foreignKey: 'idProduct',
+      });
     }
   };
   Product.init({

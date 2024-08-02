@@ -16,6 +16,7 @@ import Services from './pages/Service/Services';
 import Contacts from './pages/Contacts/Contacts';
 import Admin from './pages/Admin/Admin';
 import ProductPage from './pages/ProductPage/ProductPage';
+import BusketPage from './pages/BusketPage/BusketPage';
 const { VITE_API } = import.meta.env;
 
 function App() {
@@ -26,10 +27,10 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchRefresh())
-      .then(unwrapResult)
-      .then((result) => {
-        setAccessToken(result.accessToken);
-      });
+      // .then(unwrapResult)
+      // .then((result) => {
+      //   setAccessToken(result.accessToken);
+      // });
   }, []);
 
  
@@ -84,6 +85,10 @@ function App() {
         {
           path: '/admin',
           element: <Admin />,
+        },
+        {
+          path: '/busket',
+          element: <BusketPage />,
         },
       ],
     },
