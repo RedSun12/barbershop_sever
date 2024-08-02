@@ -3,6 +3,7 @@ import FormServicesUpdate from '../../components/ComponentsAdmin/FormServicesUpd
 import BarberspopAdressAdmin from '../../components/ComponentsAdmin/BarberspopAdressAdmin/BarberspopAdressAdmin'
 import FormAdmin from '../../components/ComponentsAdmin/CardProduct/FormAdmin/FormAdmin'
 import ListAdmin from '../../components/ComponentsAdmin/CardProduct/ListAdmin/ListAdmin'
+import SliderAdmin from '../../components/ComponentsAdmin/SliderAdmin/SliderAdmin';
 
 export default function Admin() {
   return (
@@ -11,6 +12,7 @@ export default function Admin() {
       <BarberspopAdressAdmin/>
       <FormAdmin/>
       <ListAdmin/>
+      <SliderAdmin/>
     </div>
   )
 }

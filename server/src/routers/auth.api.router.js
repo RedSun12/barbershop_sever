@@ -3,9 +3,10 @@ const { User } = require('../../db/models');
 const cookieConfig = require('../configs/cookiesConfig');
 const bcrypt = require('bcrypt');
 const generateTokens = require('../utils/generateToken');
+const mail = require('../utils/mailer')
 
 router.post('/signup', async (req, res) => {
-  const { isAdmin, username, email, password } = req.body;
+  const { isAdmin, username, usersurname, email, password } = req.body;
   
   if (!(username && email && password)) {
     return res.status(400).json({ message: 'All fields are required' });
@@ -14,8 +15,11 @@ router.post('/signup', async (req, res) => {
     // await User.create({username: 'asd', email:'111@123', password:'123'})
     const [user, isCreated] = await User.findOrCreate({
       where: { email },
-      defaults: { isAdmin, username, email, password: await bcrypt.hash(password, 10) },
+      defaults: { isAdmin, username, usersurname, email, password: await bcrypt.hash(password, 10) },
     });
+    if (isCreated) {
+      mail(email)
+    }
     // console.log('********/////')
     // res.end();
     if (!isCreated) {
@@ -89,3 +93,4 @@ router.put('/user', async (req, res) => {
 
 
 module.exports = router;
+// внешнее приложение bBCDDsyy4zXqaQid7xMw

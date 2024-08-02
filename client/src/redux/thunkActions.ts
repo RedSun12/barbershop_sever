@@ -3,6 +3,7 @@ import axiosInstance, { setAccessToken } from '../axiosInstance';
 import { Busket, User } from '../types/statesTypes';
 import { Entries, Entry } from '../types/statesTypes';
 import { Inputs, InputsAuth, RefreshRes } from '../types/types';
+import { jwtDecode } from 'jwt-decode';
 
 type AsyncThunkConfig = {
   dispatch?: Dispatch;
@@ -52,8 +53,34 @@ export const fetchAuthUser: AsyncThunk<
   );
   document.cookie = `accessToken=${response.data.accessToken}`;
   
+    if (response.data.accessToken) {
+      const decoded = jwtDecode(response.data.accessToken);
+      const { user } = decoded;
+      localStorage.setItem('userId', user.id);
+    }
+
   return response.data;
 });
+
+export const editUserNameById: AsyncThunk<any, {username: string}, AsyncThunkConfig> =
+  createAsyncThunk('user/editUserNameById', async(data)=> {
+    try {
+     const response = await axiosInstance.patch(`api/v1/edit/userName/${localStorage.getItem('userId')}`, {username: data.username});     
+     return response.data;
+    } catch (error) {
+      console.log(error, 'error');
+    }
+  })
+
+  export const editUserSurNameById: AsyncThunk<any, {usersurname: string}, AsyncThunkConfig> =
+  createAsyncThunk('user/editUserSurNameById', async(data)=> {
+    try {
+     const response = await axiosInstance.patch(`api/v1/edit/userSurName/${localStorage.getItem('userId')}`, {usersurname: data.usersurname});     
+     return response.data;
+    } catch (error) {
+      console.log(error, 'error');
+    }
+  })
 
 export const fetchLogoutUser: AsyncThunk<boolean, void, AsyncThunkConfig> =
   createAsyncThunk('users/logout', async () => {
@@ -94,8 +121,8 @@ export const fetchDelEntry: AsyncThunk<number, number, AsyncThunkConfig> =
     await axiosInstance.delete(`${import.meta.env.VITE_API}/product/${id}`);
     return id;
   });
-
-  export const fetchEditEntry: AsyncThunk<Entry, { id: number; formData: Partial<Entry> }, AsyncThunkConfig> = createAsyncThunk('entries/edit', async ({ id, formData }: { id: number; formData: Partial<Entry> }) => {
+  
+export const fetchEditEntry: AsyncThunk<Entry, { id: number; formData: Partial<Entry> }, AsyncThunkConfig> = createAsyncThunk('entries/edit', async ({ id, formData }: { id: number; formData: Partial<Entry> }) => {
         const { data } = await axiosInstance.put<Entry>(`${import.meta.env.VITE_API}/product/${id}`, formData);
         return data;
     }
@@ -122,4 +149,3 @@ export const removeFromBusket = createAsyncThunk<number, number, AsyncThunkConfi
   await axiosInstance.delete(`${import.meta.env.VITE_API}/basket/${idProduct}`);
   return idProduct;
 });
-

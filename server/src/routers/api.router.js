@@ -9,13 +9,20 @@ const basketRouter = require('./basket.api.router')
 const editUserRouter = require('./api.editUser.router')
 const oneUserByIdRouter = require('./api.oneUserById.router')
 const serviceRouter = require('./service.api.router')
+const editUserNameRouter = require('./api.editUserName.router');
+const editUserSurNameRouter = require('./api.editUserSurName.router')
+const editUserAvatarRouter = require('./api.editUserAvatar.router')
+const oneUserByIdRouter = require('./api.oneUserById.router');
+const serviceRouter = require('./service.api.router');
 
 router.use('/tokens', tokenRouter); 
 router.use('/auth', authRouter);
 router.use('/', gamesRouter);
 router.use('/foto', fotoRouter);
 router.use('/product', productRouter);
-router.use('/', editUserRouter);
+router.use('/', editUserNameRouter);
+router.use('/', editUserSurNameRouter);
+router.use('/', editUserAvatarRouter);
 router.use('/', oneUserByIdRouter);
 router.use('/service', serviceRouter);
 router.use('/busket', basketRouter);
