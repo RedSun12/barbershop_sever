@@ -81,7 +81,7 @@ export default function Navbar() {
                 backgroundColor={'white'}
               />
               <MenuList padding={'0px'}>
-                <Button fontSize={'25px'} width={'100%'} onClick={clickGame} color={'black'}>Игра</Button>
+                {/* <Button fontSize={'25px'} width={'100%'} onClick={clickGame} color={'black'}>Игра</Button> */}
                 <Button fontSize={'25px'} width={'100%'} onClick={clickProfile} color={'black'}>Профиль</Button>
                 <Button fontSize={'25px'} width={'100%'} onClick={logoutHandler} color={'black'}>Выйти</Button>
               </MenuList>
@@ -94,7 +94,7 @@ export default function Navbar() {
               <Link to="/product">Товары</Link>
             </div>
             <Link to="/" className={styles.name}>Главная</Link>
-            <a href="w1168615.yclients.com/widgetJS" className="ms_booking" onClick="loadScript()">Записаться онлайн</a>
+            <a href="w1168615.yclients.com/widgetJS" className="ms_booking" onClick={loadScript()}>Записаться онлайн</a>
             <Link to="/admin" className={styles.name}>Админка</Link>
             <div className={styles.right}>
               <Menu>

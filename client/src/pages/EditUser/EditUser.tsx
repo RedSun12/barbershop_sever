@@ -16,7 +16,7 @@ type TUser = {
 export default function EditUser() {
   const [userEdit, setUserEdit] = useState<TUser | null>(null);
   const [getAccessToken, setGetAccessToken] = useState<string>('');
-  console.log(getCookies('accessToken'));
+  // console.log(getCookies('accessToken'));
   
   const navigate = useNavigate();
   const params = useParams();

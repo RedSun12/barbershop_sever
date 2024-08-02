@@ -8,10 +8,9 @@ import SigninPage from './pages/SigninPage/SigninPage';
 import HomePage from './pages/HomePage/HomePage';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { fetchRefresh } from './redux/thunkActions';
-import { unwrapResult } from '@reduxjs/toolkit';
+// import { unwrapResult } from '@reduxjs/toolkit';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import EditUser from './pages/EditUser/EditUser';
-import axiosInstance from './axiosInstance';
 import Services from './pages/Service/Services';
 import Contacts from './pages/Contacts/Contacts';
 import Admin from './pages/Admin/Admin';
@@ -26,13 +25,11 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchRefresh())
-      .then(unwrapResult)
-      .then((result) => {
-        setAccessToken(result.accessToken);
-      });
+      // .then(unwrapResult)
+      // .then((result) => {
+      //   setAccessToken(result.accessToken);
+      // });
   }, []);
-
- 
 
 
   const router = createBrowserRouter([
@@ -51,7 +48,6 @@ function App() {
             </div>
           ),
         },
-
         {
           path: '/signin',
           element: <SigninPage />,

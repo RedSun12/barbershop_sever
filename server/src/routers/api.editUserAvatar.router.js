@@ -12,7 +12,7 @@ router.patch('/edit/userAvatar/:id', async (req, res) => {
         }, {
             where: { id: req.params.id },
         });
-        res.json({ avatar, message: 'OK', status: 200 });
+        res.json({ message: 'OK', status: 200 });
     } catch (error) {
         res.json({ message: error, status: 500 });
     }

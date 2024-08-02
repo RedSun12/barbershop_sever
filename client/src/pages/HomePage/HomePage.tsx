@@ -17,6 +17,15 @@ type TData = {
 }
 
 export default function HomePage(): ReactElement {
+  const [loadingVisible, setLoadingVisible] = useState(true); 
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadingVisible(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, []);
   // const [presentCard, setPresentCard] = useState<TState[]>([]);
 
   // const getAllCards = (): Promise<void> => {
@@ -39,6 +48,14 @@ export default function HomePage(): ReactElement {
 
   return (
     <div className='homeP'>
+      {loadingVisible && (
+        <div className="loading-screen">
+          <div className="loader">
+            <img src='/load1.png' alt="Loading" className="loading-image" /> 
+            <img src='/load2.png' alt="Loading" className="loading-image spinning" /> 
+          </div>
+        </div>
+      )}
       <div className="homeCard">
         {/* <Card presentCard={presentCard} /> */}
       </div>
