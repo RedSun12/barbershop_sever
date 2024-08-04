@@ -3,6 +3,7 @@ import { Card } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { ReactElement, useEffect, useState } from 'react';
 import './HomePage.css';
+import ChatPage from '../chat/ChatPage';
 
 type TState = {
   id: number | string,
@@ -59,6 +60,7 @@ export default function HomePage(): ReactElement {
       <div className="homeCard">
         {/* <Card presentCard={presentCard} /> */}
       </div>
+      < ChatPage/>
     </div>
   );
 }

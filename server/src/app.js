@@ -5,11 +5,17 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 // const getUser = require("./routers/getUser.api.router.js");
 
+const { wss, upgradeCb } = require('./ws/upgradeCb');
+const connectionCb = require('./ws/connectionCb');
 
 const express = require('express');
+const http = require('http')
 
 const app = express();
 const { PORT } = process.env;
+
+// http cerver +
+const server = http.createServer(app)
 
 //! Конфиг корса
 const corsConfig = {
@@ -26,7 +32,9 @@ app.use(express.json({ limit: '50mb' }));
 app.use('/api/v1', apiRouter);
 // app.use('/', getUser);
 
+server.on('upgrade', upgradeCb);
+wss.on('connection', connectionCb);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server started at ${PORT} port`);
 });
