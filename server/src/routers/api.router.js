@@ -11,6 +11,7 @@ const editUserSurNameRouter = require('./api.editUserSurName.router');
 const editUserAvatarRouter = require('./api.editUserAvatar.router');
 const oneUserByIdRouter = require('./api.oneUserById.router');
 const serviceRouter = require('./service.api.router');
+const messagesRouter = require('./api.messages.router');
 
 router.use('/tokens', tokenRouter); 
 router.use('/auth', authRouter);
@@ -23,6 +24,6 @@ router.use('/', editUserAvatarRouter);
 router.use('/', oneUserByIdRouter);
 router.use('/service', serviceRouter);
 router.use('/busket', basketRouter);
-
+router.use('/messages', messagesRouter);
 
 module.exports = router;
