@@ -7,24 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 const { VITE_API } = import.meta.env;
 
-const NextArrow = (props) => {
-  const { onClick } = props;
-  return (
-    <div className={`${styles.arrow} ${styles.nextArrow}`} onClick={onClick}>
-      ➡️
-    </div>
-  );
-};
-
-const PrevArrow = (props) => {
-  const { onClick } = props;
-  return (
-    <div className={`${styles.arrow} ${styles.prevArrow}`} onClick={onClick}>
-      ⬅️
-    </div>
-  );
-};
-
 const BarbershopPhoto = () => {
   const [fotos, setFotos] = useState([]);
 
@@ -43,15 +25,13 @@ const BarbershopPhoto = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />
+    arrows: false
   };
-
 
   return (
     <div className={styles.container}>
       <Slider {...settings}>
-        {fotos.map((foto) => (
+        {fotos.map(foto => (
           <div key={foto.id} className={styles.slide}>
             <img src={foto.foto} alt="Barbershop" className={styles.foto} />
           </div>
