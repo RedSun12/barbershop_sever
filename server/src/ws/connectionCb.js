@@ -4,10 +4,10 @@ const { User, Message } = require('../../db/models');
 
 //* структура даных для всех пользователей подключенных к чату
 const map = new Map();
-// console.log('webSoketstart')
+
 const connectionCb = (socket, request, userFromJWT) => {
   map.set(userFromJWT.id, { ws: socket, user: userFromJWT });
-  console.log('webSoketstart')
+
   map.forEach(({ ws }) => {
     ws.send(
       JSON.stringify({
