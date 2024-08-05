@@ -5,6 +5,7 @@
     justify-content: center;
     padding: 20px;
     
+    
   }
   
   .serviceCard {
@@ -39,11 +40,13 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    
   }
   
   .serviceText p, .serviceText input {
     margin: 5px 0;
     font-size: 1.2em;
+    color: white;
   }
   
   .serviceText input {
@@ -53,6 +56,7 @@
     padding: 10px;
     width: 100%;
     font-size: 1em;
+    
   }
   
 

@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Box,
   Button,
@@ -32,7 +33,16 @@ function ChatMessage({ message, loggedUser }) {
     <VStack align={alignSelf} mt={2} mb={2} w="100%">
       <HStack spacing={3} align={alignSelf === 'flex-end' ? 'flex-end' : 'flex-start'}>
         <Avatar name={message.User?.username} size="sm" />
-        <Box maxW="75%" borderWidth="1px" borderRadius="lg" overflow="hidden" p={3} bg={bgColor} boxShadow="md">
+        <Box 
+          maxW="75%" 
+          borderWidth="1px" 
+          borderRadius="lg" 
+          overflow="hidden" 
+          p={3} 
+          bg={bgColor} 
+          boxShadow="md" 
+          wordBreak="break-word"
+        >
           <Text fontSize="sm" color="gray.500">
             {message.User?.username}
           </Text>
@@ -49,12 +59,23 @@ function MessagesList({ messages, loggedUser, selectChatId }) {
     ? messages.filter(item => item.chatId === selectChatId)
     : messages.filter(item => item.chatId === loggedUser.id);
 
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [showMessage]);
+
   return (
     <Box overflowY="auto" height="50vh" p={4} bg="white" borderRadius="md" boxShadow="md">
       <VStack spacing={4} align="stretch">
         {showMessage.map(message => (
           <ChatMessage message={message} key={message.id} loggedUser={loggedUser} />
         ))}
+        <div ref={messagesEndRef} />
       </VStack>
     </Box>
   );
@@ -156,7 +177,7 @@ export default function ChatPage() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const cardBg = useColorModeValue('gray.100', 'gray.800');
   const textColor = useColorModeValue('black', 'whiteAlpha.900');
-
+  
   return (
     <Box position="fixed" bottom="5" right="5" zIndex="999">
       <IconButton
@@ -167,7 +188,7 @@ export default function ChatPage() {
         onClick={() => setIsChatOpen(!isChatOpen)}
       />
       <Collapse in={isChatOpen} animateOpacity>
-        <Box maxW="xl" p={4} bg={cardBg} borderRadius="md" boxShadow="md" mt={3}>
+        <Box maxW="450px" p={4} bg={cardBg} borderRadius="md" boxShadow="md" mt={3}>
           <VStack spacing={4} align="stretch">
             <Heading size="md" color={textColor}>
               Чат
