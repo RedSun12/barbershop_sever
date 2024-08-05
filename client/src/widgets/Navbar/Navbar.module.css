@@ -11,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 25px;
-
+  z-index: 99;
   background-color: #f1f1f193;
   /* font-family: 'Amatic SC', cursive; */
   font-size: 40px;

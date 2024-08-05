@@ -1,9 +1,9 @@
 import styles from './HomePage.module.css';
-import { Card } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { ReactElement, useEffect, useState } from 'react';
 import './HomePage.css';
 import ChatPage from '../chat/ChatPage';
+import YandexMaps from "../../components/YandexMaps/YandexMaps";
 
 type TState = {
   id: number | string,
@@ -57,9 +57,30 @@ export default function HomePage(): ReactElement {
           </div>
         </div>
       )}
-      <div className="homeCard">
-        {/* <Card presentCard={presentCard} /> */}
+
+      <div className="contentWrapper">
+        <div className="yandexMap">
+          <YandexMaps style={{ height: '750px', width: '850px' }} />
+          <div className="overlay"></div>
+        </div>
+        
+        <div className='homeContacts'>
+          <p className='headContact'>Контакты:</p>
+          <div className='contInf'>
+            <p className='bigTextHome'>ТЦ "Лента"</p>
+            <p className='smallTextHome'>ул. Победы, д. 138, 2 этаж</p>
+          </div>
+          <div className='contInfTel'>
+            <p className='bigTextHome'>Телефон:</p>
+            <p className='smallTextHome'>+7 (915) 915 95 15</p>
+          </div>
+          <div className='contInfIcon'>
+            <p className='bigTextHome'>Соцсети:</p>
+            <p className='smallTextHome'>иконки</p>
+          </div>
+        </div>
       </div>
+
       < ChatPage/>
     </div>
   );
