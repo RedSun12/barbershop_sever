@@ -4,6 +4,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import './HomePage.css';
 import ChatPage from '../chat/ChatPage';
 import YandexMaps from "../../components/YandexMaps/YandexMaps";
+import Footer from '../../components/Footer/Footer';
 
 type TState = {
   id: number | string,
@@ -48,6 +49,7 @@ export default function HomePage(): ReactElement {
   // }, []);
 
   return (
+    <>
     <div className='homeP'>
       {loadingVisible && (
         <div className="loading-screen">
@@ -80,8 +82,9 @@ export default function HomePage(): ReactElement {
           </div>
         </div>
       </div>
-
-      < ChatPage/>
     </div>
+    <ChatPage/>
+      < Footer />
+     </>
   );
 }

@@ -1,5 +1,5 @@
-
 import React, { useEffect, useRef, useState } from 'react';
+import styles from './ChatPage.module.css';
 import {
   Box,
   Button,
@@ -121,8 +121,8 @@ function MessageForm({ submitHandler, socketRef, loggedUser, selectChatId }) {
             borderColor="gray.300"
             _focus={{ borderColor: 'blue.500' }}
           />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" variant="solid" colorScheme="blue" type="submit">
+          <InputRightElement width="5.5rem" >
+            <Button h="1.75rem" size="sm" variant="solid" colorScheme="blue" type="submit" mr="0.5rem"  >
               Отправить
             </Button>
           </InputRightElement>
@@ -181,14 +181,15 @@ export default function ChatPage() {
   return (
     <Box position="fixed" bottom="5" right="5" zIndex="999">
       <IconButton
-        icon={<FaComments />}
+        icon={<FaComments style={{ fontSize: '25px' }}/>}
         isRound
         size="lg"
         colorScheme="teal"
         onClick={() => setIsChatOpen(!isChatOpen)}
+        className={styles.button} // Класс для применения анимации
       />
       <Collapse in={isChatOpen} animateOpacity>
-        <Box maxW="450px" p={4} bg={cardBg} borderRadius="md" boxShadow="md" mt={3}>
+        <Box width="450px" p={4} bg={cardBg} borderRadius="md" boxShadow="md" mt={3}>
           <VStack spacing={4} align="stretch">
             <Heading size="md" color={textColor}>
               Чат
