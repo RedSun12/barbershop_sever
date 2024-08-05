@@ -10,7 +10,7 @@ const theme = extendTheme({
         backgroundRepeat: 'no-repeat',
         margin: 0,
         color: '#0F0F0F',
-        minHeight: '100vh',
+        minHeight: '80vh',
       },
       a: {
         color: '#f8f9fb',
