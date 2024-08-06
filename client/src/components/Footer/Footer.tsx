@@ -17,6 +17,17 @@ export default function Footer() {
         })();
       }, []);
 
+      function loadScript() {
+        var script = document.createElement('script');
+        script.src = 'https://w1168615.yclients.com/widgetJS';
+        script.charset = 'UTF-8';
+        document.body.appendChild(script);
+      } 
+
+      useEffect(() => {
+        loadScript();
+      }, []);
+
     return (
         <footer className={styles.footer}>
             <div className={styles.container}>
@@ -31,7 +42,7 @@ export default function Footer() {
                             <li><Link to='/services'>Услуги</Link></li>
                             <li ><Link to='/product'>Товары</Link></li>
                             <li><Link to='/contact'>Контакты</Link></li>
-                            <li>Записаться</li>
+                            <a href="w1168615.yclients.com/widgetJS" className="ms_booking" onClick={loadScript()}>Записаться</a>
                         </ul>
                     </nav>
                     <div className={styles.info}>

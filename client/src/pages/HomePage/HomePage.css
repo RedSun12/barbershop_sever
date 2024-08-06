@@ -101,6 +101,8 @@
   background-color: #ffffff;
   padding: 0px 0px 0px 30px;
   border-radius: 25px;
+  margin-bottom: 50px;
+  margin-top: 30px;
 }
 
 .zapisHome{
@@ -162,6 +164,53 @@
   display: flex;
 }
 
-.q11 {
-font-size: 60px;
+.discryptHome {
+font-size: 40px;
+font-weight: bold;
+padding: 50px 250px 50px 250px;
+text-align: justify;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.dayHear {
+  width: 30%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 35px 35px 35px 35px;
+}
+
+.dayHearDesc {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 25px 25px 25px;
+  text-align: justify;
+  font-size: 18.25px;
+}
+
+.dayText {
+  padding-top: 7px;
+  font-size: 35px;
+  font-weight: bold;
+  text-shadow: 0.7px 0.7px 1px #000000;
+}
+
+.blockDayHear {
+  display: flex;
+  justify-content: center
+}
+
+.imgDayHear {
+  width: 420px;
+  height: 400px;
 }
