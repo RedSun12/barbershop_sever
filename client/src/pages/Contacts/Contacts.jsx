@@ -34,7 +34,7 @@ export default function Contacts() {
         </div> */}
       </div>
 
-      <div className="contentWrapper">
+      <div className="contentWrapperCont">
         <div className="yandexMap">
           <YandexMaps style={{ height: '750px', width: '850px' }} />
           <div className="overlay"></div>
