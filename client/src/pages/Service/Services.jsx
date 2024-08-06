@@ -15,6 +15,7 @@ export default function Services() {
       setLoadingVisible(false);
     }, 1200);
 
+    console.log(services)
     return () => clearTimeout(timer);
   }, []);
 
@@ -35,6 +36,11 @@ export default function Services() {
     setEditing(null);
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  
   return (
     <div className={styles.container}>
       {loadingVisible && (
@@ -52,10 +58,10 @@ export default function Services() {
       <div className={styles.serviceContainer}>
         {services.map((el) => (
           <div key={el.id} className={styles.serviceCard}>
-            <img src={el.foto} alt="foto" className={styles.serviceImage} />
+            <img src={`http://localhost:3100/${el?.foto}`} alt="foto" className={styles.serviceImage} />
             <div className={styles.serviceDetails}>
               <p>{el.name}</p>
-              <p>{el.price}р.</p>
+              <p>{el.price}</p>
               <Accordion defaultIndex={[0]} allowMultiple>
                 <AccordionItem>
                   <h2>
