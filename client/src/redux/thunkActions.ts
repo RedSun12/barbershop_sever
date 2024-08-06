@@ -82,6 +82,16 @@ export const editUserNameById: AsyncThunk<any, {username: string}, AsyncThunkCon
     }
   })
 
+  export const editUserAvatarById: AsyncThunk<any, {avatar: string}, AsyncThunkConfig> =
+  createAsyncThunk('user/editUserAvatarById', async(data)=> {
+    try {
+     const response = await axiosInstance.patch(`api/v1/edit/userAvatar/${localStorage.getItem('userId')}`, {avatar: data.avatar});     
+     return response.data;
+    } catch (error) {
+      console.log(error, 'error');
+    }
+  })
+
 export const fetchLogoutUser: AsyncThunk<boolean, void, AsyncThunkConfig> =
   createAsyncThunk('users/logout', async () => {
     await axiosInstance.get(`${import.meta.env.VITE_API}/auth/logout`);

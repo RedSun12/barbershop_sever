@@ -1,0 +1,112 @@
+.yandexMap {
+  margin-top: 30px;
+  margin-left: 190px;
+  width: 800px;
+  height: 420px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 25px;
+}
+
+.yandexMap > div {
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute; /* Позиционируем относительно родителя */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.60); /* Черный цвет с прозрачностью */
+  z-index: 1; /* Устанавливаем на верхний уровень, чтобы он был поверх карты */
+  pointer-events: none; /* Делаем его некликабельным */
+  border-radius: 25px; /* Чтобы совпадал с радиусом родительского контейнера */
+}
+
+.contentWrapper {
+  display: flex; /* Используем flexbox для горизонтального расположения */
+  align-items: flex-start; /* Выравнивание по верхнему краю */
+  gap: 20px; /* Расстояние между картой и контактами */
+  
+}
+
+.homeContacts {
+  display: flex;
+  flex-direction: column; /* Располагаем контактные данные вертикально */
+  margin-left: auto; /* Центрируем блок по горизонтали */
+  margin-right: auto; /* Центрируем блок по горизонтали */
+  align-items: center; /* Центрируем элементы внутри блока */
+  width: fit-content; /* Ширина блока будет соответствовать его содержимому */
+}
+
+.headContact {
+  margin-top: 45px;
+  text-align: center;
+  margin-left: 55px;
+  margin-bottom: 0px;
+  font-size: 42px;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.bigTextHome {
+  border-left: 4px solid #000000;
+  padding-left: 15px;
+  margin-bottom: 0px;
+  font-size: 38px;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.smallTextHome {
+  border-left: 4px solid #000000;
+  padding-left: 15px;
+  margin-top: -15px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: rgb(117, 114, 114);
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.contInf {
+  margin-right: 270px;
+  padding-left: 25px;
+}
+
+.contInfTel {
+  margin-right: 340px;
+  padding-left: 25px;
+}
+
+.contInfIcon {
+  margin-right: 233px;
+  padding-left: 25px;
+}
+
+.fab {
+  color: rgb(0, 0, 0);
+  transition: color 1s;
+}
+
+.fabw:hover {
+  color: #14d625;
+}
+
+.fabin:hover {
+  color: #C13584;
+}
+
+.fabvk:hover {
+  color: #1458d6;
+}
+
+.fabte:hover {
+  color: #1488d6;
+}
+
+.fabw, .fabin, .fabvk, .fabte {
+  font-size: 3em;
+}

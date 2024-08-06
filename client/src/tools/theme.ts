@@ -9,8 +9,8 @@ const theme = extendTheme({
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         margin: 0,
-        color: '#f8f9fb',
-        minHeight: '100vh',
+        color: '#0F0F0F',
+        minHeight: '80vh',
       },
       a: {
         color: '#f8f9fb',
@@ -19,19 +19,19 @@ const theme = extendTheme({
         },
       },
       h1: {
-        color: '#f8f9fb',
+        color: '#0F0F0F',
       },
       h2: {
-        color: '#f8f9fb',
+        color: '#0F0F0F',
       },
       p: {
-        color: '#f8f9fb',
+        color: '#0F0F0F',
       },
     },
   },
      fonts: {
-        heading: `'Tektur', serif`,
-        body: `'Tektur', serif`,
+        heading: `'Gilroy', serif`,
+        body: `'Gilroy', serif`,
       },
 });
 
