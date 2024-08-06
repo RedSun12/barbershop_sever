@@ -6,7 +6,6 @@ const { VITE_API } = import.meta.env;
 
 export default function FormServiсes({ setServices, services }) {
   const [inputs, setInputs] = useState({ name: '', price: '' });
-  console.log(inputs);
   const onSubmitHandlet = async (event) => {
     event.preventDefault();
     const newPost = {
