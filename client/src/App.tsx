@@ -43,14 +43,7 @@ function App() {
       children: [
         {
           path: '/',
-          element: user.username ? (
-            <HomePage />
-          ) : (
-            <div className='homP'>
-            <p className='tableZOV'>Если хочешь попасть в таблицу лидеров, зарегистрируйся</p>
-            <p className='imgZOV'><img src='/stal.jpg'></img></p>
-            </div>
-          ),
+          element: <HomePage />,
         },
 
         {

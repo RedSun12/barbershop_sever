@@ -1,0 +1,71 @@
+.containerH {
+  align-items: center;
+  padding: 0 50px; /* Установите отступы 16px слева и справа, если нужно */
+  position: relative;
+  width: 90%;
+  box-sizing: border-box;
+  height: 40vh;
+  overflow: hidden;
+}
+
+.slick-dotsH {
+  bottom: 30px; /* Задайте отступ от нижнего края изображения */
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  width: calc(100% - 32px); /* Учитывая отступы 16px с каждой стороны */
+  display: flex !important;
+  justify-content: center;
+}
+
+.slick-dotsH li {
+  margin: 0 4px; /* Расстояние между точками */
+}
+
+.slick-dotsH li button:before {
+  font-size: 10px; /* Размер точек */
+  color: black; /* Цвет точек */
+}
+
+.slick-dotsH li.slick-active button:before {
+  color: black; /* Цвет активной точки */
+}
+
+.slideH {
+  position: relative;
+  height: 100%; 
+}
+
+.fotoH {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  height: 100%; /* Устанавливаем высоту изображения в 100% от элемента-родителя */
+  object-fit: cover; /* Обрезаем изображение, сохраняя пропорции */
+}
+
+.containerH {
+  justify-content: center; /* Центрируем слайдер по горизонтали */
+  padding: 0; /* Уберите отступы, если они не нужны */
+  position: relative;
+  width: 80%; /* Установите ширину слайдера */
+  margin: 0 auto; /* Центрируем слайдер по горизонтали */
+  height: 40vh; /* Высота контейнера */
+  overflow: hidden;
+  border-radius: 20px; /* Закругленные углы */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Добавьте тень для визуального эффекта */
+}
+
+.slideH {
+  position: relative;
+  height: 100%; 
+}
+
+.fotoH {
+  width: 100%;
+  height: auto; /* Убедитесь, что изображение сохраняет пропорции */
+  display: block;
+  border-radius: 20px; /* Закругленные углы для изображения */
+  object-fit: cover; /* Обрезаем изображение, сохраняя пропорции */
+}
