@@ -48,7 +48,7 @@ export default function FormServicesUpdate() {
     <div className={styles.container}>
       {services.map((el) => (
         <div key={el.id} className={styles.serviceCard}>
-          <img src={el.foto} alt="foto" className={styles.serviceImage} />
+          <img src={`http://localhost:3100/${el.foto}`} alt="foto" className={styles.serviceImage} />
           {editing === el.id ? (
             <div className={styles.serviceText}>
               <input
