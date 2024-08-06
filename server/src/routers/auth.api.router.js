@@ -8,6 +8,7 @@ const { main } = require('../utils/mailer')
 router.post('/signup', async (req, res) => {
   const { isAdmin, username, usersurname, email, password } = req.body;
   // console.log(isAdmin, username, usersurname, email, password, 'asdasdasd')
+  
   if (!(username && email && password)) {
     return res.status(400).json({ message: 'All fields are required' });
   }
