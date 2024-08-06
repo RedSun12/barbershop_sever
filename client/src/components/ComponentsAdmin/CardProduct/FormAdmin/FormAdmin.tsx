@@ -9,16 +9,25 @@ import { Inputs } from '../../../../types/types';
 export default function FormAdmin() {
   const dispatch = useAppDispatch();
 
-  const [inputs, setInputs] = useState<Inputs>({ title: '', image: '', manufacturer: '', composition: '', hairType: '', size: '' });
+  const [inputs, setInputs] = useState<Inputs>({ title: '', manufacturer: '', composition: '', hairType: '', size: '', price: 0 });
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
+  const submitHandler = (e: FormEvent<any>) => {
     e.preventDefault();
-    dispatch(fetchAddEntry(inputs));
-    setInputs({ title: '', image: '', manufacturer: '', composition: '', hairType: '', size: '' });
+    const formData = new FormData(e.currentTarget);
+    // formData.append('title', e.currentTarget.title.value);
+    formData.append('image', e.currentTarget.image.files);
+    // formData.append('user', user.id);
+    // console.log('CURRENT', e.target);
+    // console.log('formDATA!!!', formData);
+    // for(const [k,v] of formData) {
+    //   console.log(k, v)
+    // }
+    dispatch(fetchAddEntry(formData));
+    // setInputs({ title: '', manufacturer: '', composition: '', hairType: '', size: '', price: 0 });
   };
 
   return (
@@ -37,8 +46,11 @@ export default function FormAdmin() {
           onChange={changeHandler}
           borderColor='#3f3e3e'
           name='image'
-          value={inputs.image}
+          // value={inputs.image}
           placeholder='Фото'
+          type='file'
+          height={'100px'}
+          accept="image/*"
         />
         <Input
           onChange={changeHandler}
@@ -67,6 +79,13 @@ export default function FormAdmin() {
           name='size'
           value={inputs.size}
           placeholder='Объем'
+        />
+        <Input
+          onChange={changeHandler}
+          borderColor='#3f3e3e'
+          name='price'
+          value={inputs.price}
+          placeholder='Стоимость'
         />
       </div>
       <div className={styles.btns}>

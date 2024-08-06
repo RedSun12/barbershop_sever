@@ -117,8 +117,6 @@ export const fetchLogoutUser: AsyncThunk<boolean, void, AsyncThunkConfig> =
 
 export const fetchAddEntry: AsyncThunk<Entry, Inputs, AsyncThunkConfig> =
   createAsyncThunk('entries/add', async (inputs: Inputs) => {
-    // console.log('1111', inputs)
-    console.log(import.meta.env.VITE_API)
     const response = await axiosInstance.post(
       `${import.meta.env.VITE_API}/product`,
       inputs
@@ -133,7 +131,8 @@ export const fetchDelEntry: AsyncThunk<number, number, AsyncThunkConfig> =
   });
   
 export const fetchEditEntry: AsyncThunk<Entry, { id: number; formData: Partial<Entry> }, AsyncThunkConfig> = createAsyncThunk('entries/edit', async ({ id, formData }: { id: number; formData: Partial<Entry> }) => {
-        const { data } = await axiosInstance.put<Entry>(`${import.meta.env.VITE_API}/product/${id}`, formData);
+        
+  const { data } = await axiosInstance.put<Entry>(`${import.meta.env.VITE_API}/product/${id}`, formData);
         return data;
     }
   );
@@ -141,21 +140,24 @@ export const fetchEditEntry: AsyncThunk<Entry, { id: number; formData: Partial<E
 // ! Санки для корины
 
 export const fetchBusket: AsyncThunk<Entries, number, AsyncThunkConfig> =
-createAsyncThunk('basket/fetchBasket', async (userId: number) => {
+createAsyncThunk('busket/fetchBasket', async (userId: number) => {
   const response = await axiosInstance.get<Entries>(
     `${import.meta.env.VITE_API}/busket/${userId}`
   );
-  console.log('resp@@@@@', response.data)
   return response.data;
 });
 
-export const addToBusket = createAsyncThunk<Busket, { idUser: number; idProduct: number }, AsyncThunkConfig>('basket/addToBasket', async ({ idUser, idProduct }: { idUser: number, idProduct: number }) => {
-  console.log('ПОЛЬЗОВАТЕЛЬ АЙ ДИ!!!!', idUser, idProduct)
-  const response = await axiosInstance.post(`${import.meta.env.VITE_API}/basket/newOrder`, { idUser, idProduct });
+export const addToBusket = createAsyncThunk<Busket, { idUser: number; idProduct: number }, AsyncThunkConfig>('busket/addToBasket', async ({ idUser, idProduct }: { idUser: number, idProduct: number }) => {
+  const response = await axiosInstance.post(`${import.meta.env.VITE_API}/busket/newOrder`, { idUser, idProduct });
   return response.data;
 });
 
-export const removeFromBusket = createAsyncThunk<number, number, AsyncThunkConfig>('basket/removeFromBasket', async (idProduct: number) => {
-  await axiosInstance.delete(`${import.meta.env.VITE_API}/basket/${idProduct}`);
+export const removeFromBusket = createAsyncThunk<number, number, AsyncThunkConfig>('busket/removeFromBasket', async (idProduct: number) => {
+  await axiosInstance.delete(`${import.meta.env.VITE_API}/busket/${idProduct}`);
   return idProduct;
+});
+
+export const buyOrder = createAsyncThunk<number, number, AsyncThunkConfig>('/buyOrder/:id', async (idUser: number) => {
+  await axiosInstance.delete(`${import.meta.env.VITE_API}/busket/buyOrder/${idUser}`);
+  return idUser;
 });

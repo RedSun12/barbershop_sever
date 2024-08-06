@@ -13,6 +13,8 @@ export default function List() {
     dispatch(fetchEntries());
   }, [dispatch]);
 
+  // console.log('en', entries);
+
   return (
     <>
       {isLoading ? (

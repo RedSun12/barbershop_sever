@@ -12,6 +12,7 @@ export type Inputs = {
     composition: string;
     hairType: string;
     size: string;
+    price: number;
 };
 
 export type InputsAuth = {

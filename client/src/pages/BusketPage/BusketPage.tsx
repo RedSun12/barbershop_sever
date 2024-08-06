@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBusket, removeFromBusket } from '../../redux/thunkActions';
+import { buyOrder, fetchBusket, removeFromBusket } from '../../redux/thunkActions';
 import styles from './BusketPage.module.css';
 import {
   Card,
@@ -20,9 +20,11 @@ export default function BusketPage() {
   const dispatch = useDispatch();
   const user = useAppSelector((store) => store.userSlice.user);
   const entries = useAppSelector((store) => store.busketSlice.entries)
-  console.log('ENTRIES !!!!!!!!!!!!', entries)
+  // console.log('ENTRIES !!!!!!!!!!!!', entries)
+  // const busketOrder = useAppSelector((store) => store)
+  // console.log('ORDER!!!!!', busketOrder)
   
-  const basket = useSelector((state: RootState) => state);
+  // const basket = useSelector((state: RootState) => state);
   const userId = user?.id;
 
   // console.log('basket!!!!!!!', basket);
@@ -30,20 +32,18 @@ export default function BusketPage() {
   // let test = false;
 
   useEffect(() => {
-    // if (accessToken) {
-    //   console.log('ТОКЕН ЕСТЬ!!!!', accessToken)
-    // }
     if (user) {
-      // console.log('gjjnijnijnijnijn', dispatch(fetchBusket(userId)))
       dispatch(fetchBusket(userId));
     }
-    // console.log('USER!!!', user)
-    // console.log('ACCESS!!!!!', accessToken)
   }, [user]);
   
   const handleRemoveFromBasket = (idProduct: number) => {
     dispatch(removeFromBusket(idProduct));
   };
+
+  const handleBuyOrder = (idUser: number) => {
+    dispatch(buyOrder(idUser));
+  }
   
   // console.log('asdadsads', basket)
   return (
@@ -51,7 +51,8 @@ export default function BusketPage() {
       <h1 className={styles.header}>Корзина</h1>
       <div className={styles.cards}>
         {entries?.length ? (
-          entries.map((el) => (
+          <div>
+          {entries.map((el) => (
             <Card
               key={el?.id}
               className={styles.oneCard}
@@ -88,14 +89,12 @@ export default function BusketPage() {
                 </Heading>
               </Stack>
             </Card>
-          ))
+            ))}
+            <Button onClick={() => handleBuyOrder(user?.id)}>Оформить заказ</Button>
+          </div>
         ) : (
           <>
             <h3>Корзина пуста</h3>
-            <button onClick={()=> {
-              test = !test
-              console.log("ZAAAASSAAA!!!@@")
-              }}>1111111</button>
           </>
         )}
       </div>

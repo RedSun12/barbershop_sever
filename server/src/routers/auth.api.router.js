@@ -3,7 +3,7 @@ const { User } = require('../../db/models');
 const cookieConfig = require('../configs/cookiesConfig');
 const bcrypt = require('bcrypt');
 const generateTokens = require('../utils/generateToken');
-const mail = require('../utils/mailer')
+const { mail } = require('../utils/mailer')
 
 router.post('/signup', async (req, res) => {
   const { isAdmin, username, usersurname, email, password } = req.body;
