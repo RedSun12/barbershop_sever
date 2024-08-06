@@ -2,6 +2,7 @@ import List from '../../components/List/List';
 import styles from './ProductPage.module.css';
 import Form from '../../components/Form/Form';
 import { useEffect, useState } from 'react';
+import Footer from '../../components/Footer/Footer';
 
 export default function ProductPage() {
   const [loadingVisible, setLoadingVisible] = useState(true); 
@@ -24,6 +25,7 @@ export default function ProductPage() {
         </div>
       )}
       <List />
+      <Footer/>
     </div>
   );
 }
