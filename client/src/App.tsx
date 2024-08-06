@@ -17,6 +17,7 @@ import Contacts from './pages/Contacts/Contacts';
 import Admin from './pages/Admin/Admin';
 import ProductPage from './pages/ProductPage/ProductPage';
 import BusketPage from './pages/BusketPage/BusketPage';
+import MoreCard from './pages/MoreCard/MoreCard';
 const { VITE_API } = import.meta.env;
 
 function App() {
@@ -82,6 +83,10 @@ function App() {
         {
           path: '/busket',
           element: <BusketPage />,
+        },
+        {
+          path: '/more',
+          element: <MoreCard />,
         },
       ],
     },

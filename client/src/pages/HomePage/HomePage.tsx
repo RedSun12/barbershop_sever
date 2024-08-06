@@ -6,6 +6,7 @@ import ChatPage from '../chat/ChatPage';
 import YandexMaps from "../../components/YandexMaps/YandexMaps";
 import HomePagePhoto from "../../components/HomePagePhoto/HomePagePhoto.jsx"
 import { Link } from 'react-router-dom';
+import Footer from '../../components/Footer/Footer';
 
 type TState = {
   id: number | string,
@@ -61,6 +62,7 @@ export default function HomePage(): ReactElement {
   // }, []);
 
   return (
+    <>
     <div className='homeP'>
       {loadingVisible && (
         <div className="loading-screen">
@@ -116,8 +118,9 @@ export default function HomePage(): ReactElement {
         </div>
 
       </div>
-
-      < ChatPage/>
     </div>
+    <ChatPage/>
+      < Footer />
+     </>
   );
 }
