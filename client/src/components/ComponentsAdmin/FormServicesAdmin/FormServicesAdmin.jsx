@@ -15,6 +15,7 @@ export default function FormServicesAdmin({ setServices, services }) {
       formData.append('foto', event.target.foto.value);
       const headers = {
         'Content-Type': 'multipart/form-data', 
+        
       }
       formData.append('name', inputs.name);
       formData.append('price', inputs.price);
