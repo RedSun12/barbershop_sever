@@ -113,30 +113,55 @@ export default function HomePage(): ReactElement {
           </div>
         </div> */}
 
-        <div className='q11'>
+        <div className='discryptHome'>
+        В нашем барбершопе вас ожидает отличный опыт! Мы предоставляем профессиональные услуги стрижки волос и бороды, гарантируя, что вы будете выглядеть безупречно. Наши мастера – настоящие специалисты, которые помогут вам подобрать стиль, подходящий именно вам!
+        </div>
 
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        <div className='blockDayHear'>
+          <div className='dayHear'>
+            <p className='dayText'>Стрига дня</p>
+            <div className='dayHearDesc'>
+              <img className='imgDayHear' src="./undercut.png" alt="dayHear" />
+              <p style={{paddingTop: '15px'}}>
+              Андеркат — представляет собой короткие виски и удлинённый аккуратный верх. Отличительная черта — отсутствие плавности. Верхние длинные волосы как бы шапкой накрывают височную часть головы.
+              </p>
+            </div>
+          </div>
+          <div className='dayHear'>
+          <p className='dayText'>Борода дня</p>
+          <div className='dayHearDesc'>
+            <img className='imgDayHear' src="./dayBoroda.jpg" alt="dayHear" />
+            <p style={{paddingTop: '15px'}}>
+            Бретта — классическая версия голливудской бороды, подразумевает наличие довольно пышных усов, которые соединяются с бородой. Усы могут быть тоньше или толще, все зависит от формы лица обладателя.
+            </p>
+          </div>
+          </div>
+        </div>
 
+        <div className='discryptHome'>
+        В дополнение к стрижкам, у нас также есть магазин товаров для мужского ухода. Вы найдете всё необходимое: от шампуней и кондиционеров до укладочных средств и масел для бороды. Мы заботимся о вашем образе и уверенности! Заходите, мы ждём вас!
+        </div>
 
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        v
+          <div className='dayHear'>
+            <p className='dayText'>Товар дня</p>
+            <div className='dayHearDesc'>
+              <img className='imgDayHear' src="./tovar.png" alt="dayHear" />
+              <p style={{paddingTop: '15px'}}>
+              Раньше из-за перхоти я не мог носить чёрный кожак, здороваться с братками. Потом, один из моих братков посоветовал мне шампунь "Жумайсынба". После первого применения, я сразу же увидел результат, и теперь я могу спокойно здороваться с братками и радоваться жизни. <br /> Шампунь "Жумайсынба" - скажи перхоти: <br /> "Көзіме көрінбейтін бол э, түсіндің ба!".
+              </p>
+            </div>
+          </div>
 
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
+        <div className='discryptHome'>
+        Барбершоп "Север" — это мужское пространство силы и стиля. Уютный интерьер с элементами индустриального дизайна, профессиональные мастера, владеющие искусством классической и современной стрижки. Каждый визит — это ритуал, в котором учтена каждая деталь. Добро пожаловать в "Север" — место для уверенных и стильных мужчин.
         </div>
 
       </div>
     </div>
+    <div className='footer'>
+    < Footer />
+    </div>
     <ChatPage/>
-      < Footer />
      </>
   );
 }
