@@ -21,20 +21,30 @@ import {
   Box,
 } from '@chakra-ui/react';
 import { Entry } from '../../types/statesTypes';
-import { useAppDispatch } from '../../redux/hooks';
-import { fetchDelEntry } from '../../redux/thunkActions';
-
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { addToBusket, fetchDelEntry } from '../../redux/thunkActions';
+import { useNavigate } from 'react-router-dom'; 
 type MainCardProps = {
   entry: Entry;
+  // userId: number;
 };
 
 export default function MainCard({ entry }: MainCardProps) {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((store) => store.userSlice.user);
+  const navigate = useNavigate();
+  
+  const clickMore = () => {
+    navigate('/more')
+  }
 
   const deleteHandler = async (): Promise<void> => {
     dispatch(fetchDelEntry(entry.id));
   };
 
+  const buyHandler = async (): Promise<void> => {
+    dispatch(addToBusket({ idUser: user.id, idProduct: entry.id }));
+  };
   return (
     <div className={styles.wrapper}>
       <Card bgColor='#313133' className={styles.container} maxW='sm'>
@@ -58,11 +68,14 @@ export default function MainCard({ entry }: MainCardProps) {
           <Stack mt='3' spacing='3'>
             <Text>{entry?.size}</Text>
           </Stack>
+          <Stack mt='3' spacing='3'>
+            <Text>{entry?.price}</Text>
+          </Stack>
         </CardBody>
         <Divider />
         <CardFooter>
           <ButtonGroup spacing='2'>
-            <Button variant='solid' colorScheme='blue'>
+            <Button onClick={clickMore} variant='solid' colorScheme='blue'>
               Подробнее
             </Button>
             <Popover placement='top'>
@@ -88,6 +101,9 @@ export default function MainCard({ entry }: MainCardProps) {
                 </PopoverBody>
               </PopoverContent>
             </Popover>
+            <Button variant='solid' colorScheme='green' onClick={buyHandler}>
+              Купить
+            </Button>
           </ButtonGroup>
         </CardFooter>
       </Card>

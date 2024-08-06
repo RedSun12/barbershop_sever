@@ -9,36 +9,28 @@ import { Inputs } from '../../types/types';
 export default function Form() {
   const dispatch = useAppDispatch();
 
-  const [inputs, setInputs] = useState<Inputs>({ title: '', image: '', manufacturer: '', composition: '', hairType: '', size: '' });
+  const [inputs, setInputs] = useState<Inputs>({ title: '', manufacturer: '', composition: '', hairType: '', size: '', price: 0 });
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // userId: DataTypes.INTEGER,
-  // title: DataTypes.STRING,
-  // image: DataTypes.STRING,
-  // manufacturer: DataTypes.STRING,
-  // composition: DataTypes.TEXT,
-  // hairType: DataTypes.TEXT,
-  // size: DataTypes.STRING,
-
-  // title,
-  // image,
-  // manufacturer,
-  // composition,
-  // hairType,
-  // size,
-
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formData = new FormData(e.target);
+    formData.append('imageGroup', e.target.image.value);
+    formData.append('user', user.id);
+    console.log('HGFGFFFFFFFFF', formData)
+    // const queryString = new URLSearchParams(formData).toString()
     dispatch(fetchAddEntry(inputs));
-    setInputs({ title: '', image: '', manufacturer: '', composition: '', hairType: '', size: '' });
+    if (res.status === 200) {
+      setInputs({ title: '', manufacturer: '', composition: '', hairType: '', size: '', price: 0 });
+    }
   };
 
   return (
     <form onSubmit={submitHandler} className={styles.wrapper}>
-      <h3 className={styles.head}>Добавь своего кита:</h3>
+      <h3 className={styles.head}>Добавить товар:</h3>
       <div className={styles.inputs}>
 
       <Input
@@ -49,11 +41,14 @@ export default function Form() {
           placeholder='Название'
         />
         <Input
-          onChange={changeHandler}
+          // onChange={changeHandler}
           borderColor='#3f3e3e'
           name='image'
-          value={inputs.image}
+          // value={inputs.image}
           placeholder='Фото'
+          type="file"
+          height='50px'
+          fontSize='14px'
         />
         <Input
           onChange={changeHandler}
@@ -82,6 +77,13 @@ export default function Form() {
           name='size'
           value={inputs.size}
           placeholder='Объем'
+        />
+        <Input
+          onChange={changeHandler}
+          borderColor='#3f3e3e'
+          name='price'
+          value={inputs.price}
+          placeholder='Стоимость'
         />
       </div>
       <div className={styles.btns}>

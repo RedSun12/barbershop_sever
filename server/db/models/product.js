@@ -4,7 +4,11 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate({ User }) {
-      User.belongsTo(User, { foreignKey: 'userId' });
+      this.belongsTo(User, { foreignKey: 'userId' });
+      this.belongsToMany(User, {
+        through: 'Baskets',
+        foreignKey: 'idProduct',
+      });
     }
   };
   Product.init({
@@ -15,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     composition: DataTypes.TEXT,
     hairType: DataTypes.TEXT,
     size: DataTypes.STRING,
+    price: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Product',
