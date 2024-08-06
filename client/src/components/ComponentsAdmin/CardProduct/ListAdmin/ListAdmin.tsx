@@ -13,6 +13,8 @@ export default function List() {
     dispatch(fetchEntries());
   }, [dispatch]);
 
+  console.log(entries)
+
   return (
     <>
       {isLoading ? (
@@ -26,7 +28,7 @@ export default function List() {
       ) : (
         <div className={styles.wrapper}>
           {entries.length
-            ? entries?.map((entry: { id: any; title: string; image: string; manufacturer: string; composition: string; hairType: string; size: string; createdAt: Date; updatedAt: Date; }) => <CardAdmin key={entry.id} entry={entry} />)
+            ? entries?.map((entry: { id: any; title: string; image: string; manufacturer: string; composition: string; hairType: string; size: string; price: number; createdAt: Date; updatedAt: Date; }) => <CardAdmin key={entry.id} entry={entry} />)
             : null}
         </div>
       )}

@@ -22,8 +22,9 @@ import {
 } from '@chakra-ui/react';
 import { Entry } from '../../../../types/statesTypes';
 import { useAppDispatch } from '../../../../redux/hooks';
-import { fetchDelEntry, fetchEditEntry } from '../../../../redux/thunkActions';
-import { useState } from 'react';
+import { fetchDelEntry, fetchEditEntry, fetchEntries } from '../../../../redux/thunkActions';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type MainCardProps = {
   entry: Entry;
@@ -33,13 +34,24 @@ export default function CardAdmin({ entry }: MainCardProps) {
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState<Partial<Entry>>({});
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
+  
+  const clickMore = () => {
+    navigate('/more')
+  }
   const deleteHandler = async (): Promise<void> => {
     dispatch(fetchDelEntry(entry.id));
   };
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  console.log('!!!!!!!', entry)
+
   const editHandler = () => {
     setEditing(true);
+    // const formData = new FormData(e.currentTarget);
+    // formData.append('title', e.currentTarget.title.value);
+    // formData.append('image', e.currentTarget.image.files);
     setFormData({
       title: entry.title,
       image: entry.image,
@@ -47,11 +59,22 @@ export default function CardAdmin({ entry }: MainCardProps) {
       composition: entry.composition,
       hairType: entry.hairType,
       size: entry.size,
+      price: entry.price,
     });
   };
 
   const saveHandler = () => {
-    dispatch(fetchEditEntry({ id: entry.id, formData }));
+    const formDataToSend = new FormData();
+    formDataToSend.append('title', formData.title || '');
+    formDataToSend.append('manufacturer', formData.manufacturer || '');
+    formDataToSend.append('composition', formData.composition || '');
+    formDataToSend.append('hairType', formData.hairType || '');
+    formDataToSend.append('size', formData.size || '');
+    formDataToSend.append('price', formData.price || 0);
+    if (fileInputRef.current?.files?.[0]) {
+      formDataToSend.append('image', fileInputRef.current.files[0]);
+    }
+    dispatch(fetchEditEntry({ id: entry.id, formData: formDataToSend }));
     setEditing(false);
   };
 
@@ -61,6 +84,7 @@ export default function CardAdmin({ entry }: MainCardProps) {
       [e.target.name]: e.target.value,
     });
   };
+  console.log('PRIVET!!!', formData)
 
   return (
     <div className={styles.wrapper}>
@@ -68,19 +92,25 @@ export default function CardAdmin({ entry }: MainCardProps) {
         <CardBody className={styles.body}>
           <Stack mt='3' spacing='3'>
             {editing ? (
-              <Input type="text" name="title" value={formData.title || ''} onChange={changeHandler} />
+              <Input type="text" name="title" defaultValue={entry?.title} onChange={changeHandler} />
             ) : (
               <Heading size='md'>{entry?.title}</Heading>
             )}
             {/* <Heading size='md'>{entry?.title}</Heading> */}
           </Stack>
-          <Box boxSize='sm'>
-            <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' />
+          <Box>
+          {editing ? (
+              <Input type='file' name="image" ref={fileInputRef} onChange={changeHandler} height='70px' fontSize='14px' accept="image/*"/>
+            ) : (
+              // <Heading size='md'>{entry?.title}</Heading>
+              <Image objectFit={'cover'} overflow={'hidden'} width={'300px'} height={'230px'} src={`http://localhost:3100/${entry?.image}`}/>
+            )}
+            {/* <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' /> */}
             {/* <Text>{entry?.image}</Text> */}
           </Box>
           <Stack mt='3' spacing='3'>
             {editing ? (
-              <Input type="text" name="manufacturer" value={formData.manufacturer || ''} onChange={changeHandler} />
+              <Input type="text" name="manufacturer" defaultValue={entry?.manufacturer} onChange={changeHandler} />
             ) : (
               <Text>{entry?.manufacturer}</Text>
             )}
@@ -88,7 +118,7 @@ export default function CardAdmin({ entry }: MainCardProps) {
           </Stack>
           <Stack mt='3' spacing='3'>
             {editing ? (
-              <Input type="text" name="composition" value={formData.composition || ''} onChange={changeHandler} />
+              <Input type="text" name="composition" defaultValue={entry?.composition} onChange={changeHandler} />
             ) : (
               <Text>{entry?.composition}</Text>
             )}
@@ -96,7 +126,7 @@ export default function CardAdmin({ entry }: MainCardProps) {
           </Stack>
           <Stack mt='3' spacing='3'>
             {editing ? (
-              <Input type="text" name="hairType" value={formData.hairType || ''} onChange={changeHandler} />
+              <Input type="text" name="hairType" defaultValue={entry?.hairType} onChange={changeHandler} />
             ) : (
               <Text>{entry?.hairType}</Text>
             )}
@@ -104,9 +134,14 @@ export default function CardAdmin({ entry }: MainCardProps) {
           </Stack>
           <Stack mt='3' spacing='3'>
             {editing ? (
-              <Input type="text" name="size" value={formData.size || ''} onChange={changeHandler} />
+              <Input type="text" name="size" defaultValue={entry?.size} onChange={changeHandler} />
             ) : (
               <Text>{entry?.size}</Text>
+            )}
+            {editing ? (
+              <Input type="text" name="price" defaultValue={entry?.price} onChange={changeHandler} />
+            ) : (
+              <Text>{entry?.price}</Text>
             )}
             {/* <Text>{entry?.size}</Text> */}
           </Stack>
@@ -114,7 +149,7 @@ export default function CardAdmin({ entry }: MainCardProps) {
         <Divider />
         <CardFooter>
           <ButtonGroup spacing='2'>
-            <Button variant='solid' colorScheme='blue'>
+            <Button onClick={clickMore} variant='solid' colorScheme='blue'>
               Подробнее
             </Button>
             <Popover placement='top'>

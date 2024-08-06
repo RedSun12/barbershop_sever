@@ -18,6 +18,7 @@ const corsConfig = {
 };
 //! Подключение
 app.use(cors(corsConfig));
+app.use(express.static('public'));
 
 app.use(morgan('dev'));
 app.use(cookieParser());

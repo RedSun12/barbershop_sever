@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Entries, Entry } from '../types/statesTypes';
-import { fetchBusket, addToBusket, removeFromBusket } from './thunkActions';
+import { fetchBusket, addToBusket, removeFromBusket, buyOrder } from './thunkActions';
 import { act } from 'react';
 
 type InitialState = {
@@ -20,27 +20,26 @@ const busketSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchBusket.pending, (state, action) => {
-        // console.log('!!!!!!!!!!!!', state)
-        // console.log('!!!!!!!!!!!!ascascac', action)
-        // state.entries = action.payload
-        // state.status = 'loading';
+        state.isLoading = true
       })
       .addCase(fetchBusket.fulfilled, (state, action) => {
-        // console.log('!!!!!!!!!!!!', state)
-        console.log('!!!!!!!!!!!!asacac', action)
-        // state.status = 'succeeded';
-        state.entries = action.payload;
+        state.entries = action.payload
+        state.isLoading = false
       })
-      // .addCase(fetchBusket.rejected, (state, action) => {
-      //   // state.status = 'failed';
-      //   state.error = action.error.message;
-      // })
       .addCase(addToBusket.fulfilled, (state, action) => {
+        // state.entries = [...state.entries, action.payload];
         // console.log(state.items)
-        // state.items.push(action.payload);
+        state.entries.push(action.payload);
       })
       .addCase(removeFromBusket.fulfilled, (state, action) => {
-        // state.items = state.items.filter((item) => item.id !== action.payload);
+        // state.entries = state.entries.map((el) => el.id === action.payload.id ? action.payload : el);
+        state.entries = state.entries.filter((item) => item.id !== action.payload);
+      })
+      .addCase(buyOrder.fulfilled, (state, action) => {
+        // console.log('OCHENK&&&&&', action)
+        state.entries = [];
+        // state.entries = state.entries.map((el) => el.id === action.payload.id ? action.payload : el);
+        // state.entries = state.entries.filter((item) => item.id !== action.payload);
       });
   },
 });

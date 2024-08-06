@@ -15,6 +15,7 @@ export type Entry = {
   composition: string;
   hairType: string;
   size: string;
+  price: number;
   createdAt: Date;
   updatedAt: Date;
 };

@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     composition: DataTypes.TEXT,
     hairType: DataTypes.TEXT,
     size: DataTypes.STRING,
+    price: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Product',

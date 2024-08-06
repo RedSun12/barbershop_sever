@@ -1,4 +1,4 @@
-import styles from './MainCard.module.css';
+import styles from './MoreCard.module.css';
 import {
   Avatar,
   Card,
@@ -29,7 +29,7 @@ type MainCardProps = {
   // userId: number;
 };
 
-export default function MainCard({ entry }: MainCardProps) {
+export default function MoreCard({ entry }: MainCardProps) {
   const dispatch = useAppDispatch();
   const user = useAppSelector((store) => store.userSlice.user);
   const navigate = useNavigate();
