@@ -4,6 +4,8 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import './HomePage.css';
 import ChatPage from '../chat/ChatPage';
 import YandexMaps from "../../components/YandexMaps/YandexMaps";
+import HomePagePhoto from "../../components/HomePagePhoto/HomePagePhoto.jsx"
+import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 
 type TState = {
@@ -20,6 +22,13 @@ type TData = {
 
 export default function HomePage(): ReactElement {
   const [loadingVisible, setLoadingVisible] = useState(true); 
+
+  function loadScript() {
+    var script = document.createElement('script');
+    script.src = 'https://w1168615.yclients.com/widgetJS';
+    script.charset = 'UTF-8';
+    document.body.appendChild(script);
+  } 
   
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -27,6 +36,10 @@ export default function HomePage(): ReactElement {
     }, 1200);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    loadScript();
   }, []);
   // const [presentCard, setPresentCard] = useState<TState[]>([]);
 
@@ -60,13 +73,31 @@ export default function HomePage(): ReactElement {
         </div>
       )}
 
-      <div className="contentWrapper">
-        <div className="yandexMap">
+      <div className="contentWrapperHome">
+
+        <h1 className='zagolovok'>
+          БАРБЕРШОП СЕВЕР
+        </h1>
+        <div className='knopkaNaHome'>
+          <p className='perviyRaz'>
+            Первый раз? Первая стрижка 600 рублей
+          </p>
+          <div className='zapisHome'>
+            <a href="w1168615.yclients.com/widgetJS" className="ms_booking knopkaZapisHome" onClick={loadScript()}>Записаться online</a>
+            <div className="image-container">
+              <img src='/knopkaHome.svg' alt="Loading" className="loading-image1 main-image" /> 
+              <img src='/knopkaHome1.svg' alt="Loading" className="loading-image1 overlay-image" /> 
+            </div>
+          </div>
+        </div>
+        <HomePagePhoto/>
+
+        {/* <div className="yandexMap">
           <YandexMaps style={{ height: '750px', width: '850px' }} />
           <div className="overlay"></div>
-        </div>
+        </div> */}
         
-        <div className='homeContacts'>
+        {/* <div className='homeContacts'>
           <p className='headContact'>Контакты:</p>
           <div className='contInf'>
             <p className='bigTextHome'>ТЦ "Лента"</p>
@@ -80,7 +111,12 @@ export default function HomePage(): ReactElement {
             <p className='bigTextHome'>Соцсети:</p>
             <p className='smallTextHome'>иконки</p>
           </div>
+        </div> */}
+
+        <div>
+
         </div>
+
       </div>
     </div>
     <ChatPage/>

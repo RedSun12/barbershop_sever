@@ -14,31 +14,31 @@
 }
 
 .overlay {
-  position: absolute; /* Позиционируем относительно родителя */
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.60); /* Черный цвет с прозрачностью */
-  z-index: 1; /* Устанавливаем на верхний уровень, чтобы он был поверх карты */
-  pointer-events: none; /* Делаем его некликабельным */
-  border-radius: 25px; /* Чтобы совпадал с радиусом родительского контейнера */
+  background-color: rgba(0, 0, 0, 0.60);
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 25px;
 }
 
-.contentWrapper {
-  display: flex; /* Используем flexbox для горизонтального расположения */
-  align-items: flex-start; /* Выравнивание по верхнему краю */
-  gap: 20px; /* Расстояние между картой и контактами */
-  
+.contentWrapperCont {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-direction: row;
 }
 
 .homeContacts {
   display: flex;
-  flex-direction: column; /* Располагаем контактные данные вертикально */
-  margin-left: auto; /* Центрируем блок по горизонтали */
-  margin-right: auto; /* Центрируем блок по горизонтали */
-  align-items: center; /* Центрируем элементы внутри блока */
-  width: fit-content; /* Ширина блока будет соответствовать его содержимому */
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  width: fit-content;
 }
 
 .headContact {
@@ -87,6 +87,7 @@
 }
 
 .fab {
+  padding-left: 8px;
   color: rgb(0, 0, 0);
   transition: color 1s;
 }
