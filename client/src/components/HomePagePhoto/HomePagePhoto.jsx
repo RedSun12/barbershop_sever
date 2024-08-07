@@ -8,12 +8,12 @@ import "slick-carousel/slick/slick-theme.css";
 const { VITE_API } = import.meta.env;
 
 const HomePagePhoto = () => {
-  const [fotos, setFotos] = useState([]);
+  const [fotosH, setFotosH] = useState([]);
 
   useEffect(() => {
     (async function () {
-      const { data } = await axiosInstance.get(`${VITE_API}/foto`);
-      setFotos(data);
+      const { data } = await axiosInstance.get(`${VITE_API}/fotoH`);
+      setFotosH(data);
     })();
   }, []);
 
@@ -25,15 +25,43 @@ const HomePagePhoto = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    arrows: false
+    arrows: false,
   };
 
   return (
     <div className={styles.containerH}>
       <Slider {...settings}>
-        {fotos.map(foto => (
-          <div key={foto.id} className={styles.slideH}>
-            <img src={foto.foto} alt="Barbershop" className={styles.fotoH} />
+        {fotosH.map(fotoH => (
+          <div key={fotoH.id} className={styles.slideH}>
+            <img src={fotoH.fotoH} alt="Barbershop" className={styles.fotoH} />
+            {fotoH.isFeatured3 && (
+              <img
+                src="./homesl1.png"
+                alt="Overlay"
+                className={styles.overlayImage1}
+              />
+            )}
+            {fotoH.isFeatured2 && (
+              <img
+                src="./home2.jpg"
+                alt="Overlay"
+                className={styles.overlayImage2}
+              />
+            )}
+            {fotoH.isFeatured1 && (
+              <img
+                src="./homesl2.png"
+                alt="Overlay"
+                className={styles.overlayImage3}
+              />
+            )}
+            {fotoH.isFeatured4 && (
+              <img
+                src="./homesl3.png"
+                alt="Overlay"
+                className={styles.overlayImage4}
+              />
+            )}
           </div>
         ))}
       </Slider>
