@@ -8,9 +8,9 @@ import {
   AccordionButton,
   AccordionIcon,
   AccordionItem,
-  Card,
   AccordionPanel,
   Box,
+  Card,
   CardBody,
 } from '@chakra-ui/react';
 import Boxes from './Boxes';
@@ -25,7 +25,6 @@ export default function Services() {
       setLoadingVisible(false);
     }, 1200);
 
-    console.log(services);
     return () => clearTimeout(timer);
   }, []);
 
@@ -37,7 +36,7 @@ export default function Services() {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.pageContainer}>
       {loadingVisible && (
         <div className="loading-screen">
           <div className="loader">
@@ -50,47 +49,49 @@ export default function Services() {
           </div>
         </div>
       )}
-      <div className={styles.serviceContainer}>
-        {services.map((el) => (
-          <div>
-            <Card className={styles.card}>
-              <CardBody>
-                <div className={styles.serviceCard}>
-                  <img
-                    src={`http://localhost:3100/${el?.foto}`}
-                    alt="foto"
-                    className={styles.serviceImage}
-                  />
-                  <div className={styles.serviceDetails}>
-                    <p>{el.name}</p>
-                    <p>{el.price}</p>
-                    <Accordion allowMultiple className={styles.flex}>
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box
-                              as="span"
-                              flex="1"
-                              textAlign="left"
-                              width="100%"
-                            >
-                              Описание
-                            </Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}  color={'black'}>
-                        {el.comment}
-                        </AccordionPanel>
-                      </AccordionItem>
-                    </Accordion>
+      <div className={styles.mainContent}>
+        <div className={styles.serviceContainer}>
+          {services.map((el) => (
+            <div key={el.id}>
+              <Card className={styles.card}>
+                <CardBody style={{ padding: '0' }}>
+                  <div className={styles.serviceCard}>
+                    <img
+                      src={`http://localhost:3100/${el?.foto}`}
+                      alt="foto"
+                      className={styles.serviceImage}
+                    />
+                    <div className={styles.serviceDetails}>
+                      <p>{el.name}</p>
+                      <p>{el.price}р.</p>
+                      <Accordion allowMultiple className={styles.flex}>
+                        <AccordionItem>
+                          <h2>
+                            <AccordionButton>
+                              <Box
+                                as="span"
+                                flex="1"
+                                textAlign="left"
+                                width="100%"
+                              >
+                                Описание
+                              </Box>
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel pb={4} color={'black'}>
+                            {el.comment}
+                          </AccordionPanel>
+                        </AccordionItem>
+                      </Accordion>
+                    </div>
+                    <div className={styles.svg}></div>
                   </div>
-                  <div className={styles.svg}></div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-        ))}
+                </CardBody>
+              </Card>
+            </div>
+          ))}
+        </div>
       </div>
       <Footer />
     </div>
