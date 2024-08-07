@@ -233,7 +233,6 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
           </Modal>
         </>
       )}
-      //!{' '}
     </>
   );
 }
