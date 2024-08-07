@@ -3,7 +3,17 @@ import axiosInstance from '../../axiosInstance';
 import { useEffect, useState } from 'react';
 import FormServiсes from '../../components/FormServices/FormServiсes';
 import Footer from '../../components/Footer/Footer';
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box } from '@chakra-ui/react';
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  Card,
+  AccordionPanel,
+  Box,
+  CardBody,
+} from '@chakra-ui/react';
+import Boxes from './Boxes';
 const { VITE_API } = import.meta.env;
 
 export default function Services() {
@@ -15,7 +25,7 @@ export default function Services() {
       setLoadingVisible(false);
     }, 1200);
 
-    console.log(services)
+    console.log(services);
     return () => clearTimeout(timer);
   }, []);
 
@@ -26,21 +36,6 @@ export default function Services() {
     })();
   }, []);
 
-  const handleSave = async (id) => {
-    await axiosInstance.put(`${VITE_API}/service/${id}`, formData);
-    setServices(
-      services.map((service) =>
-        service.id === id ? { ...service, ...formData } : service
-      )
-    );
-    setEditing(null);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-  
   return (
     <div className={styles.container}>
       {loadingVisible && (
@@ -57,31 +52,43 @@ export default function Services() {
       )}
       <div className={styles.serviceContainer}>
         {services.map((el) => (
-          <div key={el.id} className={styles.serviceCard}>
-            <img src={`http://localhost:3100/${el?.foto}`} alt="foto" className={styles.serviceImage} />
-            <div className={styles.serviceDetails}>
-              <p>{el.name}</p>
-              <p>{el.price}</p>
-              <Accordion defaultIndex={[0]} allowMultiple>
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left">
-                        Описание
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </AccordionPanel>
-                </AccordionItem>
-              </Accordion>
-            </div>
-            <div className={styles.svg}></div>
+          <div>
+            <Card className={styles.card}>
+              <CardBody>
+                <div className={styles.serviceCard}>
+                  <img
+                    src={`http://localhost:3100/${el?.foto}`}
+                    alt="foto"
+                    className={styles.serviceImage}
+                  />
+                  <div className={styles.serviceDetails}>
+                    <p>{el.name}</p>
+                    <p>{el.price}</p>
+                    <Accordion allowMultiple className={styles.flex}>
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton>
+                            <Box
+                              as="span"
+                              flex="1"
+                              textAlign="left"
+                              width="100%"
+                            >
+                              Описание
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}  color={'black'}>
+                        {el.comment}
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </Accordion>
+                  </div>
+                  <div className={styles.svg}></div>
+                </div>
+              </CardBody>
+            </Card>
           </div>
         ))}
       </div>
