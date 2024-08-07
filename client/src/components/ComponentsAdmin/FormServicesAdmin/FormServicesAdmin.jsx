@@ -7,19 +7,19 @@ const { VITE_API } = import.meta.env;
 // const upload = multer({ dest: 'public/image/' })
 
 export default function FormServicesAdmin({ setServices, services }) {
-    const [inputs, setInputs] = useState({ name: '', price: '' });
+    const [inputs, setInputs] = useState({ name: '', price: '', foto: null });
     const onSubmitHandlet = async (event) => {
       event.preventDefault();
       console.log(event)
       const formData = new FormData(event.target);
       formData.append('foto', event.target.foto.value);
+      // console.log(event.target)
       const headers = {
         'Content-Type': 'multipart/form-data', 
-        
       }
       formData.append('name', inputs.name);
       formData.append('price', inputs.price);
-      console.log(inputs.name)
+      // console.log(inputs.name)
       // formData.append('user', user.id);
       // const newPost = {
       //   name: inputs.name,
@@ -28,7 +28,7 @@ export default function FormServicesAdmin({ setServices, services }) {
       // };
       console.log(formData)
       const res = await axiosInstance.post(
-        `${VITE_API}service`,
+        `${VITE_API}/service`,
         formData,
         { headers: headers }
       );
