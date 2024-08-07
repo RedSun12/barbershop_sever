@@ -32,7 +32,6 @@ export default function FormServicesUpdate() {
     const submitHandler = async (e) => {
       e.preventDefault();
       const formDataEdit = new FormData(e.target);
-      // console.log(e)
       formDataEdit.append('name', formData.name);
       formDataEdit.append('price', formData.price);
       if (formData.foto) {
