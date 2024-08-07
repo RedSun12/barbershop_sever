@@ -23,7 +23,7 @@ const { VITE_API } = import.meta.env;
 function App() {
   const user = useAppSelector((store) => store.userSlice.user);
   const dispatch = useAppDispatch();
- 
+//  const navigate = useNavigate()
 
 
   useEffect(() => {
@@ -76,9 +76,10 @@ function App() {
           element: <Services />,
         
         },
-        {
+         {
           path: '/admin',
-          element: <Admin />,
+          // element: user.id === 1 ? <Admin /> : <ProductPage/>,
+          element:  <Admin /> ,
         },
         {
           path: '/busket',

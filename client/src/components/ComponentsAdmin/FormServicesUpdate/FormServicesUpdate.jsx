@@ -8,8 +8,10 @@ export default function FormServicesUpdate() {
   
     const [services, setServices] = useState([]);
     const [editing, setEditing] = useState(null);
-    const [formData, setFormData] = useState({ name: '', price: '', foto: null });
+    const [formData, setFormData] = useState({ name: '', price: '',comment: '', foto: null });
   
+console.log(formData, 'asdasd')
+
     useEffect(() => {
       (async function () {
         const { data } = await axiosInstance.get(`${VITE_API}/service`);
@@ -34,6 +36,7 @@ export default function FormServicesUpdate() {
       const formDataEdit = new FormData(e.target);
       formDataEdit.append('name', formData.name);
       formDataEdit.append('price', formData.price);
+      formDataEdit.append('comment', formData.comment);
       if (formData.foto) {
         formDataEdit.append('foto', e.target.foto.value);
       }
@@ -61,7 +64,7 @@ export default function FormServicesUpdate() {
   
     const handleEdit = (service) => {
       setEditing(service.id);
-      setFormData({ name: service.name, price: service.price });
+      setFormData({ name: service.name, price: service.price, comment: service.comment });
       // console.log(formData);
     };
   
@@ -121,6 +124,13 @@ export default function FormServicesUpdate() {
                   onChange={changeHandler}
                   accept="image/*"
                 />
+                <input
+                  type="text"
+                  name="comment"
+                  value={formData.comment}
+                  onChange={changeHandler}
+                />
+                
                 <button className={styles.button} type='submit' >Сохранить</button>
               </form>
             ) : (
@@ -128,6 +138,7 @@ export default function FormServicesUpdate() {
                 {/* <img src={`http://localhost:3100/${el?.foto}`} alt="foto" /> */}
                 <p>{el.name}</p>
                 <p>{el.price}</p>
+                <p>{el.comment}</p>
                 <button className={styles.button} onClick={() => handleEdit(el)}>Редактировать</button>
             <button
               className={`${styles.button} ${styles.deleteButton}`}
