@@ -52,14 +52,14 @@ export default function Contacts() {
           </div>
           <div className='contInfIcon'>
             <p className='bigTextHome'>Наши соцсети:</p>
-            <p className='smallTextHome'>
+            <p className='smallTextHome ssylky'>
               <a href="https://t.me/ссылка телеграм">
                 <i class="fab fabte fa-telegram fa-4x"></i>
               </a>
               <a href="https://t.me/ссылка инста">
                 <i class="fab fabin fa-instagram fa-4x"></i>
               </a>
-              <a href="https://t.me/ссылка вк">
+              <a href="https://vk.com/severbarbershop">
                 <i class="fab fabvk fa-vk fa-4x"></i>
               </a>
               <a href="https://wa.me/qr/ссылка на ватсап">

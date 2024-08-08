@@ -5,13 +5,13 @@ module.exports = {
   async up (queryInterface, Sequelize) {
       await queryInterface.bulkInsert('Barberfotos', [
         {
-        foto: '1.jpg',
+        foto: 'home1.jpg',
       },
       {
-        foto: '2.jpg',
+        foto: 'home22.png',
       },
       {
-        foto: '1.jpg',
+        foto: 'home33.png',
       },
     ], {});
 

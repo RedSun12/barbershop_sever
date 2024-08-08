@@ -99,7 +99,7 @@ export default function Navbar() {
                       {isOpen ? '✕' : '☰'}
                     </MenuButton>
                     <MenuList>
-                      <MenuItem onClick={clickHome}>На Главную</MenuItem>
+                      <MenuItem onClick={clickHome}>На главную</MenuItem>
                       <MenuItem onClick={clickProfile}>Профиль</MenuItem>
                       <MenuItem onClick={logoutHandler}>Выйти</MenuItem>
                     </MenuList>
@@ -220,7 +220,7 @@ export default function Navbar() {
                       {isOpen ? '✕' : '☰'}
                     </MenuButton>
                     <MenuList>
-                    <MenuItem onClick={clickHome}>На Главную</MenuItem>
+                    <MenuItem onClick={clickHome}>На главную</MenuItem>
                     <MenuItem> <AuthForm title="Войти" type="signin" /></MenuItem>
                     <MenuItem> <AuthForm title="Зарегистрироваться" type="signup" /> </MenuItem>
                     </MenuList>
