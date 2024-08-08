@@ -40,9 +40,21 @@ export default function Navbar() {
     navigate('/');
   };
 
-  // const clickProduct = () => {
-  //   navigate('/product')
-  // }
+  const clickBusket = () => {
+    navigate('/busket');
+  };
+
+  const clickService = () => {
+    navigate('/services');
+  };
+
+  const clickProduct = () => {
+    navigate('/product')
+  }
+
+  const clickContact = () => {
+    navigate('/contact')
+  }
 
   const clickGame = () => {
     navigate('/profile');
@@ -76,7 +88,6 @@ export default function Navbar() {
   // console.log(entries)
   return (
     <>
-      {/* Add a Box component to act as a spacer for the fixed navbar */}
       <Box height="66px" />
       {user?.username ? (
         <Center>
@@ -88,9 +99,9 @@ export default function Navbar() {
             zIndex="1000"
             m={0}
             p={0}
-            height={'45px'} // Adjusted height for better results
+            height={'45px'}
             rounded={'30'}
-            bg={'#A1A1A1'}
+            bg={'rgba(241, 241, 241, 0.52)'}
             alignItems={'center'}
             justifyContent={'space-between'}
             backdropFilter={'blur(12.5px)'}
@@ -114,18 +125,20 @@ export default function Navbar() {
                     </MenuButton>
                     <MenuList>
                       <MenuItem onClick={clickHome}>На главную</MenuItem>
-                      <MenuItem onClick={clickProfile}>Профиль</MenuItem>
+                      <MenuItem onClick={clickService}>Услуги</MenuItem>
+                      <MenuItem onClick={clickProduct}>Товары</MenuItem>
+                      <MenuItem onClick={clickContact}>Контакты</MenuItem>
                       <MenuItem onClick={logoutHandler}>Выйти</MenuItem>
                     </MenuList>
                   </>
                 )}
               </Menu>
               <Text ml={'16px'} textShadow={'#0F0F0F 1px 0 10px'}>
-                <Link to="/contact">Контакты</Link>
+                {/* <Link to="/contact">Контакты</Link>
                 <Link to="/product" style={{ margin: '0 10px' }}>Товары</Link>
                 <Link to="/busket" style={{ margin: '0 10px' }}>Корзина {entries.length}</Link>
               </Text>
-              <Button
+              {/* <Button
                 ml={'7px'}
                 width={'20px'}
                 border={'1px'}
@@ -134,7 +147,7 @@ export default function Navbar() {
                 color={'#000000'}
               >
                 <ArrowDownIcon height={'31px'}></ArrowDownIcon>
-              </Button>
+              </Button> */}
               <Text ml={'16px'} textShadow={'#0F0F0F 1px 0 10px'}></Text>
             </Flex>
             <Flex
@@ -144,11 +157,12 @@ export default function Navbar() {
               fontSize={'13px'}
               fontWeight={'600'}
             >
-              <Text textShadow={'#0F0F0F 1px 0 10px'}>
-                <Link to="/">БАРБЕРШОП</Link>
-              </Text>
-              <Text textShadow={'#0F0F0F 1px 0 10px'}>
-                <Link to="/">СЕВЕР</Link>
+              <Text 
+              textShadow={'#0F0F0F 1px 0 10px'}>
+                <Link 
+                className='barbcent'
+                style={{color: 'black', textAlign: 'center', alignItems: 'center', display: 'flex', paddingLeft: '120px',  fontWeight: '900', }}
+                to="/">БАРБЕРШОП<br/>СЕВЕР</Link>
               </Text>
             </Flex>
             <Flex alignItems={'center'}>
@@ -157,19 +171,22 @@ export default function Navbar() {
                 fontWeight={'500'}
                 textShadow={'#0F0F0F 1px 0 10px'}
               >
-                {/* {user.id === 1 ? <Link to="/admin" style={{ margin: '0 10px' }}>Админка</Link> : null} */}
-                <Link to="/admin" style={{ margin: '0 10px' }}>Админка</Link>
-                <Link to="/services" style={{ margin: '0 10px' }}>Услуги</Link>
+                {user.id === 1 ? <Link to="/admin" style={{ margin: '0 10px', color: 'black' }}>Панель администратора</Link> : null}
+                {/* <Link to="/admin" style={{ margin: '0 10px', color: 'black' }}>Панель администратора</Link> */}
+                {/* <Link to="/services" style={{ margin: '0 10px' }}>Услуги</Link> */}
               </Text>
-              <Button
-                rounded={'300px'}
-                bg={'white'}
-                boxShadow={'xl'}
-                height={'45px'}
-                mr={'27px'}
+              <div
+                className='baskBtn' 
               >
-                <PlusSquareIcon></PlusSquareIcon>
-              </Button>
+                <Link to="/busket" style={{margin: '0px', padding: "0px"}}>
+                  <img
+                    src="/box_alt.svg"
+                    alt="Loading"
+                    className="baskimg"
+                  />
+                </Link>
+                
+              </div>
               <Button
                 bg={'white'}
                 height={'45px'}
@@ -177,11 +194,10 @@ export default function Navbar() {
                 boxShadow={'3xl'}
               >
                 <a
-                  href="w1168615.yclients.com/widgetJS"
-                  className="ms_booking"
-                  onClick={loadScript()}
+                  style={{color: 'black'}}
+                  href="https://www.yclients.com"
                 >
-                  Записаться online
+                  Мои записи
                 </a>
                 <div className="image-container">
                   <img
@@ -242,9 +258,10 @@ export default function Navbar() {
                 )}
               </Menu>
               <Text ml={'16px'} textShadow={'#0F0F0F 1px 0 10px'}>
-                <Link to="/contact">Контакты</Link>
+              <Link to="/contact">Контакты</Link>
+              <Link to="/contact">Контакты</Link>
               </Text>
-              <Button
+              {/* <Button
                 ml={'7px'}
                 width={'20px'}
                 border={'1px'}
@@ -253,7 +270,7 @@ export default function Navbar() {
                 color={'#000000'}
               >
                 <ArrowDownIcon height={'31px'}></ArrowDownIcon>
-              </Button>
+              </Button> */}
               <Text ml={'16px'} textShadow={'#0F0F0F 1px 0 10px'}></Text>
             </Flex>
             <Flex
@@ -276,9 +293,9 @@ export default function Navbar() {
                 fontWeight={'500'}
                 textShadow={'#0F0F0F 1px 0 10px'}
               >
-                <Link to="/services">Услуги</Link>
+                {/* <Link to="/services">Услуги</Link> */}
               </Text>
-              <Button
+              {/* <Button
                 rounded={'300px'}
                 bg={'white'}
                 boxShadow={'xl'}
@@ -286,7 +303,7 @@ export default function Navbar() {
                 mr={'27px'}
               >
                 <PlusSquareIcon></PlusSquareIcon>
-              </Button>
+              </Button> */}
               <Button
                 bg={'white'}
                 height={'45px'}

@@ -32,7 +32,7 @@ export default function ProfilePage(): ReactElement {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoadingVisible(false);
-    }, 200);
+    }, 1200);
     return () => clearTimeout(timer);
   }, []);
 

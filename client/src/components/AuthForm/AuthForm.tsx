@@ -41,46 +41,50 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
     email: '',
     password: '',
   });
-  // const navigate = useNavigate();
+  const [error, setError] = useState<string>('');
   const dispatch = useAppDispatch();
 
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
-  //! Типизация ивента
-
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const OverlayOne = () => (
-    <ModalOverlay
-      bg="blackAlpha.300"
-      backdropFilter="blur(10px) hue-rotate(90deg)"
-    />
-  );
-
-  const [overlay, setOverlay] = React.useState(<OverlayOne />);
+  const isEmailValid = (email: string) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
+  };
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate('/');
+
+    if (!isEmailValid(inputs.email)) {
+      setError('Неверный формат email');
+      return;
+    }
+
+    if (inputs.password.length < 8) {
+      setError('Пароль должен быть не менее 8 символов');
+      return;
+    }
+
+    setError('');
 
     try {
       const result = await dispatch(fetchAuthUser({ inputs, type })).then(
         unwrapResult
       );
       setAccessToken(result.accessToken);
+      navigate('/');
     } catch (error) {
       console.error('Authentication failed:', error);
-      // Здесь можно добавить логику для отображения ошибки пользователю
+      if (error.response && error.response.status === 401) {
+        setError('Неверный email или пароль');
+      } else {
+        setError('Произошла ошибка при авторизации');
+      }
     }
-
-    // dispatch(fetchAuthUser({ inputs, type }))
-    //   .then(unwrapResult)
-    //   .then((result) => {
-    //     setAccessToken(result.accessToken);
-    //   });
   };
 
   return (
@@ -91,10 +95,7 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
             fontSize={'25px'}
             className={styles.btnSing}
             width={'100%'}
-            onClick={() => {
-              setOverlay(<OverlayOne />);
-              onOpen();
-            }}
+            onClick={() => onOpen()}
           >
             Вход
           </Button>
@@ -106,11 +107,11 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
             isOpen={isOpen}
             onClose={onClose}
           >
-            {overlay}
             <ModalContent>
               <ModalHeader color={'black'}>Вход</ModalHeader>
               <ModalCloseButton />
               <ModalBody pb={6}>
+                {error && <div className={styles.errorMessage}>{error}</div>}
                 <FormControl>
                   <FormLabel color={'black'}>Email:</FormLabel>
                   <Input
@@ -145,7 +146,6 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
               </ModalFooter>
             </ModalContent>
           </Modal>
-          <br />
         </>
       )}
       {type === 'signup' && (
@@ -153,10 +153,7 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
           <Button
             fontSize={'25px'}
             width={'100%'}
-            onClick={() => {
-              setOverlay(<OverlayOne />);
-              onOpen();
-            }}
+            onClick={() => onOpen()}
           >
             Регистрация
           </Button>
@@ -168,12 +165,11 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
             isOpen={isOpen}
             onClose={onClose}
           >
-            {overlay}
-            <ModalOverlay />
             <ModalContent>
               <ModalHeader color={'black'}>Регистрация</ModalHeader>
               <ModalCloseButton />
               <ModalBody pb={6}>
+                {error && <div className={styles.errorMessage}>{error}</div>}
                 <FormControl>
                   <FormLabel color={'black'}>Имя пользователя:</FormLabel>
                   <Input
@@ -182,7 +178,7 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
                     onChange={changeHandler}
                     borderColor="#3f3e3e"
                     name="username"
-                    value={inputs?.name}
+                    value={inputs.username}
                     placeholder="Имя пользователя"
                   />
                 </FormControl>
@@ -190,11 +186,10 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
                   <FormLabel color={'black'}>Фамилия пользователя:</FormLabel>
                   <Input
                     color={'black'}
-                    ref={initialRef}
                     onChange={changeHandler}
                     borderColor="#3f3e3e"
                     name="usersurname"
-                    value={inputs?.name}
+                    value={inputs.usersurname}
                     placeholder="Фамилия пользователя"
                   />
                 </FormControl>
@@ -206,7 +201,7 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
                     borderColor="#3f3e3e"
                     type="email"
                     name="email"
-                    value={inputs?.description}
+                    value={inputs.email}
                     placeholder="Эл.почта"
                   />
                 </FormControl>
@@ -218,7 +213,7 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
                     borderColor="#3f3e3e"
                     type="password"
                     name="password"
-                    value={inputs?.password}
+                    value={inputs.password}
                     placeholder="Пароль"
                   />
                 </FormControl>

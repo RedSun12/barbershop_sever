@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { buyOrder, fetchBusket, removeFromBusket } from '../../redux/thunkActions';
 import styles from './BusketPage.module.css';
@@ -28,6 +28,21 @@ export default function BusketPage() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const dispatch = useDispatch();
   const user = useAppSelector((store) => store.userSlice.user);
+  const entries = useAppSelector((store) => store.busketSlice.entries)
+  const [loadingVisible, setLoadingVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadingVisible(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, []);
+  // console.log('ENTRIES !!!!!!!!!!!!', entries)
+  // const busketOrder = useAppSelector((store) => store)
+  // console.log('ORDER!!!!!', busketOrder)
+  
+  // const basket = useSelector((state: RootState) => state);
   const entries = useAppSelector((store) => store.busketSlice.entries);
   const userId = user?.id;
 
@@ -72,6 +87,19 @@ export default function BusketPage() {
   
   return (
     <div className={styles.wrapper}>
+        {loadingVisible && (
+          <div className="loading-screen">
+            <div className="loader">
+              <img src="/load1.png" alt="Loading" className="loading-image" />
+              <img
+                src="/load2.png"
+                alt="Loading"
+                className="loading-image spinning"
+              />
+            </div>
+          </div>
+        )}
+      <h1 className={styles.header}>Корзина</h1>
       <Text fontSize={'50px'}>Корзина</Text>
       {/* <h1 className={styles.header}>Корзина</h1> */}
       <div className={styles.cards}>

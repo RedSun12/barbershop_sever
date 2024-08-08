@@ -76,8 +76,7 @@ function App() {
         },
          {
           path: '/admin',
-          // element: user.id === 1 ? <Admin /> : <ProductPage/>,
-          element:  <Admin /> ,
+          element: user.id === 1 ? <Admin /> : <ProductPage/>,
         },
         {
           path: '/busket',
