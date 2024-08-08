@@ -69,11 +69,10 @@ router
       if (Number(id)) {
         const entrie = await Product.findOne({ where: { id } });
         if (image) {
-          entrie.dataValues.image = `image/${image.filename}`;
-          await entrie.update({ image: `image/${image.filename}`});
-          
+          entrie.image = `image/${image.filename}`;
         }
-          await entrie.update({ title, manufacturer, composition, hairType, size, price });
+          // await entrie.update({ image: `image/${image.filename}`});
+          await entrie.update({ title, manufacturer, composition, hairType, size, price, image: entrie.image });
           // entrie.save()
           res.json(entrie);
       } else {

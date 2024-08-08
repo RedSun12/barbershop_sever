@@ -58,7 +58,6 @@ router
         const entrie = await Service.findOne({ where: { id } });
         if (foto) {
           entrie.foto = `image/${foto.filename}`;
-          // await entrie.update({ foto: `image/${foto.filename}`});
         }
           await entrie.update({ name: name[0], price: price[0], foto: entrie.foto });
           console.log(entrie);

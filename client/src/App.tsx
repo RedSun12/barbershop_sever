@@ -85,7 +85,7 @@ function App() {
           element: <BusketPage />,
         },
         {
-          path: '/more',
+          path: '/more/:id',
           element: <MoreCard />,
         },
       ],

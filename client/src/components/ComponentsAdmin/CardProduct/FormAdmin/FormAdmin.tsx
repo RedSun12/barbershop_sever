@@ -18,16 +18,8 @@ export default function FormAdmin() {
   const submitHandler = (e: FormEvent<any>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    // formData.append('title', e.currentTarget.title.value);
     formData.append('image', e.currentTarget.image.files);
-    // formData.append('user', user.id);
-    // console.log('CURRENT', e.target);
-    // console.log('formDATA!!!', formData);
-    // for(const [k,v] of formData) {
-    //   console.log(k, v)
-    // }
     dispatch(fetchAddEntry(formData));
-    // setInputs({ title: '', manufacturer: '', composition: '', hairType: '', size: '', price: 0 });
   };
 
   return (
@@ -35,23 +27,24 @@ export default function FormAdmin() {
       <h3 className={styles.head}>Добавь товар:</h3>
       <div className={styles.inputs}>
 
-      <Input
+        <Input
           onChange={changeHandler}
           borderColor='#3f3e3e'
           name='title'
           value={inputs.title}
           placeholder='Название'
         />
+        <div className={styles.pad}></div>
         <Input
           onChange={changeHandler}
           borderColor='#3f3e3e'
           name='image'
-          // value={inputs.image}
           placeholder='Фото'
           type='file'
-          height={'100px'}
+          className={styles.inImage}
           accept="image/*"
         />
+        <div className={styles.pad}></div>
         <Input
           onChange={changeHandler}
           borderColor='#3f3e3e'
@@ -59,6 +52,7 @@ export default function FormAdmin() {
           value={inputs.manufacturer}
           placeholder='Производитель'
         />
+        <div className={styles.pad}></div>
         <Input
           onChange={changeHandler}
           borderColor='#3f3e3e'
@@ -66,6 +60,7 @@ export default function FormAdmin() {
           value={inputs.composition}
           placeholder='Состав'
         />
+        <div className={styles.pad}></div>
         <Input
           onChange={changeHandler}
           borderColor='#3f3e3e'
@@ -73,6 +68,7 @@ export default function FormAdmin() {
           value={inputs.hairType}
           placeholder='Тип волос'
         />
+        <div className={styles.pad}></div>
         <Input
           onChange={changeHandler}
           borderColor='#3f3e3e'
@@ -80,6 +76,7 @@ export default function FormAdmin() {
           value={inputs.size}
           placeholder='Объем'
         />
+        <div className={styles.pad}></div>
         <Input
           onChange={changeHandler}
           borderColor='#3f3e3e'

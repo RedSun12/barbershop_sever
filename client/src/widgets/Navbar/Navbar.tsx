@@ -1,6 +1,6 @@
 import { setAccessToken } from '../../axiosInstance';
 import { Link, useNavigate } from 'react-router-dom';
-import { fetchLogoutUser } from '../../redux/thunkActions';
+import { fetchBusket, fetchLogoutUser } from '../../redux/thunkActions';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import {
   MenuItem,
@@ -16,11 +16,24 @@ import {
 import { ArrowDownIcon, PlusSquareIcon } from '@chakra-ui/icons';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 export default function Navbar() {
   const user = useAppSelector((store) => store.userSlice.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  
+  const dispatchAll = useDispatch();
+  // const user = useAppSelector((store) => store.userSlice.user);
+  const entries = useAppSelector((store) => store.busketSlice.entries);
+  const userId = user?.id;
+
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchBusket(userId));
+    }
+    // console.log(entries)
+  }, [user]);
 
   const clickHome = () => {
     navigate('/');
@@ -58,6 +71,7 @@ export default function Navbar() {
     loadScript();
   }, []);
 
+  // console.log(entries)
   return (
     <>
       {/* Add a Box component to act as a spacer for the fixed navbar */}
@@ -104,6 +118,7 @@ export default function Navbar() {
               </Menu>
               <Text ml={'16px'} textShadow={'#0F0F0F 1px 0 10px'}>
                 <Link to="/contact">Контакты</Link>
+                
               </Text>
               <Button
                 ml={'7px'}
@@ -139,7 +154,7 @@ export default function Navbar() {
               >
                 <Link to="/product">Товары</Link>
                 <Link to="/admin">Админка</Link>
-                <Link to="/busket">Корзина</Link>
+                <Link to="/busket">Корзина {entries.length}</Link>
                 <Link to="/services">Услуги</Link>
               </Text>
               <Button

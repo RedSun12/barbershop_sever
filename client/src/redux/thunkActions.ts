@@ -14,32 +14,6 @@ type AuthResponse = {
   accessToken: string;
 };
 
-//! СТАРЫЕ САНКИ ДЛЯ ВИКТОРИНЫ. ОCТАВИЛ КАК ПРИМЕР. ПОТОМ УДАЛИТЬ!!!
-// export const fetchThemes = createAsyncThunk<Themes[], void, AsyncThunkConfig>(
-//   'themes/all',
-//   async () => {
-//     const response = await axiosInstance.get<Themes[]>(
-//       `${import.meta.env.VITE_API}/themes`
-//     );
-//     return response.data;
-//   });
-
-// export const fetchQuestions = createAsyncThunk<Questions[], void, AsyncThunkConfig>(
-//   'questions/all',
-//   async () => {
-//     const response = await axiosInstance.get<Questions[]>(
-//       `${import.meta.env.VITE_API}/questions`
-//     );
-//     return response.data;
-//   });
-
-// export const fetchQuestion = createAsyncThunk<Questions, number, AsyncThunkConfig>(
-//   'question/one',
-//   async (id) => {
-//     const response = await axiosInstance.get<Questions>(`${import.meta.env.VITE_API}/questions/${id}`);
-//     return response.data;
-//   });
-
 //! Санки для Регистрации, Выхода и Входа. ПЕРЕД РЕЛИЗОМ УДАЛИТЬ РЕГИСТРАЦИЮ!!!
 
 export const fetchAuthUser: AsyncThunk<
