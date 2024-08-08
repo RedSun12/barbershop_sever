@@ -173,8 +173,8 @@ function MessageGroup({ messages, loggedUser, setSelectChatId }) {
 export default function ChatPage() {
   const { user: loggedUser } = useAppSelector(store => store.userSlice);
   const { messages, users, typing, submitMessage, socketRef } = useChat();
-  console.log(socketRef, 'asdasdasdasd')
-  console.log(typing, 'какой юзер че кого')
+  // console.log(socketRef, 'asdasdasdasd')
+  // console.log(typing, 'какой юзер че кого')
   const [selectChatId, setSelectChatId] = useState<Number | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const cardBg = useColorModeValue('gray.100', 'gray.800');

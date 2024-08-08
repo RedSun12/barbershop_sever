@@ -7,6 +7,7 @@ import YandexMaps from '../../components/YandexMaps/YandexMaps';
 import HomePagePhoto from '../../components/HomePagePhoto/HomePagePhoto.jsx';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
+import { useAppSelector } from '../../redux/hooks.js';
 
 type TState = {
   id: number | string;
@@ -22,7 +23,7 @@ type TData = {
 
 export default function HomePage(): ReactElement {
   const [loadingVisible, setLoadingVisible] = useState(true);
-
+  const { user } = useAppSelector(store => store.userSlice);
   function loadScript() {
     var script = document.createElement('script');
     script.src = 'https://w1168615.yclients.com/widgetJS';
@@ -162,7 +163,7 @@ export default function HomePage(): ReactElement {
       <div className="footer">
         <Footer />
       </div>
-      <ChatPage />
+      {user.id && <ChatPage />}
     </>
   );
 }

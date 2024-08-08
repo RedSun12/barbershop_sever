@@ -19,7 +19,7 @@ const { VITE_API } = import.meta.env;
 export default function Services() {
   const [services, setServices] = useState([]);
   const [loadingVisible, setLoadingVisible] = useState(true);
-
+console.log(services, 'serv')
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoadingVisible(false);
