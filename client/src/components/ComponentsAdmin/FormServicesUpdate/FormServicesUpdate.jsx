@@ -1,6 +1,6 @@
 import styles from './FormServicesUpdate.module.css';
 import axiosInstance from '../../../axiosInstance';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import FormServicesAdmin from '../FormServicesAdmin/FormServicesAdmin';
 const { VITE_API } = import.meta.env;
 
@@ -15,6 +15,8 @@ export default function FormServicesUpdate() {
   });
   const [expanded, setExpanded] = useState({});
 
+  // const fileInputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     (async function () {
       const { data } = await axiosInstance.get(`${VITE_API}/service`);
@@ -22,10 +24,13 @@ export default function FormServicesUpdate() {
     })();
   }, [editing]);
 
+  // console.log(editing)
+
   const changeHandler = (e) => {
     const { name, value, type } = e.target;
     if (type === 'file') {
       setFormData({ ...formData, [name]: e.target.files[0] });
+      console.log('asdsdfsfsfd', formData)
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -37,17 +42,21 @@ export default function FormServicesUpdate() {
     formDataEdit.append('name', formData.name);
     formDataEdit.append('price', formData.price);
     formDataEdit.append('comment', formData.comment);
+    // console.log(formData)
+    // console.log(fileInputRef.current);
     if (formData.foto) {
       formDataEdit.append('foto', formData.foto);
     }
+    console.log(formDataEdit)
     const headers = {
       'Content-Type': 'multipart/form-data',
     };
     const res = await axiosInstance.put(
-      `${VITE_API}/service/${editing}`,
-      formDataEdit,
+      `${VITE_API}service/${editing}`,
+      formData,
       { headers: headers }
     );
+    console.log('RESPONSE!!!!!!', res);
     setEditing(null);
   };
 
@@ -94,10 +103,12 @@ export default function FormServicesUpdate() {
                   onChange={changeHandler}
                 />
                 <input
+                  id="foto"
                   type="file"
                   name="foto"
                   onChange={changeHandler}
                   accept="image/*"
+                  // ref={fileInputRef}
                 />
                 <input
                   type="text"

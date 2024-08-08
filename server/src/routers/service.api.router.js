@@ -6,10 +6,12 @@ const { verifyAccessToken } = require('../middlewares/verifyToken');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'public/image/')
+    // console.log(destination);
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
     cb(null, file.fieldname + '-' + uniqueSuffix + '.' + file.originalname.split('.').at(-1));
+    // console.log(file);
   },
 })
 
@@ -18,9 +20,6 @@ const upload = multer({ storage: storage });
 router
   .get('/', async (req, res) => {
   try {
-    // const foto = await Service.findAll();
-    // const result = foto.sort((a, b) => a.id > b.id ? 1 : -1);
-    // res.status(200).json(result);
     const entries = await Service.findAll();
     // console.log(entries);
     res.json(entries)
@@ -52,16 +51,19 @@ router
   })
 
   .put('/:id', verifyAccessToken, upload.single("foto"), async (req, res) => {
+    console.log(upload.single("foto"))
   const foto = req.file;
+  const { id } = req.params
+  const { name, price, comment } = req.body;
+  console.log(req.body)
+  console.log(req.file)
     try {
-      const { id } = req.params
-      const { name, price, comment } = req.body;
       if (Number(id)) {
         const entrie = await Service.findOne({ where: { id } });
         if (foto) {
           entrie.foto = `image/${foto.filename}`;
         }
-          await entrie.update({ name: name[0], price: price[0], comment: comment[0], foto: entrie.foto });
+          await entrie.update({ name: name, price: price, comment: comment, foto: entrie.foto });
           console.log(entrie);
           // entrie.save()
           res.json(entrie);
