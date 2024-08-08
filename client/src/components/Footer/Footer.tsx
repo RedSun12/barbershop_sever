@@ -32,7 +32,7 @@ export default function Footer() {
         <footer className={styles.footer}>
             <div className={styles.container}>
                 <div className={styles.logo}>
-                    <img className={styles.image} src={'./logoFooter2.png'} alt="Логотип Север" />
+                    <img className={styles.image} src={'/logoFooter2.png'} alt="Логотип Север" />
                     <div className={styles.name}>БАРБЕРШОП СЕВЕР</div>
                 </div>
                 <div className={styles.contact}> 
