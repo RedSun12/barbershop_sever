@@ -11,30 +11,31 @@ import {
   Text,
   Image,
   Button,
+  Divider,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
 } from '@chakra-ui/react';
 import { RootState } from '../../redux/store';
 import { useAppSelector } from '../../redux/hooks';
 import { accessToken } from '../../axiosInstance';
+import Footer from '../../components/Footer/Footer';
 
 export default function BusketPage() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const dispatch = useDispatch();
   const user = useAppSelector((store) => store.userSlice.user);
-  const entries = useAppSelector((store) => store.busketSlice.entries)
-  // console.log('ENTRIES !!!!!!!!!!!!', entries)
-  // const busketOrder = useAppSelector((store) => store)
-  // console.log('ORDER!!!!!', busketOrder)
-  
-  // const basket = useSelector((state: RootState) => state);
+  const entries = useAppSelector((store) => store.busketSlice.entries);
   const userId = user?.id;
-
-  // console.log('basket!!!!!!!', basket);
-  // console.log('user!!!!!!!!', userId);
-  // let test = false;
 
   useEffect(() => {
     if (user) {
       dispatch(fetchBusket(userId));
     }
+    console.log(entries)
   }, [user]);
   
   const handleRemoveFromBasket = (idProduct: number) => {
@@ -43,17 +44,50 @@ export default function BusketPage() {
 
   const handleBuyOrder = (idUser: number) => {
     dispatch(buyOrder(idUser));
-  }
+  };
+
+  const handleClick = (onOpenFunc, imageId, open, close) => {
+    onOpenFunc();
+    return (
+        <Modal isOpen={open} onClose={close}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalCloseButton />
+            <ModalBody>
+              <Image
+                className={styles.image}
+                objectFit="cover"
+                borderRadius={'7px'}
+                maxW={{ base: '100%', sm: '200px' }}
+                src={`http://localhost:3100/${imageId}`}
+                alt="Product photo"
+              />
+              {console.log('!!!!!!')}
+            </ModalBody>
   
-  // console.log('asdadsads', basket)
+          </ModalContent>
+        </Modal>
+    )
+  };
+  
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.header}>Корзина</h1>
+      <Text fontSize={'50px'}>Товары</Text>
+      {/* <h1 className={styles.header}>Корзина</h1> */}
       <div className={styles.cards}>
         {entries?.length ? (
-          <div>
+          <div className={styles.box}>
+            <div className={`${styles.more}`} onClick={() => handleBuyOrder(user?.id)}>
+              Оформить заказ
+            </div>
+            {/* <Button position={'absolute'} right={'50px'} onClick={() => handleBuyOrder(user?.id)}>Оформить заказ</Button> */}
+            <div className={styles.container}>
           {entries.map((el) => (
+            <div>
             <Card
+              sx={{ boxShadow: "none", minWidth: "100vh", border: "none", borderRadius: 0, background: "transparent", padding: 0 }}
+              bgColor='#313133'
+              maxW='sm'
               key={el?.id}
               className={styles.oneCard}
               direction={{ base: 'column', sm: 'row' }}
@@ -61,42 +95,68 @@ export default function BusketPage() {
               variant="outline"
             >
               <Image
+                className={styles.image}
                 objectFit="cover"
+                borderRadius={'7px'}
                 maxW={{ base: '100%', sm: '200px' }}
-                src={el.image}
+                src={`http://localhost:3100/${el?.image}`}
                 alt="Product photo"
+                onClick={() => handleClick(onOpen, el.image, isOpen, onClose)}
               />
               <Stack>
                 <CardBody>
                   <Button
+                    position={'absolute'}
+                    right={'10px'}
                     variant="solid"
                     colorScheme="white"
                     onClick={() => handleRemoveFromBasket(el.id)}
                   >
                     ❌
                   </Button>
+                <Heading>
+                  <div className={styles.title}>{el.manufacturer} {el.title}</div>
+                </Heading>
 
                   <Text color="black" py="3">
-                    Производитель: {el.manufacturer}
+                    {el.title} - {el.size}
                   </Text>
                   <Text color="black" py="2">
-                    Тип волос: {el.hairType}
+                    {el.hairType}
+                  </Text>
+                  <Text color="black" py="2">
+                    {el.composition}
+                  </Text>
+                  <Text color="black" py="2">
+                    Цена: {el.price} ₽
                   </Text>
                 </CardBody>
 
-                <Heading>
-                  <div className={styles.title}>{el.title}</div>
-                </Heading>
               </Stack>
             </Card>
+            {el.id !== entries.length ? (
+              <div>
+                <br />
+                <Divider sx={{ borderBottomWidth: '0.58px' }} borderColor="gray.300" />
+                <br />
+              </div>
+            ) : (
+              <div></div>
+            )}
+              {/* <div className={styles.space}></div> */}
+              </div>
             ))}
-            <Button onClick={() => handleBuyOrder(user?.id)}>Оформить заказ</Button>
+            </div>
           </div>
         ) : (
           <>
-            <h3>Корзина пуста</h3>
+          <Text fontSize={'20px'}>Корзина пуста</Text>
+            {/* <h2></h2> */}
           </>
         )}
+      </div>
+      <div className={styles.footer}>
+        <Footer />
       </div>
     </div>
   );

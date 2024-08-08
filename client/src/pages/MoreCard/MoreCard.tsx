@@ -1,6 +1,5 @@
 import styles from './MoreCard.module.css';
 import {
-  Avatar,
   Card,
   CardBody,
   Stack,
@@ -8,105 +7,59 @@ import {
   Text,
   Divider,
   CardFooter,
-  ButtonGroup,
-  Button,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverArrow,
-  PopoverCloseButton,
   Image,
   Box,
 } from '@chakra-ui/react';
-import { Entry } from '../../types/statesTypes';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { addToBusket, fetchDelEntry } from '../../redux/thunkActions';
-import { useNavigate } from 'react-router-dom'; 
-type MainCardProps = {
-  entry: Entry;
-  // userId: number;
-};
+import { useAppSelector } from '../../redux/hooks';
+// import { addToBusket, fetchDelEntry } from '../../redux/thunkActions';
+import { useParams } from 'react-router-dom'; 
+import Footer from '../../components/Footer/Footer';
 
-export default function MoreCard({ entry }: MainCardProps) {
-  const dispatch = useAppDispatch();
-  const user = useAppSelector((store) => store.userSlice.user);
-  const navigate = useNavigate();
+export default function MoreCard() {
+  const {id} = useParams();
   
-  const clickMore = () => {
-    navigate('/more')
-  }
+  const entry = useAppSelector((store) => store.productSlice.entries);
+  const entryProduct = entry.filter((el)=> el.id === Number(id))[0]
 
-  const deleteHandler = async (): Promise<void> => {
-    dispatch(fetchDelEntry(entry.id));
-  };
-
-  const buyHandler = async (): Promise<void> => {
-    dispatch(addToBusket({ idUser: user.id, idProduct: entry.id }));
-  };
+  // console.log(id)
+  // console.log(entryProduct)
+  
   return (
     <div className={styles.wrapper}>
-      <Card bgColor='#313133' className={styles.container} maxW='sm'>
+      <Card sx={{ boxShadow: "none", background: "transparent", padding: 0 }} className={styles.container} maxW='sm'>
         <CardBody className={styles.body}>
           <Stack mt='3' spacing='3'>
-            <Heading size='md'>{entry?.title}</Heading>
-          </Stack>
-          <Box boxSize='sm'>
-            <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' />
-            {/* <Text>{entry?.image}</Text> */}
-          </Box>
-          <Stack mt='3' spacing='3'>
-            <Text>{entry?.manufacturer}</Text>
+            <Box boxSize='sm'>
+              <Image className={styles.image} borderRadius={'7px'} objectFit={'cover'} overflow={'hidden'} width={'100%'} height={'600px'} src={`http://localhost:3100/${entryProduct?.image}`} alt='PhotoProduct' />
+            </Box>
           </Stack>
           <Stack mt='3' spacing='3'>
-            <Text>{entry?.composition}</Text>
+            <Heading size='md'>{entryProduct?.title}</Heading>
           </Stack>
           <Stack mt='3' spacing='3'>
-            <Text>{entry?.hairType}</Text>
+            <Text>{entryProduct?.manufacturer}</Text>
           </Stack>
           <Stack mt='3' spacing='3'>
-            <Text>{entry?.size}</Text>
+            <Text>{entryProduct?.composition}</Text>
           </Stack>
           <Stack mt='3' spacing='3'>
-            <Text>{entry?.price}</Text>
+            <Text>{entryProduct?.hairType}</Text>
+          </Stack>
+          <Stack mt='3' spacing='3'>
+            <Text>{entryProduct?.size}</Text>
+          </Stack>
+          <Stack mt='3' spacing='3'>
+            <Text>{entryProduct?.price}</Text>
           </Stack>
         </CardBody>
         <Divider />
         <CardFooter>
-          <ButtonGroup spacing='2'>
-            <Button onClick={clickMore} variant='solid' colorScheme='blue'>
-              Подробнее
-            </Button>
-            <Popover placement='top'>
-              <PopoverTrigger>
-                <Button variant='ghost' colorScheme='blue'>
-                  Удалить
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverHeader>
-                  Вы действительно хотите удалить запись?
-                </PopoverHeader>
-                <PopoverBody>
-                  <Button
-                    onClick={deleteHandler}
-                    variant='ghost'
-                    colorScheme='blue'
-                  >
-                    Удалить
-                  </Button>
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
-            <Button variant='solid' colorScheme='green' onClick={buyHandler}>
-              Купить
-            </Button>
-          </ButtonGroup>
+          
         </CardFooter>
       </Card>
+      <div className={styles.footer}>
+          <Footer />
+      </div>
     </div>
-  );
+  )
 }

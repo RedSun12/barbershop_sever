@@ -45,13 +45,8 @@ export default function CardAdmin({ entry }: MainCardProps) {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  console.log('!!!!!!!', entry)
-
   const editHandler = () => {
     setEditing(true);
-    // const formData = new FormData(e.currentTarget);
-    // formData.append('title', e.currentTarget.title.value);
-    // formData.append('image', e.currentTarget.image.files);
     setFormData({
       title: entry.title,
       image: entry.image,
@@ -84,7 +79,6 @@ export default function CardAdmin({ entry }: MainCardProps) {
       [e.target.name]: e.target.value,
     });
   };
-  console.log('PRIVET!!!', formData)
 
   return (
     <div className={styles.wrapper}>
@@ -96,17 +90,13 @@ export default function CardAdmin({ entry }: MainCardProps) {
             ) : (
               <Heading size='md'>{entry?.title}</Heading>
             )}
-            {/* <Heading size='md'>{entry?.title}</Heading> */}
           </Stack>
           <Box>
           {editing ? (
               <Input type='file' name="image" ref={fileInputRef} onChange={changeHandler} height='70px' fontSize='14px' accept="image/*"/>
             ) : (
-              // <Heading size='md'>{entry?.title}</Heading>
               <Image objectFit={'cover'} overflow={'hidden'} width={'300px'} height={'230px'} src={`http://localhost:3100/${entry?.image}`}/>
             )}
-            {/* <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' /> */}
-            {/* <Text>{entry?.image}</Text> */}
           </Box>
           <Stack mt='3' spacing='3'>
             {editing ? (
@@ -114,7 +104,6 @@ export default function CardAdmin({ entry }: MainCardProps) {
             ) : (
               <Text>{entry?.manufacturer}</Text>
             )}
-            {/* <Text>{entry?.manufacturer}</Text> */}
           </Stack>
           <Stack mt='3' spacing='3'>
             {editing ? (
@@ -122,7 +111,6 @@ export default function CardAdmin({ entry }: MainCardProps) {
             ) : (
               <Text>{entry?.composition}</Text>
             )}
-            {/* <Text>{entry?.composition}</Text> */}
           </Stack>
           <Stack mt='3' spacing='3'>
             {editing ? (
@@ -130,7 +118,6 @@ export default function CardAdmin({ entry }: MainCardProps) {
             ) : (
               <Text>{entry?.hairType}</Text>
             )}
-            {/* <Text>{entry?.hairType}</Text> */}
           </Stack>
           <Stack mt='3' spacing='3'>
             {editing ? (
@@ -143,7 +130,6 @@ export default function CardAdmin({ entry }: MainCardProps) {
             ) : (
               <Text>{entry?.price}</Text>
             )}
-            {/* <Text>{entry?.size}</Text> */}
           </Stack>
         </CardBody>
         <Divider />

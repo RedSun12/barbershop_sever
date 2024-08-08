@@ -34,10 +34,7 @@ router
   })
   .get('/:id', verifyAccessToken, async (req, res) => {
     const { id } = req.params;
-    // console.log('uhjniji', req.params)
     try {
-      // const user = await User.findOne({where: { id }})
-      // console.log('USER!!!', user.dataValues)
       const order = await User.findAll({
         where: { id },
         include: {
@@ -45,11 +42,6 @@ router
           attributes: ['id', 'title', 'image', 'manufacturer', 'composition', 'hairType', 'size', 'price'],
         },
       });
-      // console.log('ID TUT', req);
-      // console.log('RES', order[0])
-      // const text1 = order[0].Products.map((el) => el = el.dataValues.title).join('\n');
-      // const text2 = order[0].Products.map((el) => el = el.dataValues.manufacturer);
-      // console.log('RESTITLE!!!!', text1)
       res.json(order[0].Products);
     } catch (error) {
       console.error(error);
@@ -73,7 +65,6 @@ router
       idProduct,
       idUser,
     } = req.body;
-    // console.log('uhjniji', req.body)
     try {
       const user = await User.findOne({where: { id }})
       const orderBuy = await Basket.findAll({where:{idUser: id}})
@@ -95,17 +86,11 @@ router
         return result;
       }
 
-      // console.log('GENERATOR', generateOrderCode(10))
-
-      const allProduct = order[0].Products.map((el) => el = el.dataValues.title).join(', ');
+      const allProduct = order[0].Products.map((el) => el = el.dataValues.title.manufacturer).join(', ');
       console.log('RESTITLE!!!!', orderBuy)
-      // orderMail(user.dataValues.email, )
       orderMail(user.dataValues.email, user.dataValues.username, generateOrderCode(10), allProduct)
-      
       orderBuy.map(el => el.destroy())[0];
       res.sendStatus(200);
-      // console.log('RES', order[0].Products)
-      // res.json(order[0].Products);
     } catch (error) {
       console.error(error);
       res.sendStatus(400);
