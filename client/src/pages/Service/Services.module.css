@@ -7,7 +7,7 @@
 .mainContent {
   flex-grow: 1;
   margin-bottom: 50px; /* Добавлено */
-  
+
 }
 
 .serviceContainer {
@@ -15,7 +15,6 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
-
   padding: 0;
 }
 
@@ -102,4 +101,5 @@
 .footer {
   flex-shrink: 0;
   margin-left: 5px;
+  width: 100%;
 }

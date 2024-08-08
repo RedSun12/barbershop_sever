@@ -4,10 +4,10 @@ const { User, Message } = require('../../db/models');
 
 //* структура даных для всех пользователей подключенных к чату
 const map = new Map();
-
+// console.log('webSoketstart')
 const connectionCb = (socket, request, userFromJWT) => {
   map.set(userFromJWT.id, { ws: socket, user: userFromJWT });
-
+  console.log('webSoketstart')
   map.forEach(({ ws }) => {
     ws.send(
       JSON.stringify({
@@ -31,6 +31,8 @@ const connectionCb = (socket, request, userFromJWT) => {
       case 'ADD_MESSAGE_FROM_CLIENT':
         {
           console.log(JSON.parse(data));
+          // console.log('userFromJWT', userFromJWT);
+
           if (!userFromJWT.isAdmin) {
             chatId = userFromJWT.id;
           } else {
@@ -45,7 +47,8 @@ const connectionCb = (socket, request, userFromJWT) => {
           const messageWithUser = await Message.findByPk(newMessage.id, {
             include: { model: User, attributes: ['username', 'id'] },
           });
-          // console.log('messageWithUser', messageWithUser);
+
+          console.log('messageWithUser', messageWithUser);
           map.forEach(({ ws }) => {
             ws.send(
               JSON.stringify({
