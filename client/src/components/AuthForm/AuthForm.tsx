@@ -2,9 +2,8 @@ import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './AuthForm.module.css';
 import {
   Input,
-  Button,
+  Text,
   useDisclosure,
-  ModalOverlay,
   Modal,
   ModalContent,
   ModalHeader,
@@ -13,6 +12,7 @@ import {
   FormControl,
   FormLabel,
   ModalFooter,
+  Button,
 } from '@chakra-ui/react';
 import { setAccessToken } from '../../axiosInstance';
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +20,7 @@ import { useAppDispatch } from '../../redux/hooks';
 import { fetchAuthUser } from '../../redux/thunkActions';
 import { unwrapResult } from '@reduxjs/toolkit';
 
+// Типы данных для инпутов и пропсов
 type Inputs = {
   username?: string;
   usersurname?: string;
@@ -32,6 +33,7 @@ type AuthFormProps = {
   type: 'signin' | 'signup';
 };
 
+// Основной компонент
 export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
@@ -91,14 +93,16 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
     <>
       {type === 'signin' && (
         <>
-          <Button
-            fontSize={'25px'}
-            className={styles.btnSing}
-            width={'100%'}
-            onClick={() => onOpen()}
+          <Text
+          paddingLeft={'10px'}
+            fontSize={'16px'}
+            fontWeight={'bold'}
+            className={styles.linkText}
+            onClick={onOpen}
+            cursor="pointer"
           >
             Вход
-          </Button>
+          </Text>
           <Modal
             isCentered
             className={styles.wrapper}
@@ -150,13 +154,15 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
       )}
       {type === 'signup' && (
         <>
-          <Button
-            fontSize={'25px'}
-            width={'100%'}
-            onClick={() => onOpen()}
+          <Text
+            fontSize={'16px'}
+            fontWeight={'bold'}
+            onClick={onOpen}
+            cursor="pointer"
+            className={styles.btnreg}
           >
             Регистрация
-          </Button>
+          </Text>
           <Modal
             isCentered
             className={styles.wrapper}
@@ -219,7 +225,7 @@ export default function AuthForm({ title, type = 'signin' }: AuthFormProps) {
                 </FormControl>
               </ModalBody>
               <ModalFooter>
-                <Button onClick={submitHandler} colorScheme="blue" mr={3}>
+                <Button className={styles.btnreg} onClick={submitHandler} colorScheme="blue" mr={3}>
                   Регистрация
                 </Button>
                 <Button onClick={onClose}>Отмена</Button>

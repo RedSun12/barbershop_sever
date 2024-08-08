@@ -129,3 +129,15 @@
   font-size: 16px;
   text-decoration: none;
 }
+
+.bezRegBtn {
+  padding-left: 18px;
+  color: #000000;
+  font-weight: bold;
+  text-decoration: none; 
+}
+
+.bezRegBtn:hover {
+  text-decoration: none; 
+  color: #424242;
+}
