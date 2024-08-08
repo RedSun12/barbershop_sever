@@ -35,7 +35,7 @@ export default function BusketPage() {
     if (user) {
       dispatch(fetchBusket(userId));
     }
-    console.log(entries)
+    // console.log(entries)
   }, [user]);
   
   const handleRemoveFromBasket = (idProduct: number) => {
@@ -62,7 +62,7 @@ export default function BusketPage() {
                 src={`http://localhost:3100/${imageId}`}
                 alt="Product photo"
               />
-              {console.log('!!!!!!')}
+              {/* {console.log('!!!!!!')} */}
             </ModalBody>
   
           </ModalContent>
@@ -72,11 +72,18 @@ export default function BusketPage() {
   
   return (
     <div className={styles.wrapper}>
-      <Text fontSize={'50px'}>Товары</Text>
+      <Text fontSize={'50px'}>Корзина</Text>
       {/* <h1 className={styles.header}>Корзина</h1> */}
       <div className={styles.cards}>
         {entries?.length ? (
           <div className={styles.box}>
+            <Text>
+            {/* const sumWithInitial = array1.reduce(
+  (accumulator, currentValue) => accumulator + currentValue,
+  initialValue,
+); */}
+              Стоимось заказа: {entries.reduce((acc: any, el: { price: any; }) => acc + el.price, 0)} ₽
+            </Text>
             <div className={`${styles.more}`} onClick={() => handleBuyOrder(user?.id)}>
               Оформить заказ
             </div>

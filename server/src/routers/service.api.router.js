@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router
-  .get('/', verifyAccessToken, async (req, res) => {
+  .get('/', async (req, res) => {
   try {
     // const foto = await Service.findAll();
     // const result = foto.sort((a, b) => a.id > b.id ? 1 : -1);
