@@ -31,3 +31,14 @@
 .btns {
   /* margin-top: 20px; */
 }
+
+.errorMessage {
+  background-color: rgba(255, 0, 0, 0.2); /* Light red background */
+  color: red; /* Text color red */
+  padding: 15px; /* Spacing around the text */
+  border-radius: 5px; /* Rounded corners */
+  margin: 10px 0; /* Spacing above and below */
+  text-align: center; /* Center the text */
+  width: 100%; /* Full width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
