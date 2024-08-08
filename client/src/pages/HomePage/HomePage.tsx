@@ -49,13 +49,9 @@ export default function HomePage(): ReactElement {
         {loadingVisible && (
           <div className="loading-screen">
             <div className="loader">
-              <img src="/load1.png" alt="Loading" className="loading-image" />
-              <img
-                src="/load2.png"
-                alt="Loading"
-                className="loading-image spinning"
-              />
-            </div>
+            <img src='/load1.png' alt="Loading" className="loading-image" /> 
+            <img src='/load2.png' alt="Loading" className="loading-image spinning" /> 
+          </div>
           </div>
         )}
 
