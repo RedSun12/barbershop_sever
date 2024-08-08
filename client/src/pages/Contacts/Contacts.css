@@ -23,7 +23,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.60);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 1;
   pointer-events: none;
   border-radius: 25px;
@@ -105,7 +105,7 @@
 }
 
 .fabin:hover {
-  color: #C13584;
+  color: #c13584;
 }
 
 .fabvk:hover {
@@ -116,6 +116,16 @@
   color: #1488d6;
 }
 
-.fabw, .fabin, .fabvk, .fabte {
+.fabw,
+.fabin,
+.fabvk,
+.fabte {
   font-size: 3em;
+}
+
+.gapBlock1 {
+  display: grid;
+  margin: 0;
+  /* grid-column-gap: 10px; */
+  /* grid-row-gap: 10px; */
 }
