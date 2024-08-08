@@ -43,7 +43,7 @@ export default function BusketPage() {
   // console.log('ORDER!!!!!', busketOrder)
   
   // const basket = useSelector((state: RootState) => state);
-  const entries = useAppSelector((store) => store.busketSlice.entries);
+  // const entries = useAppSelector((store) => store.busketSlice.entries);
   const userId = user?.id;
 
   useEffect(() => {

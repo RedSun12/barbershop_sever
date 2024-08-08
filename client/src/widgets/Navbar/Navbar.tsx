@@ -133,7 +133,7 @@ export default function Navbar() {
                   </>
                 )}
               </Menu>
-              <Text ml={'16px'} textShadow={'#0F0F0F 1px 0 10px'}>
+              <Text ml={'16px'} textShadow={'#0F0F0F 1px 0 10px'}></Text>
                 {/* <Link to="/contact">Контакты</Link>
                 <Link to="/product" style={{ margin: '0 10px' }}>Товары</Link>
                 <Link to="/busket" style={{ margin: '0 10px' }}>Корзина {entries.length}</Link>
