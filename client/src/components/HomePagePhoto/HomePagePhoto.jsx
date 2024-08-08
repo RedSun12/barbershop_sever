@@ -33,6 +33,7 @@ const HomePagePhoto = () => {
       <Slider {...settings}>
         {fotosH.map(fotoH => (
           <div key={fotoH.id} className={styles.slideH}>
+                    <div className="proz">
             <img src={fotoH.fotoH} alt="Barbershop" className={styles.fotoH} />
             {fotoH.isFeatured3 && (
               <img
@@ -43,7 +44,7 @@ const HomePagePhoto = () => {
             )}
             {fotoH.isFeatured2 && (
               <img
-                src="./home2.jpg"
+                src="./home2.png"
                 alt="Overlay"
                 className={styles.overlayImage2}
               />
@@ -63,7 +64,10 @@ const HomePagePhoto = () => {
               />
             )}
           </div>
+          </div>
         ))}
+
+
       </Slider>
     </div>
   );

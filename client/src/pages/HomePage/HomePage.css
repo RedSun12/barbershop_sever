@@ -111,11 +111,27 @@
   background-color: #000000;
   padding: 5px 6px 5px 30px;
   border-radius: 25px;
+  border: 1px solid #ffffff;
+}
+
+.zapisHome:hover{
+  cursor: pointer;
+  display: flex;
+  background-color: #ffffff;
+  padding: 5px 6px 5px 30px;
+  border-radius: 25px;
+  border: 1px solid #000000;
 }
 
 .knopkaZapisHome {
   font-size: 24px;
   color: rgb(255, 255, 255) !important;
+  padding-right: 25px;
+}
+
+.knopkaZapisHome:hover {
+  font-size: 24px;
+  color: rgb(0, 0, 0) !important;
   padding-right: 25px;
 }
 
@@ -168,7 +184,10 @@
 font-size: 40px;
 font-weight: bold;
 padding: 50px 250px 50px 250px;
-text-align: justify;
+text-align: center;
+word-spacing: 10px;
+line-height: 1.2;
+letter-spacing: -0.1px;
 }
 
 .footer {
@@ -213,4 +232,50 @@ text-align: justify;
 .imgDayHear {
   width: 420px;
   height: 400px;
+}
+
+.zapisHome {
+  cursor: pointer;
+  display: flex;
+  background-color: #000000;
+  padding: 5px 6px 5px 30px;
+  border-radius: 25px;
+  border: 1px solid #ffffff;
+  transition: background-color 0.3s; 
+}
+
+.zapisHome:hover {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+}
+
+.zapisHome {
+  cursor: pointer;
+  display: flex;
+  background-color: #000000;
+  padding: 5px 6px 5px 30px;
+  border-radius: 25px;
+  border: 1px solid #ffffff;
+  transition: background-color 0.3s; 
+}
+
+.zapisHome:hover {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+}
+
+
+.zapisHome:hover .knopkaZapisHome {
+  color: rgb(0, 0, 0) !important;
+}
+
+.zapisHome:hover .main-image, 
+.zapisHome:hover .overlay-image {
+  opacity: 0.8; 
+}
+
+
+.zapisHome:hover .image-container {
+  border: 0.5px solid #000000; 
+  border-radius: 20px; 
 }

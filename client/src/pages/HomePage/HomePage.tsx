@@ -41,25 +41,6 @@ export default function HomePage(): ReactElement {
   useEffect(() => {
     loadScript();
   }, []);
-  // const [presentCard, setPresentCard] = useState<TState[]>([]);
-
-  // const getAllCards = (): Promise<void> => {
-  //   return axios.get(`http://localhost:3100/api/all/cards`)
-  //     .then((data: TData) => {
-  //       const newData = data.data.cards.map((elem: Record<string, number | string>) => {
-  //         return {
-  //           id: elem.id,
-  //           img: elem.img,
-  //           name: elem.name,
-  //         }
-  //       });
-  //       setPresentCard(newData);
-  //     });
-  // }
-
-  // useEffect(() => {
-  //   getAllCards();
-  // }, []);
 
   return (
     <>
@@ -105,32 +86,13 @@ export default function HomePage(): ReactElement {
           </div>
           <HomePagePhoto />
 
-          {/* <div className="yandexMap">
-          <YandexMaps style={{ height: '750px', width: '850px' }} />
-          <div className="overlay"></div>
-        </div> */}
-
-          {/* <div className='homeContacts'>
-          <p className='headContact'>Контакты:</p>
-          <div className='contInf'>
-            <p className='bigTextHome'>ТЦ "Лента"</p>
-            <p className='smallTextHome'>ул. Победы, д. 138, 2 этаж</p>
-          </div>
-          <div className='contInfTel'>
-            <p className='bigTextHome'>Телефон:</p>
-            <p className='smallTextHome'>+7 (915) 915 95 15</p>
-          </div>
-          <div className='contInfIcon'>
-            <p className='bigTextHome'>Соцсети:</p>
-            <p className='smallTextHome'>иконки</p>
-          </div>
-        </div> */}
-
           <div className="discryptHome">
-            В нашем барбершопе вас ожидает отличный опыт! Мы предоставляем
+            В нашем барбершопе вас ожидает отличный опыт! 
+            <br/>Мы предоставляем
             профессиональные услуги стрижки волос и бороды, гарантируя, что вы
-            будете выглядеть безупречно. Наши мастера – настоящие специалисты,
-            которые помогут вам подобрать стиль, подходящий именно вам!
+            будете выглядеть безупречно. 
+            <br/>Наши мастера – настоящие специалисты,
+            которые помогут подобрать стиль, подходящий именно вам!
           </div>
 
           <div className="blockDayHear">
@@ -169,10 +131,8 @@ export default function HomePage(): ReactElement {
           </div>
 
           <div className="discryptHome">
-            В дополнение к стрижкам, у нас также есть магазин товаров для
-            мужского ухода. Вы найдете всё необходимое: от шампуней и
-            кондиционеров до укладочных средств и масел для бороды. Мы заботимся
-            о вашем образе и уверенности! Заходите, мы ждём вас!
+          
+          Откройте мир заботы о себе! <br/>В нашем ассортименте вы найдете топовую мужскую косметику.
           </div>
 
           <div className="dayHear">
@@ -192,10 +152,10 @@ export default function HomePage(): ReactElement {
 
           <div className="discryptHome">
             Барбершоп "Север" — это мужское пространство силы и стиля. Уютный
-            интерьер с элементами индустриального дизайна, профессиональные
+            интерьер с элементами индустриального дизайна, 
             мастера, владеющие искусством классической и современной стрижки.
-            Каждый визит — это ритуал, в котором учтена каждая деталь. Добро
-            пожаловать в "Север" — место для уверенных и стильных мужчин.
+            <br/>Каждый визит — это ритуал, в котором учтена каждая деталь. 
+            <br/>Добро пожаловать в "Север" — место уверенных и стильных мужчин.
           </div>
         </div>
       </div>
