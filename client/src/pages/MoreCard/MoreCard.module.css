@@ -1,6 +1,15 @@
 .wrapper {
-  margin-top: 30px;
-  width: 400px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  margin-top: -80px;
+  /* margin-top: 30px; */
+  /* width: 400px; */
+}
+
+.card {
+  display: flex;
 }
 
 .container {
@@ -10,6 +19,27 @@
 .body {
   display: flex;
   justify-content: space-between;
+}
+
+.gapBlock {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: 160px 1fr;
+  margin: 0;
+  /* grid-column-gap: 10px; */
+  /* grid-row-gap: 10px; */
+}
+
+.gapEl1 {
+  /* column-gap: 100px; */
+  /* width: 100px; */
+  margin: 0;
+}
+
+.gapEl2 {
+  /* width: 200px; */
+  margin: 0;
 }
 
 .footer {

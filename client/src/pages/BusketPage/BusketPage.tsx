@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { buyOrder, fetchBusket, removeFromBusket } from '../../redux/thunkActions';
 import styles from './BusketPage.module.css';
@@ -28,14 +28,29 @@ export default function BusketPage() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const dispatch = useDispatch();
   const user = useAppSelector((store) => store.userSlice.user);
-  const entries = useAppSelector((store) => store.busketSlice.entries);
+  const entries = useAppSelector((store) => store.busketSlice.entries)
+  const [loadingVisible, setLoadingVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadingVisible(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, []);
+  // console.log('ENTRIES !!!!!!!!!!!!', entries)
+  // const busketOrder = useAppSelector((store) => store)
+  // console.log('ORDER!!!!!', busketOrder)
+  
+  // const basket = useSelector((state: RootState) => state);
+  // const entries = useAppSelector((store) => store.busketSlice.entries);
   const userId = user?.id;
 
   useEffect(() => {
     if (user) {
       dispatch(fetchBusket(userId));
     }
-    console.log(entries)
+    // console.log(entries)
   }, [user]);
   
   const handleRemoveFromBasket = (idProduct: number) => {
@@ -62,7 +77,7 @@ export default function BusketPage() {
                 src={`http://localhost:3100/${imageId}`}
                 alt="Product photo"
               />
-              {console.log('!!!!!!')}
+              {/* {console.log('!!!!!!')} */}
             </ModalBody>
   
           </ModalContent>
@@ -72,11 +87,31 @@ export default function BusketPage() {
   
   return (
     <div className={styles.wrapper}>
-      <Text fontSize={'50px'}>Товары</Text>
+        {loadingVisible && (
+          <div className="loading-screen">
+            <div className="loader">
+              <img src="/load1.png" alt="Loading" className="loading-image" />
+              <img
+                src="/load2.png"
+                alt="Loading"
+                className="loading-image spinning"
+              />
+            </div>
+          </div>
+        )}
+      <h1 className={styles.header}>Корзина</h1>
+      <Text fontSize={'50px'}>Корзина</Text>
       {/* <h1 className={styles.header}>Корзина</h1> */}
       <div className={styles.cards}>
         {entries?.length ? (
           <div className={styles.box}>
+            <Text>
+            {/* const sumWithInitial = array1.reduce(
+  (accumulator, currentValue) => accumulator + currentValue,
+  initialValue,
+); */}
+              Стоимось заказа: {entries.reduce((acc: any, el: { price: any; }) => acc + el.price, 0)} ₽
+            </Text>
             <div className={`${styles.more}`} onClick={() => handleBuyOrder(user?.id)}>
               Оформить заказ
             </div>
