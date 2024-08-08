@@ -92,8 +92,10 @@ console.log(services, 'serv')
             </div>
           ))}
         </div>
-      </div>
+      </div >
+      <div className={styles.footer}>
       <Footer />
+      </div>
     </div>
   );
 }

@@ -22,7 +22,8 @@
 .logo {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -95,6 +96,10 @@
   right: 30px;
   animation: spin 5s linear infinite alternate;
 }
+
+
+
+
 @keyframes spin {
   0%, 100% {
     transform: rotate(0deg);
@@ -119,5 +124,35 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+.loader {
+  position: relative;
+  width: 177.5px; 
+  height: 177.5px; 
+}
+
+.loadingImage {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.spinning {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 5s linear infinite;
+  width: 150px;
+  height: 150px; 
+}
+
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
