@@ -233,7 +233,7 @@ export default function Navbar() {
             backdropFilter={'blur(12.5px)'}
           >
             <Flex alignItems={'center'}>
-              <Menu>
+              {/* <Menu>
                 {({ isOpen }) => (
                   <>
                     <MenuButton
@@ -256,10 +256,16 @@ export default function Navbar() {
                     </MenuList>
                   </>
                 )}
-              </Menu>
-              <Text ml={'16px'} textShadow={'#0F0F0F 1px 0 10px'}>
-              <Link to="/contact">Контакты</Link>
-              <Link to="/contact">Контакты</Link>
+              </Menu> */}
+              <Text ml={'16px'} textShadow={'#0F0F0F 1px 0 10px'} style={{display: 'flex'}}>
+              <AuthForm title="Войти" type="signin" />
+              <AuthForm title="Зарегистрироваться" type="signup" />
+              <Link 
+              className='bezRegBtn'
+              to="/">На главную</Link>
+              <Link 
+              className='bezRegBtn'
+              to="/contact">Контакты</Link>
               </Text>
               {/* <Button
                 ml={'7px'}
@@ -281,10 +287,10 @@ export default function Navbar() {
               fontWeight={'600'}
             >
               <Text textShadow={'#0F0F0F 1px 0 10px'}>
-                <Link to="/">БАРБЕРШОП</Link>
-              </Text>
-              <Text textShadow={'#0F0F0F 1px 0 10px'}>
-                <Link to="/">СЕВЕР</Link>
+              <Link 
+                className='barbcent'
+                style={{color: 'black', textAlign: 'center', alignItems: 'center', display: 'flex', marginLeft: '-130px',  fontWeight: '900', }}
+                to="/">БАРБЕРШОП<br/>СЕВЕР</Link>
               </Text>
             </Flex>
             <Flex alignItems={'center'}>
