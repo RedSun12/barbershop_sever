@@ -8,9 +8,8 @@ export default function useChat() {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
   const [typing, setTyping] = useState(false);
-
-  console.log(typing,'asdasdasdasdasd')
   const { user } = useAppSelector(store => store.userSlice);
+
   const socketRef = useRef(null);
 
   useEffect(() => {
@@ -45,6 +44,9 @@ export default function useChat() {
           break;
       }
     };
+    return () => {
+      socketRef?.current?.close()
+    }
   }, []);
 
   const submitMessage = (input, loggedUser, selectChat = 0) => {
@@ -63,7 +65,6 @@ export default function useChat() {
       );
     }
   };
-
   return {
     messages,
     users,

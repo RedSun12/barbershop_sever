@@ -46,7 +46,7 @@ export default function FormServicesAdmin({ setServices, services }) {
     // };
 
   return (
-    <div>
+    <div className={styles.box}>
       <form onSubmit={onSubmitHandlet} className={styles.wrapper}>
         <h3 className={styles.head}>Создание услуги</h3>
         <div className={styles.inputs}>
