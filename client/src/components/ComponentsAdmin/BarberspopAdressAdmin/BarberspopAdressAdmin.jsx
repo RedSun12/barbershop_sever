@@ -43,41 +43,38 @@ export default function BarberspopAdressAdmin() {
 
   return (
     <div className={styles.contactInfo}>
-      <h1 className={styles.heading}>Контактная информация</h1>
-      {isEditing ? (
-        <>
-          <input
-            className={styles.input}
-            type="text"
-            name="adress"
-            value={contacts.adress}
-            onChange={handleInputChange}
-          />
-          <input
-            className={styles.input}
-            type="tel"
-            name="telephone"
-            value={contacts.telephone}
-            onChange={handleInputChange}
-          />
-          <button className={styles.button} onClick={saveChanges}>
-            Сохранить
-          </button>
-        </>
-      ) : (
-        <>
-          <p className={styles.manager}>{contacts.adress}</p>
-          <a className={styles.phone}>{contacts.telephone}</a>
-          <button className={styles.button} onClick={toggleEdit}>
-            Редактировать
-          </button>
-        </>
-      )}
-      <div className={styles.ss}>
-        <img src={insta} alt="Instagram" className={styles.image} />
-        <img src={telega} alt="Telegram" className={styles.image} />
-        <img src={wc} alt="WeChat" className={styles.image} />
-      </div>
-    </div>
+    <h1 className={styles.heading}>Контактная информация</h1>
+    {isEditing ? (
+      <>
+        <input
+          className={styles.input}
+          type="text"
+          name="adress"
+          value={contacts.adress}
+          onChange={handleInputChange}
+        />
+        <input
+          className={styles.input}
+          type="tel"
+          name="telephone"
+          value={contacts.telephone}
+          onChange={handleInputChange}
+        />
+        <button className={styles.button} onClick={saveChanges}>
+          Сохранить
+        </button>
+      </>
+    ) : (
+      <>
+        <p className={styles.manager}>{contacts.adress}</p>
+        <a className={styles.phone}>{contacts.telephone}</a>
+        <div>
+        <button className={styles.button} onClick={toggleEdit}>
+          Редактировать
+        </button>
+        </div>
+      </>
+    )}
+  </div>
   );
 }

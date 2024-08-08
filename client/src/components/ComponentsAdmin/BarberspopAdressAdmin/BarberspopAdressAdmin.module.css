@@ -1,56 +1,62 @@
 .contactInfo {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background-color: black;
-    width: 300px;
-    margin: 0 auto;
+  background-color: #9b9494;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 20px auto;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+
+}
+
+.heading {
+  margin-bottom: 15px;
+  font-size: 28px;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.manager {
+  margin: 10px 0;
+  font-size: 20px;
+  color: black
+}
+
+.phone {
+  display: inline-block;
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.input {
+  width: 90%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+
+
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #007bff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 5px;
+  &:hover {
+    background-color: darken(#007bff, 10%);
   }
-  
-  .heading {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .manager {
-    margin: 10px 0;
-    font-size: 18px;
-    color: #555;
-  }
-  
-  .phone {
-    display: block;
-    margin-top: 10px;
-    color: #007bff;
-    font-size: 18px;
-    text-decoration: none;
-  }
-  
-  .phone:hover {
-    text-decoration: underline;
-  }
-  
-  .image {
-    width: 50px; /* задать ширину изображения */
-    max-width: 50px; /* максимально допустимая ширина */
-    height: auto; /* автоматическая высота для сохранения пропорций */
-  }
-  
-  .ss {
-    display: flex;
-    flex-wrap: wrap;
-  
-    justify-content: space-between;
-  }
-  
-  .button {
-    background-color: #333;
-  }
-  
-  .input {
-    color: black;
-  }
-  
+
+
+}
