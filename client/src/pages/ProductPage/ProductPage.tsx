@@ -3,6 +3,7 @@ import styles from './ProductPage.module.css';
 import Form from '../../components/Form/Form';
 import { useEffect, useState } from 'react';
 import Footer from '../../components/Footer/Footer';
+import { Text } from '@chakra-ui/react';
 
 export default function ProductPage() {
   const [loadingVisible, setLoadingVisible] = useState(true); 
@@ -16,6 +17,7 @@ export default function ProductPage() {
   
   return (
     <div className={styles.wrapper}>
+      <Text fontSize={'50px'}>Товары</Text>
        {loadingVisible && (
         <div className="loading-screen">
           <div className="loader">
@@ -25,7 +27,9 @@ export default function ProductPage() {
         </div>
       )}
       <List />
-      <Footer/>
+      <div className={styles.footer}>
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import styles from './MoreCard.module.css';
 import {
-  Avatar,
   Card,
   CardBody,
   Stack,
@@ -8,105 +7,101 @@ import {
   Text,
   Divider,
   CardFooter,
-  ButtonGroup,
-  Button,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverArrow,
-  PopoverCloseButton,
   Image,
   Box,
+  Button,
 } from '@chakra-ui/react';
-import { Entry } from '../../types/statesTypes';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { addToBusket, fetchDelEntry } from '../../redux/thunkActions';
-import { useNavigate } from 'react-router-dom'; 
-type MainCardProps = {
-  entry: Entry;
-  // userId: number;
-};
+import { useAppSelector } from '../../redux/hooks';
+// import { addToBusket, fetchDelEntry } from '../../redux/thunkActions';
+import { useNavigate, useParams } from 'react-router-dom'; 
+import Footer from '../../components/Footer/Footer';
+import { useEffect, useState } from 'react';
+import { Entries } from '../../types/statesTypes';
+import axiosInstance from '../../axiosInstance';
 
-export default function MoreCard({ entry }: MainCardProps) {
-  const dispatch = useAppDispatch();
-  const user = useAppSelector((store) => store.userSlice.user);
+export default function MoreCard() {
+  const [more, setMore] = useState()
+  const {id} = useParams();
   const navigate = useNavigate();
   
-  const clickMore = () => {
-    navigate('/more')
+  // const entry = useAppSelector((store) => store.productSlice.entries);
+  // const entryNew = entry.filter((el)=> el.id === Number(id))[0];
+  // const response = axiosInstance.get<Entries>(`${import.meta.env.VITE_API}/more/${id}`);
+  
+  useEffect(() => {
+    (async function () {
+      const { data } = await axiosInstance.get(`${import.meta.env.VITE_API}more/${id}`);
+      setMore(data);
+    })();
+  }, []);
+  console.log(more)
+
+  const clickMore = (id: number) => {
+    navigate(`/product`)
   }
 
-  const deleteHandler = async (): Promise<void> => {
-    dispatch(fetchDelEntry(entry.id));
-  };
+  // setMore(entryNew)
+  // console.log(more)
 
-  const buyHandler = async (): Promise<void> => {
-    dispatch(addToBusket({ idUser: user.id, idProduct: entry.id }));
-  };
+    // await axiosInstance.get(`${import.meta.env.VITE_API}/more/${id}`);
+    // setServices(services.filter((service) => service.id !== id));
+    // import.meta.env.VITE_API
+
+  // console.log(id)
+  // console.log(entryProduct)
+  
   return (
     <div className={styles.wrapper}>
-      <Card bgColor='#313133' className={styles.container} maxW='sm'>
+      <Button
+        width={'50px'}
+        position={'absolute'}
+        right={'10px'}
+        variant="solid"
+        colorScheme="white"
+        onClick={clickMore}
+      >
+        ❌
+      </Button>
+      <Text fontSize={'50px'}>Подробнее о товаре</Text>
+      <Card sx={{ boxShadow: "none", background: "transparent", padding: 0 }} className={styles.container}>
         <CardBody className={styles.body}>
           <Stack mt='3' spacing='3'>
-            <Heading size='md'>{entry?.title}</Heading>
+            {/* <Box boxSize='sm'> */}
+              <Image className={styles.image} borderRadius={'7px'} objectFit={'cover'} width={'100%'} minHeight={'500px'} maxHeight={'500px'} src={`http://localhost:3100/${more?.image}`} alt='PhotoProduct' />
+            {/* </Box> */}
           </Stack>
-          <Box boxSize='sm'>
-            <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' />
-            {/* <Text>{entry?.image}</Text> */}
-          </Box>
-          <Stack mt='3' spacing='3'>
-            <Text>{entry?.manufacturer}</Text>
-          </Stack>
-          <Stack mt='3' spacing='3'>
-            <Text>{entry?.composition}</Text>
-          </Stack>
-          <Stack mt='3' spacing='3'>
-            <Text>{entry?.hairType}</Text>
-          </Stack>
-          <Stack mt='3' spacing='3'>
-            <Text>{entry?.size}</Text>
-          </Stack>
-          <Stack mt='3' spacing='3'>
-            <Text>{entry?.price}</Text>
+          <Stack paddingLeft={'20px'}>
+            <Stack mt='3' spacing='3'>
+              <Heading fontSize={'35px'}>{more?.title}</Heading>
+            </Stack>
+            <Box className={styles.gapBlock}>
+              <Text className={styles.gapEl1} mt='3' spacing='3'>Производитель: . . . . .</Text>
+              <Stack className={styles.gapEl2} mt='3' spacing='3'>
+                <Text>{more?.manufacturer}</Text>
+              </Stack>
+              <Text className={styles.gapEl1} mt='3' spacing='3'>Состав: . . . . . . . . . . . . .</Text>
+              <Stack className={styles.gapEl2} mt='3' spacing='3'>
+                <Text>{more?.composition}</Text>
+              </Stack>
+              <Text className={styles.gapEl1} mt='3' spacing='3'>Тип волос: . . . . . . . . . .</Text>
+              <Stack className={styles.gapEl2} mt='3' spacing='3'>
+                <Text>{more?.hairType}</Text>
+              </Stack>
+              <Text className={styles.gapEl1} mt='3' spacing='3'>Размер: . . . . . . . . . . . . .</Text>
+              <Stack className={styles.gapEl2} mt='3' spacing='3'>
+                <Text>{more?.size}</Text>
+              </Stack>
+              <Text className={styles.gapEl1} mt='3' spacing='3'>Цена: . . . . . . . . . . . . . . .</Text>
+              <Stack className={styles.gapEl2} mt='3' spacing='3'>
+                <Text>{more?.price} ₽</Text>
+              </Stack>
+            </Box>
           </Stack>
         </CardBody>
-        <Divider />
-        <CardFooter>
-          <ButtonGroup spacing='2'>
-            <Button onClick={clickMore} variant='solid' colorScheme='blue'>
-              Подробнее
-            </Button>
-            <Popover placement='top'>
-              <PopoverTrigger>
-                <Button variant='ghost' colorScheme='blue'>
-                  Удалить
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverHeader>
-                  Вы действительно хотите удалить запись?
-                </PopoverHeader>
-                <PopoverBody>
-                  <Button
-                    onClick={deleteHandler}
-                    variant='ghost'
-                    colorScheme='blue'
-                  >
-                    Удалить
-                  </Button>
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
-            <Button variant='solid' colorScheme='green' onClick={buyHandler}>
-              Купить
-            </Button>
-          </ButtonGroup>
-        </CardFooter>
       </Card>
+      <div className={styles.footer}>
+          <Footer />
+      </div>
     </div>
-  );
+  )
 }

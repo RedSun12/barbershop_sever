@@ -31,6 +31,15 @@ router
       res.sendStatus(400);
     }
   })
+  .get('/more/:id', async (req, res) => {
+    try {
+      const entries = await Product.findAll();
+      res.json(entries);
+    } catch (error) {
+      console.error(error);
+      res.sendStatus(400);
+    }
+  })
   .post('/', verifyAccessToken, upload.single("image"), async (req, res) => {
     const { title, manufacturer, composition, hairType, size, price } = req.body;
     const image = req.file;
@@ -69,11 +78,10 @@ router
       if (Number(id)) {
         const entrie = await Product.findOne({ where: { id } });
         if (image) {
-          entrie.dataValues.image = `image/${image.filename}`;
-          await entrie.update({ image: `image/${image.filename}`});
-          
+          entrie.image = `image/${image.filename}`;
         }
-          await entrie.update({ title, manufacturer, composition, hairType, size, price });
+          // await entrie.update({ image: `image/${image.filename}`});
+          await entrie.update({ title, manufacturer, composition, hairType, size, price, image: entrie.image });
           // entrie.save()
           res.json(entrie);
       } else {

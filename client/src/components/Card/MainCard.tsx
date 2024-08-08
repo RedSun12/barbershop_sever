@@ -34,8 +34,8 @@ export default function MainCard({ entry }: MainCardProps) {
   const user = useAppSelector((store) => store.userSlice.user);
   const navigate = useNavigate();
   
-  const clickMore = () => {
-    navigate('/more')
+  const clickMore = (id: number) => {
+    navigate(`/more/${id}`)
   }
 
   const deleteHandler = async (): Promise<void> => {
@@ -47,63 +47,39 @@ export default function MainCard({ entry }: MainCardProps) {
   };
   return (
     <div className={styles.wrapper}>
-      <Card bgColor='#313133' className={styles.container} maxW='sm'>
-        <CardBody className={styles.body}>
-          <Stack mt='3' spacing='3'>
-            <Heading size='md'>{entry?.title}</Heading>
+      <Card sx={{ boxShadow: "none", background: "transparent", padding: 0 }} bgColor='#313133' className={styles.container} maxW='sm'>
+        <CardBody sx={{ padding: 0 }} className={styles.body}>
+          {/* <Box> */}
+          <Image className={styles.image} borderRadius={'7px'} objectFit={'cover'} overflow={'hidden'} width={'100%'} height={'370px'} src={`http://localhost:3100/${entry?.image}`}/>
+          <Stack>
+            {/* <Heading size='md'>{entry?.title}</Heading> */}
+            <Text className={styles.text}>{entry?.title} {entry?.manufacturer} </Text>
           </Stack>
-          <Box boxSize='sm'>
-            <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' />
+            {/* <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' /> */}
             {/* <Text>{entry?.image}</Text> */}
-          </Box>
-          <Stack mt='3' spacing='3'>
-            <Text>{entry?.manufacturer}</Text>
+          {/* </Box> */}
+          <Stack>
+            <Text className={styles.text} color={'#BCBCBC'}>{entry?.title} - {entry?.size}</Text>
           </Stack>
-          <Stack mt='3' spacing='3'>
-            <Text>{entry?.composition}</Text>
-          </Stack>
-          <Stack mt='3' spacing='3'>
-            <Text>{entry?.hairType}</Text>
-          </Stack>
-          <Stack mt='3' spacing='3'>
-            <Text>{entry?.size}</Text>
-          </Stack>
-          <Stack mt='3' spacing='3'>
-            <Text>{entry?.price}</Text>
+          <Stack>
+            <Text className={styles.text}>{entry?.price} ₽</Text>
           </Stack>
         </CardBody>
         <Divider />
-        <CardFooter>
+        <CardFooter className={styles.footertext} padding={'0'} marginTop={'10px'}>
           <ButtonGroup spacing='2'>
-            <Button onClick={clickMore} variant='solid' colorScheme='blue'>
+            <div className={`${styles.allButton} ${styles.more}`} onClick={() => clickMore(entry.id)}>
               Подробнее
-            </Button>
-            <Popover placement='top'>
-              <PopoverTrigger>
-                <Button variant='ghost' colorScheme='blue'>
-                  Удалить
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverHeader>
-                  Вы действительно хотите удалить запись?
-                </PopoverHeader>
-                <PopoverBody>
-                  <Button
-                    onClick={deleteHandler}
-                    variant='ghost'
-                    colorScheme='blue'
-                  >
-                    Удалить
-                  </Button>
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
-            <Button variant='solid' colorScheme='green' onClick={buyHandler}>
+            </div>
+            <div className={`${styles.allButton} ${styles.buy}`} onClick={buyHandler}>
               Купить
-            </Button>
+            </div>
+            {/* <Button onClick={clickMore} sx={{ boxShadow: "none", background: "transparent", padding: 0 }}>
+              Подробнее
+            </Button> */}
+            {/* <Button variant='solid' colorScheme='green' onClick={buyHandler}>
+              Купить
+            </Button> */}
           </ButtonGroup>
         </CardFooter>
       </Card>
