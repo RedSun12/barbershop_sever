@@ -7,7 +7,8 @@ const { VITE_API } = import.meta.env;
 // const upload = multer({ dest: 'public/image/' })
 
 export default function FormServicesAdmin({ setServices, services }) {
-    const [inputs, setInputs] = useState({ name: '', price: '', foto: null });
+    const [inputs, setInputs] = useState({ name: '', price: '',comment: '', foto: null });
+    console.log(inputs, 'asasdasd')
     const onSubmitHandlet = async (event) => {
       event.preventDefault();
       console.log(event)
@@ -19,6 +20,7 @@ export default function FormServicesAdmin({ setServices, services }) {
       }
       formData.append('name', inputs.name);
       formData.append('price', inputs.price);
+      formData.append('comment', inputs.comment);
       // console.log(inputs.name)
       // formData.append('user', user.id);
       // const newPost = {
@@ -26,7 +28,6 @@ export default function FormServicesAdmin({ setServices, services }) {
       //   price: inputs.price,
       //   foto: inputs.photo,
       // };
-      console.log(formData)
       const res = await axiosInstance.post(
         `${VITE_API}/service`,
         formData,
@@ -34,7 +35,7 @@ export default function FormServicesAdmin({ setServices, services }) {
       );
       if (res.status === 200) {
         setServices((prev) => [...prev, res.data]);
-        setInputs({ name: '', price: '' });
+        setInputs({ name: '', price: '', comment: '' });
       }
       // setServices([...services, data]);
       // setInputs({ name: '', price: '', photo: '' });
@@ -78,6 +79,16 @@ export default function FormServicesAdmin({ setServices, services }) {
             name="price"
             value={inputs.price}
             placeholder="прайс"
+            color={'white'}
+          />
+          <Input
+            onChange={(e) =>
+              setInputs((prev) => ({ ...prev, comment: e.target.value }))
+            }
+            borderColor="#3f3e3e"
+            name="comment"
+            value={inputs.comment}
+            placeholder="комментарий"
             color={'white'}
           />
         </div>

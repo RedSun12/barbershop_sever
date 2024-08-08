@@ -32,7 +32,6 @@ export const fetchAuthUser: AsyncThunk<
       const { user } = decoded;
       localStorage.setItem('userId', user.id);
     }
-
   return response.data;
 });
 

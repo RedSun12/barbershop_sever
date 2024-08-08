@@ -2,6 +2,7 @@ import { setAccessToken } from '../../axiosInstance';
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchBusket, fetchLogoutUser } from '../../redux/thunkActions';
 import AuthForm from '../../components/AuthForm/AuthForm';
+import './Navbar.css';
 import {
   MenuItem,
   Menu,
@@ -51,6 +52,7 @@ export default function Navbar() {
     navigate('/signup');
   };
 
+  
   const clickProfile = () => {
     navigate('/profile');
   };
@@ -98,7 +100,7 @@ export default function Navbar() {
                 {({ isOpen }) => (
                   <>
                     <MenuButton
-                      height={'31px'}
+                      height={'39px'}
                       width={'60px'}
                       isActive={isOpen}
                       as={Button}
@@ -106,10 +108,12 @@ export default function Navbar() {
                       ml={'4px'}
                       color={'white'}
                       bg={'#141414'}
+                      marginLeft={'5px'}
                     >
                       {isOpen ? '✕' : '☰'}
                     </MenuButton>
                     <MenuList>
+                      <MenuItem onClick={clickHome}>На главную</MenuItem>
                       <MenuItem onClick={clickProfile}>Профиль</MenuItem>
                       <MenuItem onClick={logoutHandler}>Выйти</MenuItem>
                     </MenuList>
@@ -118,7 +122,8 @@ export default function Navbar() {
               </Menu>
               <Text ml={'16px'} textShadow={'#0F0F0F 1px 0 10px'}>
                 <Link to="/contact">Контакты</Link>
-                
+                <Link to="/product" style={{ margin: '0 10px' }}>Товары</Link>
+                <Link to="/busket" style={{ margin: '0 10px' }}>Корзина {entries.length}</Link>
               </Text>
               <Button
                 ml={'7px'}
@@ -152,10 +157,9 @@ export default function Navbar() {
                 fontWeight={'500'}
                 textShadow={'#0F0F0F 1px 0 10px'}
               >
-                <Link to="/product">Товары</Link>
-                <Link to="/admin">Админка</Link>
-                <Link to="/busket">Корзина {entries.length}</Link>
-                <Link to="/services">Услуги</Link>
+                {/* {user.id === 1 ? <Link to="/admin" style={{ margin: '0 10px' }}>Админка</Link> : null} */}
+                <Link to="/admin" style={{ margin: '0 10px' }}>Админка</Link>
+                <Link to="/services" style={{ margin: '0 10px' }}>Услуги</Link>
               </Text>
               <Button
                 rounded={'300px'}
@@ -177,8 +181,20 @@ export default function Navbar() {
                   className="ms_booking"
                   onClick={loadScript()}
                 >
-                  Записаться онлайн
+                  Записаться online
                 </a>
+                <div className="image-container">
+                  <img
+                    src="/3.svg"
+                    alt="Loading"
+                    className="loading-image2 main-image2"
+                  />
+                  <img
+                    src="/4.svg"
+                    alt="Loading"
+                    className="loading-image2 overlay-image2 img"
+                  />
+                </div>
               </Button>
             </Flex>
           </Flex>
@@ -205,7 +221,7 @@ export default function Navbar() {
                 {({ isOpen }) => (
                   <>
                     <MenuButton
-                      height={'31px'}
+                      height={'39px'}
                       width={'60px'}
                       isActive={isOpen}
                       as={Button}
@@ -213,12 +229,14 @@ export default function Navbar() {
                       ml={'4px'}
                       color={'white'}
                       bg={'#141414'}
+                      marginLeft={'5px'}
                     >
                       {isOpen ? '✕' : '☰'}
                     </MenuButton>
                     <MenuList>
-                      <AuthForm title="Войти" type="signin" />
-                      <AuthForm title="Зарегистрироваться" type="signup" />
+                    <MenuItem onClick={clickHome}>На главную</MenuItem>
+                    <MenuItem> <AuthForm title="Войти" type="signin" /></MenuItem>
+                    <MenuItem> <AuthForm title="Зарегистрироваться" type="signup" /> </MenuItem>
                     </MenuList>
                   </>
                 )}
@@ -258,7 +276,6 @@ export default function Navbar() {
                 fontWeight={'500'}
                 textShadow={'#0F0F0F 1px 0 10px'}
               >
-                <Link to="/product">Товары</Link>
                 <Link to="/services">Услуги</Link>
               </Text>
               <Button
@@ -281,8 +298,20 @@ export default function Navbar() {
                   className="ms_booking"
                   onClick={loadScript()}
                 >
-                  Записаться онлайн
+                  Записаться online
                 </a>
+                <div className="image-container">
+                  <img
+                    src="/3.svg"
+                    alt="Loading"
+                    className="loading-image2 main-image2"
+                  />
+                  <img
+                    src="/4.svg"
+                    alt="Loading"
+                    className="loading-image2 overlay-image2 img"
+                  />
+                </div>
               </Button>
             </Flex>
           </Flex>

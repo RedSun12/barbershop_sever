@@ -28,11 +28,12 @@ router
     res.status(400).json({ error: error.message });
   }
 })
+
   .post('/', verifyAccessToken, upload.single("foto"), async (req, res) => {
-  const { name, price } = req.body
+  const { name, price, comment } = req.body
   const foto = req.file;
   try {
-  const entrie = await Service.create({  name: name[0], price: price[0], foto: `image/${foto.filename}`})
+  const entrie = await Service.create({  name: name[0], price: price[0], comment: comment[0], foto: `image/${foto.filename}`})
   res.json(entrie)
   } catch (error) {
     console.log(error)
@@ -49,17 +50,18 @@ router
       res.status(500).send(error.message);
     }
   })
+
   .put('/:id', verifyAccessToken, upload.single("foto"), async (req, res) => {
   const foto = req.file;
     try {
       const { id } = req.params
-      const { name, price } = req.body;
+      const { name, price, comment } = req.body;
       if (Number(id)) {
         const entrie = await Service.findOne({ where: { id } });
         if (foto) {
           entrie.foto = `image/${foto.filename}`;
         }
-          await entrie.update({ name: name[0], price: price[0], foto: entrie.foto });
+          await entrie.update({ name: name[0], price: price[0], comment: comment[0], foto: entrie.foto });
           console.log(entrie);
           // entrie.save()
           res.json(entrie);

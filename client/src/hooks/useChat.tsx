@@ -2,17 +2,21 @@
 //! === 4 ===
 import { useEffect, useRef, useState } from 'react';
 import axiosInstance from '../axiosInstance';
+import { useAppSelector } from '../redux/hooks';
 
 export default function useChat() {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
   const [typing, setTyping] = useState(false);
 
+  console.log(typing,'asdasdasdasdasd')
+  const { user } = useAppSelector(store => store.userSlice);
   const socketRef = useRef(null);
 
   useEffect(() => {
     axiosInstance('/api/v1/messages/').then(({ data }) => setMessages(data));
   }, []);
+
   useEffect(() => {
     socketRef.current = new WebSocket('ws://localhost:3100');
     const socket = socketRef.current;
@@ -37,7 +41,6 @@ export default function useChat() {
         case 'TYPING_FROM_SERVER_STOP':
           setTyping(false);
           break;
-
         default:
           break;
       }
