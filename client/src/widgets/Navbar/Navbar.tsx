@@ -185,8 +185,9 @@ export default function Navbar() {
                     className="baskimg"
                   />
                 </Link>
-                
               </div>
+
+              {user.id === 1 ? 
               <Button
                 bg={'white'}
                 height={'45px'}
@@ -212,6 +213,34 @@ export default function Navbar() {
                   />
                 </div>
               </Button>
+              :
+              <Button
+                bg={'white'}
+                height={'45px'}
+                rounded={'29px'}
+                boxShadow={'3xl'}
+              >
+                <a
+                  href="w1168615.yclients.com/widgetJS"
+                  className="ms_booking"
+                  onClick={loadScript()}
+                >
+                  Записаться online
+                </a>
+                <div className="image-container">
+                  <img
+                    src="/3.svg"
+                    alt="Loading"
+                    className="loading-image2 main-image2"
+                  />
+                  <img
+                    src="/4.svg"
+                    alt="Loading"
+                    className="loading-image2 overlay-image2 img"
+                  />
+                </div>
+              </Button>}
+
             </Flex>
           </Flex>
         </Center>

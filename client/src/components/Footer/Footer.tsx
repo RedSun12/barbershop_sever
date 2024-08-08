@@ -77,7 +77,7 @@ export default function Footer() {
               <li className={styles.item}>barbershopsever@mail.ru</li>
               <li className={styles.item}>{contacts.telephone}</li>
               <li className={styles.item}>
-                <Link to="/instagram">наш instagram</Link>
+                <Link to="/instagram">instagram</Link>
               </li>
             </ul>
           </div>
