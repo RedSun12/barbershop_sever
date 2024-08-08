@@ -163,7 +163,7 @@ export default function HomePage(): ReactElement {
       <div className="footer">
         <Footer />
       </div>
-      {user.id && <ChatPage />}
+      {user.id ?  <ChatPage /> : ''}
     </>
   );
 }

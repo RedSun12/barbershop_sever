@@ -225,9 +225,9 @@ export default function Navbar() {
             zIndex="1000"
             m={0}
             p={0}
-            height={'45px'} // Adjusted height for better results
+            height={'45px'}
             rounded={'30'}
-            bg={'#A1A1A1'}
+            bg={'rgba(241, 241, 241, 0.52)'}
             alignItems={'center'}
             justifyContent={'space-between'}
             backdropFilter={'blur(12.5px)'}
@@ -262,7 +262,7 @@ export default function Navbar() {
               <AuthForm title="Зарегистрироваться" type="signup" />
               <Link 
               className='bezRegBtn'
-              to="/">На главную</Link>
+              to="/services">Услуги</Link>
               <Link 
               className='bezRegBtn'
               to="/contact">Контакты</Link>
@@ -279,7 +279,7 @@ export default function Navbar() {
               </Button> */}
               <Text ml={'16px'} textShadow={'#0F0F0F 1px 0 10px'}></Text>
             </Flex>
-            <Flex
+            <Flex 
               flexDirection={'column'}
               justifyContent={'center'}
               alignItems={'center'}
