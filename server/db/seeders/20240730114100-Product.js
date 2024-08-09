@@ -6,16 +6,6 @@ module.exports = {
       await queryInterface.bulkInsert('Products', [
       {
         userId: 1,
-        title: 'Гель-парфюм Sport Energy',
-        image: 'image/image-1723135462180-976732823.png',
-        manufacturer: 'Россия',
-        composition: 'Ноты амбры, мускуса, ладана, фиалки, лилии, перца',
-        hairType: 'Ломкие волосы',
-        size: '100 мл',
-        price: 1250,
-      },
-      {
-        userId: 1,
         title: 'Шампунь BarbarossA',
         image: 'image/image-1723138963842-216592950.jpg',
         manufacturer: 'Россия',

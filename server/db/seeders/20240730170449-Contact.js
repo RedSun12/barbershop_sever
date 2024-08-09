@@ -5,8 +5,8 @@ module.exports = {
   async up (queryInterface, Sequelize) {
       await queryInterface.bulkInsert('Contacts', [
         {
-          adress: 'Бэйкер стрит',
-          telephone: '+7999-999-99-99'
+          adress: 'г. Белгород ул. Победы 83б',
+          telephone: '+7 920-999-99-96'
       }
     
     ], {});

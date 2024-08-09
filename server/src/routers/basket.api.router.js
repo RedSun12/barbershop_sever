@@ -91,7 +91,7 @@ router
       const allProduct = order[0].Products.map((el) => el = el.dataValues.title.manufacturer).join(', ');
       console.log(userAdmin.dataValues.email)
       console.log('RESTITLE!!!!', orderBuy)
-      // orderMail(user.dataValues.email, user.dataValues.username, generateOrderCode(10), allProduct)
+      orderMail(user.dataValues.email, user.dataValues.username, generateOrderCode(10), allProduct)
       // orderMailAdmin(userAdmin.dataValues.email, user.dataValues.username, generateOrderCode(10), allProduct)
       orderBuy.map(el => el.destroy())[0];
       res.sendStatus(200);
