@@ -26,15 +26,6 @@ export default function FormAdmin() {
     <form onSubmit={submitHandler} className={styles.wrapper}>
       <h3 className={styles.head}>Добавь товар:</h3>
       <div className={styles.inputs}>
-
-        <Input
-          onChange={changeHandler}
-          borderColor='#3f3e3e'
-          name='title'
-          value={inputs.title}
-          placeholder='Название'
-        />
-        <div className={styles.pad}></div>
         <Input
           onChange={changeHandler}
           borderColor='#3f3e3e'
@@ -43,11 +34,22 @@ export default function FormAdmin() {
           type='file'
           className={styles.inImage}
           accept="image/*"
+          height={'36px'}
+          border={'none'}
+          paddingLeft={'0'}
         />
         <div className={styles.pad}></div>
         <Input
           onChange={changeHandler}
-          borderColor='#3f3e3e'
+          borderColor='rgb(196, 196, 196)'
+          name='title'
+          value={inputs.title}
+          placeholder='Название'
+        />
+        <div className={styles.pad}></div>
+        <Input
+          onChange={changeHandler}
+          borderColor='rgb(196, 196, 196)'
           name='manufacturer'
           value={inputs.manufacturer}
           placeholder='Производитель'
@@ -55,7 +57,7 @@ export default function FormAdmin() {
         <div className={styles.pad}></div>
         <Input
           onChange={changeHandler}
-          borderColor='#3f3e3e'
+          borderColor='rgb(196, 196, 196)'
           name='composition'
           value={inputs.composition}
           placeholder='Состав'
@@ -63,7 +65,7 @@ export default function FormAdmin() {
         <div className={styles.pad}></div>
         <Input
           onChange={changeHandler}
-          borderColor='#3f3e3e'
+          borderColor='rgb(196, 196, 196)'
           name='hairType'
           value={inputs.hairType}
           placeholder='Тип волос'
@@ -71,7 +73,7 @@ export default function FormAdmin() {
         <div className={styles.pad}></div>
         <Input
           onChange={changeHandler}
-          borderColor='#3f3e3e'
+          borderColor='rgb(196, 196, 196)'
           name='size'
           value={inputs.size}
           placeholder='Объем'
@@ -79,7 +81,7 @@ export default function FormAdmin() {
         <div className={styles.pad}></div>
         <Input
           onChange={changeHandler}
-          borderColor='#3f3e3e'
+          borderColor='rgb(196, 196, 196)'
           name='price'
           value={inputs.price}
           placeholder='Стоимость'

@@ -66,6 +66,8 @@ router
       idUser,
     } = req.body;
     try {
+      // const product = await Product.findAll()
+      const userAdmin = await User.findOne({where: { id: 1 }})
       const user = await User.findOne({where: { id }})
       const orderBuy = await Basket.findAll({where:{idUser: id}})
       const order = await User.findAll({
@@ -87,8 +89,10 @@ router
       }
 
       const allProduct = order[0].Products.map((el) => el = el.dataValues.title.manufacturer).join(', ');
+      console.log(userAdmin.dataValues.email)
       console.log('RESTITLE!!!!', orderBuy)
-      orderMail(user.dataValues.email, user.dataValues.username, generateOrderCode(10), allProduct)
+      // orderMail(user.dataValues.email, user.dataValues.username, generateOrderCode(10), allProduct)
+      // orderMailAdmin(userAdmin.dataValues.email, user.dataValues.username, generateOrderCode(10), allProduct)
       orderBuy.map(el => el.destroy())[0];
       res.sendStatus(200);
     } catch (error) {

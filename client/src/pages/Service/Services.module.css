@@ -1,12 +1,14 @@
 .pageContainer {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  margin-top: -100;
+  /* min-height: 100vh; */
 }
 
 .mainContent {
   flex-grow: 1;
-  margin-bottom: 50px; /* Добавлено */
+  /* margin-bottom: 50px; Добавлено */
+  min-width: fit-content;
 
 }
 
@@ -16,6 +18,8 @@
   justify-content: center;
   gap: 15px;
   padding: 0;
+  margin-top: -60;
+  margin-bottom: 240px;
 }
 
 .serviceCard {
@@ -98,11 +102,20 @@
   animation: spin 1s linear infinite;
 }
 
+/* .footer {
+  /* position: fixed; */
+  /* flex-shrink: 0;
+  /* margin-left: 5px; */
+  /* width: 100%; */
+/* } */
+
 .footer {
-  /* flex-shrink: 0; */
-  margin-left: 5px;
-  width: 99.5%;
   position: absolute;
-  display: block;
-  bottom: 0px;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }

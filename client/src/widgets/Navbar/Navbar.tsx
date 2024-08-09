@@ -29,6 +29,8 @@ export default function Navbar() {
   const entries = useAppSelector((store) => store.busketSlice.entries);
   const userId = user?.id;
 
+  console.log(entries)
+
   useEffect(() => {
     if (user) {
       dispatch(fetchBusket(userId));
@@ -175,19 +177,31 @@ export default function Navbar() {
                 {/* <Link to="/admin" style={{ margin: '0 10px', color: 'black' }}>Панель администратора</Link> */}
                 {/* <Link to="/services" style={{ margin: '0 10px' }}>Услуги</Link> */}
               </Text>
-              <div
-                className='baskBtn' 
-              >
-                <Link to="/busket" style={{margin: '0px', padding: "0px"}}>
+              {entries.length ? (
+              <div className='baskBtn'>
+                <Link to="/busket" style={{alignItems: "center", paddingLeft: "10px", paddingRight: "15px", display: "flex", margin: '0px', padding: "0px"}}>
                   <img
                     src="/box_alt.svg"
                     alt="Loading"
                     className="baskimg"
                   />
+                  {/* {'&#160'} */}
+                  <Text className="textBus" marginLeft={'15px'} fontSize={'20px'}>
+                    {entries.length}
+                  </Text>
                 </Link>
               </div>
-
-              {user.id === 1 ? 
+              ) : (
+                <div className='baskBtn'>
+                  <Link to="/busket" style={{margin: '0px', padding: "0px"}}>
+                    <img
+                      src="/box_alt.svg"
+                      alt="Loading"
+                      className="baskimg"
+                    />
+                  </Link>
+                </div>
+              )}
               <Button
                 bg={'white'}
                 height={'45px'}
@@ -213,34 +227,6 @@ export default function Navbar() {
                   />
                 </div>
               </Button>
-              :
-              <Button
-                bg={'white'}
-                height={'45px'}
-                rounded={'29px'}
-                boxShadow={'3xl'}
-              >
-                <a
-                  href="w1168615.yclients.com/widgetJS"
-                  className="ms_booking"
-                  onClick={loadScript()}
-                >
-                  Записаться online
-                </a>
-                <div className="image-container">
-                  <img
-                    src="/3.svg"
-                    alt="Loading"
-                    className="loading-image2 main-image2"
-                  />
-                  <img
-                    src="/4.svg"
-                    alt="Loading"
-                    className="loading-image2 overlay-image2 img"
-                  />
-                </div>
-              </Button>}
-
             </Flex>
           </Flex>
         </Center>
@@ -254,9 +240,9 @@ export default function Navbar() {
             zIndex="1000"
             m={0}
             p={0}
-            height={'45px'}
+            height={'45px'} // Adjusted height for better results
             rounded={'30'}
-            bg={'rgba(241, 241, 241, 0.52)'}
+            bg={'#A1A1A1'}
             alignItems={'center'}
             justifyContent={'space-between'}
             backdropFilter={'blur(12.5px)'}
@@ -291,7 +277,7 @@ export default function Navbar() {
               <AuthForm title="Зарегистрироваться" type="signup" />
               <Link 
               className='bezRegBtn'
-              to="/services">Услуги</Link>
+              to="/">На главную</Link>
               <Link 
               className='bezRegBtn'
               to="/contact">Контакты</Link>
@@ -308,7 +294,7 @@ export default function Navbar() {
               </Button> */}
               <Text ml={'16px'} textShadow={'#0F0F0F 1px 0 10px'}></Text>
             </Flex>
-            <Flex 
+            <Flex
               flexDirection={'column'}
               justifyContent={'center'}
               alignItems={'center'}

@@ -18,8 +18,8 @@ export default function Admin() {
         return <BarberspopAdressAdmin />;
       case 'FormAdmin':
         return <>
-        <FormAdmin />
         <ListAdmin />
+        <FormAdmin />
         </>;
       case 'SliderAdmin':
         return <SliderAdmin />;

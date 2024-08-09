@@ -144,8 +144,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   animation: spin 5s linear infinite;
-  width: 150px;
-  height: 150px; 
+  width: 140px;
+  height: 140px; 
 }
 
 @keyframes spin {

@@ -12,6 +12,7 @@ import {
   Box,
   Card,
   CardBody,
+  Text,
 } from '@chakra-ui/react';
 import Boxes from './Boxes';
 const { VITE_API } = import.meta.env;
@@ -49,7 +50,8 @@ console.log(services, 'serv')
           </div>
         </div>
       )}
-      <div className={styles.mainContent}>
+      {/* <div className={styles.mainContent}> */}
+        {/* <Text display={'flex'} justifyContent={'center'} fontSize={'50px'}>Услуги</Text> */}
         <div className={styles.serviceContainer}>
           {services.map((el) => (
             <div key={el.id}>
@@ -91,11 +93,11 @@ console.log(services, 'serv')
               </Card>
             </div>
           ))}
-        </div>
-      </div >
       <div className={styles.footer}>
       <Footer styled={{display: 'fix'}}/>
       </div>
-    </div>
+        </div>
+      </div >
+    // </div>
   );
 }

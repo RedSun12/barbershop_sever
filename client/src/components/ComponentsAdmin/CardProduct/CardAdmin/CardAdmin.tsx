@@ -36,8 +36,8 @@ export default function CardAdmin({ entry }: MainCardProps) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   
-  const clickMore = () => {
-    navigate('/more')
+  const clickMore = (id) => {
+    navigate(`/more/${id}`)
   }
   const deleteHandler = async (): Promise<void> => {
     dispatch(fetchDelEntry(entry.id));
@@ -82,93 +82,109 @@ export default function CardAdmin({ entry }: MainCardProps) {
 
   return (
     <div className={styles.wrapper}>
-      <Card bgColor='#313133' className={styles.container} maxW='sm'>
-        <CardBody className={styles.body}>
-          <Stack mt='3' spacing='3'>
-            {editing ? (
-              <Input type="text" name="title" defaultValue={entry?.title} onChange={changeHandler} />
-            ) : (
-              <Heading size='md'>{entry?.title}</Heading>
-            )}
-          </Stack>
+      <Card sx={{ boxShadow: "none", background: "transparent", padding: 0 }} bgColor='#313133' className={styles.container} maxW='sm'>
+        <CardBody sx={{ padding: 0 }} className={styles.body}>
           <Box>
           {editing ? (
-              <Input type='file' name="image" ref={fileInputRef} onChange={changeHandler} height='70px' fontSize='14px' accept="image/*"/>
+              <Input border={'0'} type='file' name="image" ref={fileInputRef} onChange={changeHandler} height='27,1px' fontSize='14px' accept="image/*"/>
             ) : (
-              <Image objectFit={'cover'} overflow={'hidden'} width={'300px'} height={'230px'} src={`http://localhost:3100/${entry?.image}`}/>
+              <Image className={styles.image} borderRadius={'7px'} objectFit={'cover'} overflow={'hidden'} width={'100%'} height={'370px'} src={`http://localhost:3100/${entry?.image}`}/>
             )}
           </Box>
           <Stack mt='3' spacing='3'>
             {editing ? (
+              <Input type="text" name="title" defaultValue={entry?.title} onChange={changeHandler} />
+            ) : (
+              <Text className={styles.text} size='md'>Название: {entry?.title}</Text>
+            )}
+          </Stack>
+          <Stack mt='3' spacing='3'>
+            {editing ? (
               <Input type="text" name="manufacturer" defaultValue={entry?.manufacturer} onChange={changeHandler} />
             ) : (
-              <Text>{entry?.manufacturer}</Text>
+              <Text className={styles.text}>Производитель: {entry?.manufacturer}</Text>
             )}
           </Stack>
           <Stack mt='3' spacing='3'>
             {editing ? (
               <Input type="text" name="composition" defaultValue={entry?.composition} onChange={changeHandler} />
             ) : (
-              <Text>{entry?.composition}</Text>
+              <Text className={styles.text}>Состав: {entry?.composition}</Text>
             )}
           </Stack>
           <Stack mt='3' spacing='3'>
             {editing ? (
               <Input type="text" name="hairType" defaultValue={entry?.hairType} onChange={changeHandler} />
             ) : (
-              <Text>{entry?.hairType}</Text>
+              <Text className={styles.text}>Тип волос: {entry?.hairType}</Text>
             )}
           </Stack>
           <Stack mt='3' spacing='3'>
             {editing ? (
               <Input type="text" name="size" defaultValue={entry?.size} onChange={changeHandler} />
             ) : (
-              <Text>{entry?.size}</Text>
+              <Text className={styles.text}>Объем: {entry?.size}</Text>
             )}
             {editing ? (
-              <Input type="text" name="price" defaultValue={entry?.price} onChange={changeHandler} />
+              <Input marginBottom={'20px'} type="text" name="price" defaultValue={entry?.price} onChange={changeHandler} />
             ) : (
-              <Text>{entry?.price}</Text>
+              <Text className={styles.text} marginBottom={'15px'}>Цена: {entry?.price} ₽</Text>
             )}
           </Stack>
         </CardBody>
         <Divider />
-        <CardFooter>
+        <CardFooter  className={styles.footertext} padding={'0'} marginTop={'10px'}>
           <ButtonGroup spacing='2'>
-            <Button onClick={clickMore} variant='solid' colorScheme='blue'>
+            <div className={`${styles.allButton} ${styles.more}`} onClick={() => clickMore(entry?.id)}>
               Подробнее
-            </Button>
+            </div>
+            {/* <Button onClick={clickMore} variant='solid' colorScheme='blue'>
+              Подробнее
+            </Button> */}
             <Popover placement='top'>
               <PopoverTrigger>
-                <Button variant='ghost' colorScheme='blue'>
+                <div className={`${styles.allButton} ${styles.more}`}>
                   Удалить
-                </Button>
+                </div>
+                {/* <Button variant='ghost' colorScheme='blue'>
+                  Удалить
+                </Button> */}
               </PopoverTrigger>
               <PopoverContent>
                 <PopoverArrow />
                 <PopoverCloseButton />
-                <PopoverHeader>
+                <PopoverHeader sx={{ boxShadow: "none", background: "transparent", paddingRight: "40px" }}>
                   Вы действительно хотите удалить запись?
                 </PopoverHeader>
                 <PopoverBody>
-                  <Button
+                {/* padding-right: var(--chakra-space-9); */}
+                  <div className={`${styles.allButton} ${styles.more}`} onClick={deleteHandler}>
+                    Удалить
+                  </div>
+                  {/* <Button
                     onClick={deleteHandler}
                     variant='ghost'
                     colorScheme='blue'
                   >
                     Удалить
-                  </Button>
+                  </Button> */}
                 </PopoverBody>
               </PopoverContent>
             </Popover>
             {editing ? (
-              <Button onClick={saveHandler} variant='ghost' colorScheme='blue'>
+              <div className={`${styles.allButton} ${styles.more}`} onClick={saveHandler}>
                 Сохранить
-              </Button>
+              </div>
+              // <Button onClick={saveHandler} variant='ghost' colorScheme='blue'>
+              //   Сохранить
+              // </Button>
             ) : (
-              <Button onClick={editHandler} variant='ghost' colorScheme='blue'>
-                Редактировать
-              </Button>
+              <div className={`${styles.allButton} ${styles.more}`} onClick={editHandler}>
+                Редактирование
+              </div>
+              // <Button onClick={editHandler} variant='ghost' colorScheme='blue'>
+              //   Редактировать
+              // </Button>
             )}
           </ButtonGroup>
         </CardFooter>
