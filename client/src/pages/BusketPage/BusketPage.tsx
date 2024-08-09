@@ -191,7 +191,7 @@ export default function BusketPage() {
         )}
       </div>
       <div className={styles.footer}>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );
