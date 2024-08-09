@@ -100,7 +100,7 @@ export default function MoreCard() {
         </CardBody>
       </Card>
       <div className={styles.footer}>
-          {/* <Footer /> */}
+          <Footer />
       </div>
     </div>
   )
