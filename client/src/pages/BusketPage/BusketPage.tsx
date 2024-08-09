@@ -99,7 +99,7 @@ export default function BusketPage() {
             </div>
           </div>
         )}
-      <h1 className={styles.header}>Корзина</h1>
+      {/* <h1 className={styles.header}>Корзина</h1> */}
       <Text fontSize={'50px'}>Корзина</Text>
       {/* <h1 className={styles.header}>Корзина</h1> */}
       <div className={styles.cards}>
