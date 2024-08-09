@@ -99,7 +99,10 @@
 }
 
 .footer {
-  flex-shrink: 0;
+  /* flex-shrink: 0; */
   margin-left: 5px;
-  width: 100%;
+  width: 99.5%;
+  position: absolute;
+  display: block;
+  bottom: 0px;
 }
