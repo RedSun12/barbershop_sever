@@ -41,6 +41,22 @@ async function orderMail(email, username, numberOrder, product) {
   // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
 }
 
+async function orderMailAdmin(email, username, numberOrder, product) {
+  // send mail with defined transport object
+  const info = await transporter.sendMail({
+    from: '"barbershopsever@mail.ru 👻" <barbershopsever@mail.ru>', // sender address
+    to: email, // list of receivers
+    subject: 'Hello ✔️', // Subject line
+    text: 'Новый заказ от пользователя', // plain text body
+    // html: '<b>Здравствуйте, ваш заказ оформлен и находится в сборке.</b>', // html body
+    html: `<b><p>Здравствуйте. Пользователь ${username}, оформил заказ.</p><br /><p>${product}</p><br /><p>Для его получения, клиенту необходимо назвать номера.</p><p>Номер заказа: ${numberOrder}</p></b>`, // html body
+  });
+  // });
+
+  console.log('Message sent: %s', info.messageId);
+  // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+}
+
 // main().catch(console.error);
 
 module.exports = {main, orderMail};

@@ -44,6 +44,7 @@ export default function HomePage(): ReactElement {
   }, []);
 
   return (
+    <div className="homePa">
     <>
       <div className="homeP">
         {loadingVisible && (
@@ -161,5 +162,6 @@ export default function HomePage(): ReactElement {
       </div>
       {user.id ?  <ChatPage /> : ''}
     </>
+    </div>
   );
 }

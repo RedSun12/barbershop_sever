@@ -29,6 +29,8 @@ export default function Navbar() {
   const entries = useAppSelector((store) => store.busketSlice.entries);
   const userId = user?.id;
 
+  console.log(entries)
+
   useEffect(() => {
     if (user) {
       dispatch(fetchBusket(userId));
@@ -175,18 +177,31 @@ export default function Navbar() {
                 {/* <Link to="/admin" style={{ margin: '0 10px', color: 'black' }}>Панель администратора</Link> */}
                 {/* <Link to="/services" style={{ margin: '0 10px' }}>Услуги</Link> */}
               </Text>
-              <div
-                className='baskBtn' 
-              >
-                <Link to="/busket" style={{margin: '0px', padding: "0px"}}>
+              {entries.length ? (
+              <div className='baskBtn'>
+                <Link to="/busket" style={{alignItems: "center", paddingLeft: "10px", paddingRight: "15px", display: "flex", margin: '0px', padding: "0px"}}>
                   <img
                     src="/box_alt.svg"
                     alt="Loading"
                     className="baskimg"
                   />
+                  {/* {'&#160'} */}
+                  <Text className="textBus" marginLeft={'15px'} fontSize={'20px'}>
+                    {entries.length}
+                  </Text>
                 </Link>
-                
               </div>
+              ) : (
+                <div className='baskBtn'>
+                  <Link to="/busket" style={{margin: '0px', padding: "0px"}}>
+                    <img
+                      src="/box_alt.svg"
+                      alt="Loading"
+                      className="baskimg"
+                    />
+                  </Link>
+                </div>
+              )}
               <Button
                 bg={'white'}
                 height={'45px'}
