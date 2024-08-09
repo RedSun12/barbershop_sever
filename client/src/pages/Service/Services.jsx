@@ -94,7 +94,7 @@ console.log(services, 'serv')
             </div>
           ))}
       <div className={styles.footer}>
-      <Footer />
+      <Footer styled={{display: 'fix'}}/>
       </div>
         </div>
       </div >
